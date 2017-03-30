@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C2CB2A68-9148-BC58-84D4-9D86AC952585" name="AVISO">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 17:01:40 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_AVISO" id="940DFE55-C2AB-25FE-CE27-B21C1B0D1020">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 17:01:45 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TEXTO" id="F1045347-8CC4-B614-7AFE-4D9BD992100B">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 17:01:45 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_TRABAJADOR" id="11441E0B-3D00-6393-CFDE-39D7A0738461">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 17:03:18 UTC</createdTime>
+<generatorID>91C2B5AE-13A6-39B4-630E-01F150B85C9A</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<referedAttribute>04C1168A-B693-462A-EC9D-C9C16C31BE2C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_TRABAJADOR1" id="81E94177-6407-8888-918D-395CCD51A280">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 17:03:56 UTC</createdTime>
+<generatorID>5EF1E57E-F69A-6002-FEED-233EAA470B76</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<referedAttribute>04C1168A-B693-462A-EC9D-C9C16C31BE2C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7646E2D0-5AA0-E03B-8BEF-9932BA99A549" name="Entity_11 PK">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 17:01:59 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>940DFE55-C2AB-25FE-CE27-B21C1B0D1020</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
