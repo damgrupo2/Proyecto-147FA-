@@ -1,0 +1,201 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8F173E68-4B03-F5D6-07B7-668EB632A45B" name="TRABAJADORES">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>EBC751B0-32E9-AFE1-C4A5-972CF7582B18</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<ordsAlias>trabajador</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_TRABAJADOR" id="5D702AC4-3EC0-6B49-39EB-D5CA23DA4026">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>04C1168A-B693-462A-EC9D-C9C16C31BE2C</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DNI" id="E372468D-F1A9-122E-D80E-DFFF4D6E0728">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>7F9D512F-7CDC-716B-356C-5D662193561C</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE" id="DF5E82D1-85C7-BA25-8B9D-11C1DDD5963B">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>9F715F7D-98FB-1DCA-01C5-94D1E29E0B45</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AP1" id="7E32DC60-7166-C27F-ED2F-433D2142A76C">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>4A007135-4EDC-4201-94B1-2CDB0B70B5E4</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AP2" id="3E75D94C-EFDA-26F1-4575-DFD07CBBD41B">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>D80D68D6-EE01-00FA-7C82-213B432276A8</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIRECCION" id="2207CBCC-151B-6813-86D7-771E58F17C4D">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>9325F8F7-98D8-D380-B99A-F7E1093E938E</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TELF_EMPRESA" id="D15E2DD3-9FAB-F1F5-E610-0ACF1BB67F81">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>61285F5B-A468-CFE1-7DA5-A9B38347044E</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TELF_PERSONAL" id="734B4D48-8E0C-1E6A-4158-5E67C2D314B9">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>232BFD9A-DF31-7EBD-CECA-7638BD922005</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CATEGORIA" id="F5F297F2-44F0-EA98-EF0B-316B4C5C78FA">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>CDD03A46-BD00-10BC-BBF0-74740BD5A958</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SALARIO" id="F8715844-D462-2FC7-0FD5-4859507CFC19">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>6EA9BC33-12BB-387B-A6B1-F4AC760EDD49</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FCHANAC" id="165D0CA7-36B7-6569-75FD-849E9D005E9C">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>32F4585F-A3A8-EB10-FC8C-4CC1164CE7B9</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_CENTRO" id="C0A9FF2C-E4E1-7E22-01F1-509EC81FA3C6">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>299E1A37-29F0-AAA2-3373-91CA9D5298D9</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="87948D5E-43D0-F60E-F4EC-339F3F57EA69" referredColumn="090DCA45-B1BC-7B6E-AA0C-F3DFDDAD1DD4"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="610343B8-F766-C6E0-E3BA-7E8E7360FC4F" name="TRABAJADOR_PK">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>D59F6378-8798-624B-5B6F-244450A24FC6</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D702AC4-3EC0-6B49-39EB-D5CA23DA4026"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9D90FEEB-F6E2-2A50-8DA4-A74A699A32DC" name="TRABAJADOR__IDX">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>902037F1-ABAE-9379-E0F5-CD5298B511FE</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="C0A9FF2C-E4E1-7E22-01F1-509EC81FA3C6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86C43724-FCA7-381A-A2BE-8C082DA7AA03" name="TRABAJADOR_CENTRO_FK">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>68C22044-D667-3F54-60D5-B1F70C477639</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C0A9FF2C-E4E1-7E22-01F1-509EC81FA3C6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

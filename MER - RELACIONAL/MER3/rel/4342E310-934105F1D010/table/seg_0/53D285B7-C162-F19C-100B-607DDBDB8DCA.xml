@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="53D285B7-C162-F19C-100B-607DDBDB8DCA" name="AVISO">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>2C1BB0A5-9ECF-534B-F635-B35EB4C768BC</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_AVISO" id="43A5285C-3ADF-9006-C184-646FA2A0AE75">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>F941CB4C-D1EC-EB5F-0670-A9D9CEB5BC17</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TEXTO" id="48BF9772-0FF0-6396-374B-F12BCC429355">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>806484B1-4E86-FF92-7ECC-8E6555138387</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_TRABAJADOR" id="1F44FF15-47F9-B670-376E-B32BB3A74AC6">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>F1DC79A7-338D-7051-7786-0C7BECA03DA9</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D1E7BCF8-5223-C986-B224-BA50F731494E" referredColumn="5D702AC4-3EC0-6B49-39EB-D5CA23DA4026"/>
+</associations>
+</Column>
+<Column name="ID_TRABAJADOR1" id="DA6B4823-77E1-417F-31B4-5B6B1E796C0D">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>6D120AE1-1A83-E4D6-F6F2-444BE9FA2D3C</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="195CA92D-7CB4-187B-6AE1-2FE68BF4271A" referredColumn="5D702AC4-3EC0-6B49-39EB-D5CA23DA4026"/>
+</associations>
+</Column>
+<Column name="ID_TRABAJADOR2" id="15255ECF-B8A2-246D-6B5D-99BC83B30BBB">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>6EE5D985-122E-1812-FE10-D56C790C657C</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_TRABAJADOR3" id="D7B2F23B-0140-4C37-C1BD-C6CDF86600A9">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>F8C3D581-40D2-F9FA-8C27-B58371373708</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6B35794D-F815-C73A-F0BB-88AC5E9787C4" name="AVISO_PK">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>A51E0A75-BAEF-D985-AE06-2657C2C1817E</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="43A5285C-3ADF-9006-C184-646FA2A0AE75"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C4F10976-04EF-BD6C-4CFF-AB779B3107D2" name="AVISO_TRABAJADOR_FK">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>9FA9D6A7-7D59-5D2E-A115-98C88FFB9E35</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1F44FF15-47F9-B670-376E-B32BB3A74AC6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="77F52474-3B99-2C17-A13E-76EFF20EE99C" name="AVISO_TRABAJADOR_FKv1">
+<createdBy>Jose</createdBy>
+<createdTime>2017-03-30 16:52:59 UTC</createdTime>
+<generatorID>25787FE9-1931-7115-D624-1B45871CA498</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DA6B4823-77E1-417F-31B4-5B6B1E796C0D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
