@@ -16,7 +16,9 @@ public class ControladorBaseDatos {
         } catch (SQLException ex) {
             Logger.getLogger(General.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-    }
+        
    
+        }
+    
 }
+
