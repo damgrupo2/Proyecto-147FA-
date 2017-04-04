@@ -14,7 +14,14 @@ public class Trabajador {
     private Categoria categoria;
     private double salario;
     private Date fechanac;
+    
+    private Centro centro;
+    private List<Aviso> avisos;
+    /*dos relaciones una con administrativo y otra con transportista*/
+    private List<Parte> partes;
+    private Usuario usuario;
 
+    
     public Trabajador() {
     }
 
@@ -31,6 +38,24 @@ public class Trabajador {
         this.fechanac = fechanac;
     }
 
+    public Centro getCentro() {
+        return centro;
+    }
+
+    public void setCentro(Centro centro) {
+        this.centro = centro;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    
+    
     public int getId_trabajador() {
         return id_trabajador;
     }

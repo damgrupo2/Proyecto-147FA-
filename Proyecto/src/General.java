@@ -9,9 +9,7 @@ public class General {
    ControladorBaseDatos cbd=new ControladorBaseDatos();
        cbd.crearConexion();
         
-       Date date=new Date("2017/12/31");
-       Trabajador t=new Trabajador();
-       t.setFechanac(date);
+     
     
        
     
