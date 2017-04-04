@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Modelo;
 
 /**
  *
- * @author 7fbd06
+ * @author TeHenua
  */
-public enum Categoria {
-    Administrativo, Transportista
+public class Usuario {
+    
 }
