@@ -1,4 +1,7 @@
+package Modelo;
 
+
+import Modelo.ControladorBaseDatos;
 import java.sql.PreparedStatement;
 import java.util.Date;
 

@@ -1,5 +1,10 @@
+package Modelo;
 
+
+import Modelo.Centro;
+import Modelo.Categoria;
 import java.util.Date;
+import java.util.List;
 
 
 public class Trabajador {
