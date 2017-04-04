@@ -93,6 +93,31 @@ public class Centro {
     public void setTrabajadoresList(List<Trabajador> trabajadoresList) {
         this.trabajadoresList = trabajadoresList;
     }
+    
+    /* métodos a utilizar */
+    
+    public void guardarCentro(){
+      
+    }
+    
+    public List<Centro> listarCentros(){
+       List<Centro> centros = new ArrayList<>();
+       
+       return centros;
+    }
+    
+    public void modificarCentro(){
+        
+    }
+    
+    public Centro verCentro(){
+        Centro c = new Centro();
+        return c;
+    }
+    
+    public void borrarCentro(){
+        
+    }
 
    
     
