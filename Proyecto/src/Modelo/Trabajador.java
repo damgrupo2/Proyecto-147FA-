@@ -147,8 +147,22 @@ public class Trabajador {
         
     }
     
-     public void modificarTrabajador(){
-        
+     public void modificarTrabajador(Trabajador t) {
+    String dni=t.getDni();
+    String nombre=t.getNombre();
+    String ap1=t.getAp1();
+    String ap2=t.getAp2();
+    String direccion=t.getDireccion();
+    String telf_empresa=t.getTelf_empresa();
+    String telf_personal=t.getTelf_personal();
+    Categoria categoria=t.getCategoria();
+    double salario=t.getSalario();
+    Date fechanac=t.getFechanac();
+    
+    ControladorBaseDatos cbd=new ControladorBaseDatos();
+
+  
+         
     }
                         
      public void borrarTrabajador(){
