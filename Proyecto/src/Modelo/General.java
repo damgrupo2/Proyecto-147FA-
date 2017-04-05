@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-import oracle.jdbc.OracleTypes;
+
 
 public class General {
 
@@ -19,14 +19,8 @@ public class General {
         ResultSet rs= null;
         String sql="{call MOSTRARTRABAJADORES(?)}";
        
-        CallableStatement cs = cbd.getConexion().prepareCall(sql);
-             cs.registerOutParameter(1, OracleTypes.CURSOR);
-             cs.execute();
-             rs=(ResultSet)cs.getObject(1);
-            
-             rs.next();
-        rs.getArray(1);
-        System.out.println(rs.getString(sql)));
+       
+   
     
        
     
