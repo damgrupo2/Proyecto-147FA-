@@ -9,7 +9,7 @@
 </engineerTo>
 <sourcePk>48ECC5C0-361B-5FAF-F67B-E5F4FFF55F4D</sourcePk>
 <targetPk>1BE25EAF-E236-6DD9-AF81-BB9BF496DDDA</targetPk>
-<identifying>true</identifying>
+<identifying>false</identifying>
 <nameOnSource>SE_COMPONE</nameOnSource>
 <nameOnTarget>ESTÁ_COMPUESTO</nameOnTarget>
 <optionalSource>false</optionalSource>

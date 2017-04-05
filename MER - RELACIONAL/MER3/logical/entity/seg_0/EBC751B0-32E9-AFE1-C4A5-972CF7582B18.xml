@@ -156,11 +156,11 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>7</dataTypePrecision>
+<dataTypePrecision>5</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
 </Attribute>
-<Attribute name="FECHANAC" id="32F4585F-A3A8-EB10-FC8C-4CC1164CE7B9">
+<Attribute name="FCHANAC" id="32F4585F-A3A8-EB10-FC8C-4CC1164CE7B9">
 <createdBy>Jose</createdBy>
 <createdTime>2017-03-29 13:26:05 UTC</createdTime>
 <generatorID>Generado por el Usuario</generatorID>
@@ -185,8 +185,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="ID_USUARIO" id="C3E02B12-3021-0588-CFE9-B2F013556DF1">
 <createdBy>Jose</createdBy>
@@ -200,8 +200,9 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,2,2</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -210,8 +211,9 @@
 <createdTime>2017-03-29 13:26:24 UTC</createdTime>
 <generatorID>Generado por el Usuario</generatorID>
 <ownerDesignName>MER3</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

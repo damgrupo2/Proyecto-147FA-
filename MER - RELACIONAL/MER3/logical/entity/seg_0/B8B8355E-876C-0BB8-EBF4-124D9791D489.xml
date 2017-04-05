@@ -27,8 +27,9 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,2,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="MATRICULA" id="A5D48D16-9E38-2C69-9A64-623D00DDC50C">
 <createdBy>Jose</createdBy>
@@ -81,8 +82,9 @@
 <createdTime>2017-03-29 13:45:46 UTC</createdTime>
 <generatorID>Generado por el Usuario</generatorID>
 <ownerDesignName>MER3</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
