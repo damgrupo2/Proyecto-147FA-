@@ -1,15 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Modelo;
 
-
-import Modelo.Centro;
-import Modelo.Categoria;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ *
+ * @author 7fbd06
+ */
 public class Trabajador {
     
     private int id_trabajador;
+    private String dni;
     private String nombre;
     private String ap1;
     private String ap2;
@@ -21,17 +28,17 @@ public class Trabajador {
     private Date fechanac;
     
     private Centro centro;
-    private List<Aviso> avisos;
-    /*dos relaciones una con administrativo y otra con transportista*/
-    private List<Parte> partes;
+    private List<Parte> parteList=new ArrayList<Parte>();
+    private List<Aviso> avisosList=new ArrayList<>();
     private Usuario usuario;
-
     
+
     public Trabajador() {
     }
 
-    public Trabajador(int id_trabajador, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, Date fechanac) {
+    public Trabajador(int id_trabajador, String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, Date fechanac) {
         this.id_trabajador = id_trabajador;
+        this.dni = dni;
         this.nombre = nombre;
         this.ap1 = ap1;
         this.ap2 = ap2;
@@ -43,30 +50,20 @@ public class Trabajador {
         this.fechanac = fechanac;
     }
 
-    public Centro getCentro() {
-        return centro;
-    }
-
-    public void setCentro(Centro centro) {
-        this.centro = centro;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    
-    
     public int getId_trabajador() {
         return id_trabajador;
     }
 
     public void setId_trabajador(int id_trabajador) {
         this.id_trabajador = id_trabajador;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -140,7 +137,26 @@ public class Trabajador {
     public void setFechanac(Date fechanac) {
         this.fechanac = fechanac;
     }
+    
+    public void guardarTrabajador(){
+        
+    }
+    
+    public List<Trabajador> listarTrabajadores(){
+        return null;
+        
+    }
+    
+     public void modificarTrabajador(){
+        
+    }
                         
-    
-    
+     public void borrarTrabajador(){
+        
+    }
+     
+      public Trabajador verTrabajador(){
+        return null;
+        
+    }
 }
