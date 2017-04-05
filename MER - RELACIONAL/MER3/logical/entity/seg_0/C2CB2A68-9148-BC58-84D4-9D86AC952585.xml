@@ -72,7 +72,36 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>5</dataTypePrecision>
-<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA" id="025BD10A-FCAE-F8B5-A828-F40BB1E4567C">
+<createdBy>TeHenua</createdBy>
+<createdTime>2017-04-05 17:44:43 UTC</createdTime>
+<generatorID>DF717677-96C0-9DC2-053D-ECD8888C93D7</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<referedAttribute>9B3BBF80-4F42-542F-F1F3-977253320C86</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_TRABAJADOR2" id="06529BF5-F777-F0E7-09E2-5675CF00CBCC">
+<createdBy>TeHenua</createdBy>
+<createdTime>2017-04-05 17:44:43 UTC</createdTime>
+<generatorID>DF717677-96C0-9DC2-053D-ECD8888C93D7</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<referedAttribute>37C21569-5862-FDB8-D8F9-0EB0857A9932</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

@@ -27,9 +27,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>2</dataTypePrecision>
-<dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,2,2</ownDataTypeParameters>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="CONTRASEÑA" id="172C2885-924A-9FE1-4360-37CB25EF29A3">
 <createdBy>Jose</createdBy>
@@ -67,9 +66,8 @@
 <createdTime>2017-03-29 13:44:42 UTC</createdTime>
 <generatorID>Generado por el Usuario</generatorID>
 <ownerDesignName>MER3</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="false"/>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

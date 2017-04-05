@@ -16,20 +16,6 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ID_REPARTO" id="A4124300-4B30-FB30-A3ED-50010C189140">
-<createdBy>Jose</createdBy>
-<createdTime>2017-03-29 13:41:59 UTC</createdTime>
-<generatorID>Generado por el Usuario</generatorID>
-<ownerDesignName>MER3</ownerDesignName>
-<engineerTo>
-<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>2</dataTypePrecision>
-<ownDataTypeParameters>,2,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="ALBARAN" id="20B8F076-CF63-F876-87E6-BB6C3F1FEEAF">
 <createdBy>Jose</createdBy>
 <createdTime>2017-03-29 13:42:00 UTC</createdTime>
@@ -54,7 +40,7 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
+<logicalDatatype>LOGDT015</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="HORA_FIN" id="8B7AEBD9-76D6-7117-B3B5-234C859C19B0">
@@ -67,39 +53,37 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
+<logicalDatatype>LOGDT015</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID_PARTE" id="7A5E8079-2F76-9C42-3ED1-2285E136F2F4">
-<createdBy>Jose</createdBy>
-<createdTime>2017-03-29 14:17:44 UTC</createdTime>
+<Attribute name="FECHA" id="2975EDB9-4203-B018-E905-D125C5266B53">
+<createdBy>TeHenua</createdBy>
+<createdTime>2017-04-05 17:34:06 UTC</createdTime>
 <generatorID>8C646136-09F0-088D-6495-E2696B2A7AAB</generatorID>
 <ownerDesignName>MER3</ownerDesignName>
 <engineerTo>
 <item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
 </engineerTo>
-<referedAttribute>EA337B98-47BF-4950-8613-1CAB62F729D2</referedAttribute>
+<referedAttribute>9B3BBF80-4F42-542F-F1F3-977253320C86</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>2</dataTypePrecision>
-<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ID_VEHICULO" id="ED6FAA67-3567-A1D5-7487-C577B3F0E600">
-<createdBy>Jose</createdBy>
-<createdTime>2017-03-29 21:00:16 UTC</createdTime>
-<generatorID>2E267ED6-B86C-246B-3714-B41AA257E493</generatorID>
+<Attribute name="ID_TRABAJADOR" id="C8914A59-B838-E5CC-F947-4DFE9FF40073">
+<createdBy>TeHenua</createdBy>
+<createdTime>2017-04-05 17:34:16 UTC</createdTime>
+<generatorID>8C646136-09F0-088D-6495-E2696B2A7AAB</generatorID>
 <ownerDesignName>MER3</ownerDesignName>
 <engineerTo>
 <item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
 </engineerTo>
-<referedAttribute>E60EDB2F-FDF0-B81E-9B06-59C15F12A5C0</referedAttribute>
+<referedAttribute>37C21569-5862-FDB8-D8F9-0EB0857A9932</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>2</dataTypePrecision>
-<dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,2,2</ownDataTypeParameters>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -108,14 +92,14 @@
 <createdTime>2017-03-29 13:42:28 UTC</createdTime>
 <generatorID>Generado por el Usuario</generatorID>
 <ownerDesignName>MER3</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="false"/>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>A4124300-4B30-FB30-A3ED-50010C189140</attributeRef>
-<attributeRef>ED6FAA67-3567-A1D5-7487-C577B3F0E600</attributeRef>
+<attributeRef>20B8F076-CF63-F876-87E6-BB6C3F1FEEAF</attributeRef>
+<attributeRef>C8914A59-B838-E5CC-F947-4DFE9FF40073</attributeRef>
+<attributeRef>2975EDB9-4203-B018-E905-D125C5266B53</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

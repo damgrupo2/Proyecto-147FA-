@@ -16,20 +16,6 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="ID_PARTE" id="EA337B98-47BF-4950-8613-1CAB62F729D2">
-<createdBy>Jose</createdBy>
-<createdTime>2017-03-29 13:34:55 UTC</createdTime>
-<generatorID>Generado por el Usuario</generatorID>
-<ownerDesignName>MER3</ownerDesignName>
-<engineerTo>
-<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<ownDataTypeParameters>,5,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="FECHA" id="9B3BBF80-4F42-542F-F1F3-977253320C86">
 <createdBy>Jose</createdBy>
 <createdTime>2017-03-29 13:34:56 UTC</createdTime>
@@ -54,9 +40,9 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>7</dataTypePrecision>
+<dataTypePrecision>9</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="KM_FIN" id="5915FF88-D2A2-F126-9F6C-C2C9D0729DD0">
 <createdBy>Jose</createdBy>
@@ -69,9 +55,9 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>7</dataTypePrecision>
+<dataTypePrecision>9</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<ownDataTypeParameters>,9,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="GASOIL" id="73871EE5-5CB4-0FA4-06A7-E37F9F40EAFE">
 <createdBy>Jose</createdBy>
@@ -85,9 +71,9 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
+<dataTypePrecision>5</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,3,2</ownDataTypeParameters>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="AUTOPISTA" id="8D6ACFB2-3EA3-6176-891F-FA2A83FADEFA">
 <createdBy>Jose</createdBy>
@@ -101,9 +87,9 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
+<dataTypePrecision>5</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,3,2</ownDataTypeParameters>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="DIETAS" id="AA2EA748-1A82-8FAB-F93B-F887EB6ADE79">
 <createdBy>Jose</createdBy>
@@ -117,9 +103,9 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
+<dataTypePrecision>5</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,3,2</ownDataTypeParameters>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="OTROS_GASTOS" id="CC2B778A-7294-657E-9918-1509A69D99A8">
 <createdBy>Jose</createdBy>
@@ -133,9 +119,9 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
+<dataTypePrecision>5</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,3,2</ownDataTypeParameters>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="INCIDENCIAS" id="568CCE7B-C671-1048-59DB-9488EF560F4C">
 <createdBy>Jose</createdBy>
@@ -166,6 +152,19 @@
 <dataTypeSize>1</dataTypeSize>
 <ownDataTypeParameters>1,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="VALIDADO" id="F763DB41-C074-7F94-BF60-4514631BB9B5">
+<createdBy>TeHenua</createdBy>
+<createdTime>2017-04-05 17:39:24 UTC</createdTime>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="EXCESO_HORAS" id="3571185C-A983-DFFF-B42E-EE9BE449BB92">
 <createdBy>Jose</createdBy>
 <createdTime>2017-03-29 13:34:58 UTC</createdTime>
@@ -174,12 +173,13 @@
 <engineerTo>
 <item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>2</dataTypePrecision>
+<dataTypePrecision>4</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,2,2</ownDataTypeParameters>
+<ownDataTypeParameters>,4,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="ID_TRABAJADOR" id="37C21569-5862-FDB8-D8F9-0EB0857A9932">
 <createdBy>Jose</createdBy>
@@ -193,8 +193,23 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>2</dataTypePrecision>
-<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_VEHICULO" id="8DB1189F-F955-9A64-42A5-A4A822925AE7">
+<createdBy>TeHenua</createdBy>
+<createdTime>2017-04-05 17:30:41 UTC</createdTime>
+<generatorID>F0F2B404-200C-B898-ED4D-9BF9B5BF2BE6</generatorID>
+<ownerDesignName>MER3</ownerDesignName>
+<engineerTo>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
+</engineerTo>
+<referedAttribute>E60EDB2F-FDF0-B81E-9B06-59C15F12A5C0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -203,13 +218,13 @@
 <createdTime>2017-03-29 13:35:28 UTC</createdTime>
 <generatorID>Generado por el Usuario</generatorID>
 <ownerDesignName>MER3</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="false"/>
+<item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>EA337B98-47BF-4950-8613-1CAB62F729D2</attributeRef>
+<attributeRef>9B3BBF80-4F42-542F-F1F3-977253320C86</attributeRef>
+<attributeRef>37C21569-5862-FDB8-D8F9-0EB0857A9932</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

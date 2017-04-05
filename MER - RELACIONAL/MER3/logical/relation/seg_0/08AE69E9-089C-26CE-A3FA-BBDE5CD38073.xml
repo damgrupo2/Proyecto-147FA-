@@ -8,7 +8,7 @@
 <item key="4342E310-8CEF-C4C0-F36D-934105F1D010" value="true"/>
 </engineerTo>
 <sourcePk>D59F6378-8798-624B-5B6F-244450A24FC6</sourcePk>
-<identifying>false</identifying>
+<identifying>true</identifying>
 <nameOnSource>ABRE</nameOnSource>
 <nameOnTarget>ES_ABIERTO</nameOnTarget>
 <optionalSource>false</optionalSource>
