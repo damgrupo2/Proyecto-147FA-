@@ -1,17 +1,21 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <oracle.dbtools.crest.model.design.relational.RelationalDesign>
-   <object objectType="Table" objectID="D32ED67A-C577-DBDD-B341-1505DF7C246C" name="AVISOS" seqName="seg_0"/>
-   <object objectType="Table" objectID="7147DB73-A31C-B85C-70E1-3DCE56ECEABC" name="CENTROS" seqName="seg_0"/>
-   <object objectType="Table" objectID="23054BC1-8A9B-B38E-88F8-1951065669EC" name="PARTES" seqName="seg_0"/>
-   <object objectType="Table" objectID="C2C74CC5-84FC-0BD7-6637-8BFB75862C4C" name="REPARTOS" seqName="seg_0"/>
-   <object objectType="Table" objectID="8F173E68-4B03-F5D6-07B7-668EB632A45B" name="TRABAJADORES" seqName="seg_0"/>
-   <object objectType="Table" objectID="590699A1-F418-A45F-89D5-E3BE04C97D9F" name="USUARIOS" seqName="seg_0"/>
-   <object objectType="Table" objectID="1EC57B82-61EB-8BB1-8C67-771778FE383B" name="VEHICULOS" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="EC8620EB-0725-3611-EC5E-8123C4C62F6F" name="AVISO_EMISOR_FK" seqName="seg_0" containerID="D32ED67A-C577-DBDD-B341-1505DF7C246C" refContainerID="8F173E68-4B03-F5D6-07B7-668EB632A45B"/>
-   <object objectType="FKIndexAssociation" objectID="AC80C4BA-9B80-0951-70E7-32E4F830272C" name="AVISO_RECEPTOR_FK" seqName="seg_0" containerID="D32ED67A-C577-DBDD-B341-1505DF7C246C" refContainerID="8F173E68-4B03-F5D6-07B7-668EB632A45B"/>
-   <object objectType="FKIndexAssociation" objectID="D12B3ADD-93EA-F25D-9B48-5CA29943D0D0" name="PARTE_TRABAJADOR_FK" seqName="seg_0" containerID="23054BC1-8A9B-B38E-88F8-1951065669EC" refContainerID="8F173E68-4B03-F5D6-07B7-668EB632A45B"/>
-   <object objectType="FKIndexAssociation" objectID="0D1F8841-B180-47CD-44DC-4EC7DF8A2F90" name="REPARTO_PARTE_FK" seqName="seg_0" containerID="C2C74CC5-84FC-0BD7-6637-8BFB75862C4C" refContainerID="23054BC1-8A9B-B38E-88F8-1951065669EC"/>
-   <object objectType="FKIndexAssociation" objectID="0591A41C-0B26-00C7-4C97-497D7A1B5671" name="REPARTO_VEHICULO_FK" seqName="seg_0" containerID="C2C74CC5-84FC-0BD7-6637-8BFB75862C4C" refContainerID="1EC57B82-61EB-8BB1-8C67-771778FE383B"/>
-   <object objectType="FKIndexAssociation" objectID="87948D5E-43D0-F60E-F4EC-339F3F57EA69" name="TRABAJADOR_CENTRO_FK" seqName="seg_0" containerID="8F173E68-4B03-F5D6-07B7-668EB632A45B" refContainerID="7147DB73-A31C-B85C-70E1-3DCE56ECEABC"/>
-   <object objectType="FKIndexAssociation" objectID="BDBDE396-08E3-C376-9CB8-36AB356D7CE9" name="USUARIO_TRABAJADOR_FK" seqName="seg_0" containerID="590699A1-F418-A45F-89D5-E3BE04C97D9F" refContainerID="8F173E68-4B03-F5D6-07B7-668EB632A45B"/>
+   <object objectType="Table" objectID="1EC57B82-61EB-8BB1-8C67-771778FE383B" name="VEHICULOS" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="23054BC1-8A9B-B38E-88F8-1951065669EC" name="PARTES" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="53D285B7-C162-F19C-100B-607DDBDB8DCA" name="" seqName="seg_0"/>
+   <object objectType="Table" objectID="590699A1-F418-A45F-89D5-E3BE04C97D9F" name="USUARIOS" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="7147DB73-A31C-B85C-70E1-3DCE56ECEABC" name="CENTROS" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="8F173E68-4B03-F5D6-07B7-668EB632A45B" name="TRABAJADORES" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="C2C74CC5-84FC-0BD7-6637-8BFB75862C4C" name="REPARTOS" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="D32ED67A-C577-DBDD-B341-1505DF7C246C" name="AVISOS" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="0591A41C-0B26-00C7-4C97-497D7A1B5671" name="REPARTO_VEHICULO_FK" containerID="C2C74CC5-84FC-0BD7-6637-8BFB75862C4C" refContainerID="1EC57B82-61EB-8BB1-8C67-771778FE383B" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="0D1F8841-B180-47CD-44DC-4EC7DF8A2F90" name="REPARTO_PARTE_FK" containerID="C2C74CC5-84FC-0BD7-6637-8BFB75862C4C" refContainerID="23054BC1-8A9B-B38E-88F8-1951065669EC" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="12A297FC-262B-D520-1D47-43B326D6B4A4" name="" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="195CA92D-7CB4-187B-6AE1-2FE68BF4271A" name="" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="87948D5E-43D0-F60E-F4EC-339F3F57EA69" name="TRABAJADOR_CENTRO_FK" containerID="8F173E68-4B03-F5D6-07B7-668EB632A45B" refContainerID="7147DB73-A31C-B85C-70E1-3DCE56ECEABC" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="AC80C4BA-9B80-0951-70E7-32E4F830272C" name="AVISO_RECEPTOR_FK" containerID="D32ED67A-C577-DBDD-B341-1505DF7C246C" refContainerID="8F173E68-4B03-F5D6-07B7-668EB632A45B" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="BDBDE396-08E3-C376-9CB8-36AB356D7CE9" name="USUARIO_TRABAJADOR_FK" containerID="590699A1-F418-A45F-89D5-E3BE04C97D9F" refContainerID="8F173E68-4B03-F5D6-07B7-668EB632A45B" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="D12B3ADD-93EA-F25D-9B48-5CA29943D0D0" name="PARTE_TRABAJADOR_FK" containerID="23054BC1-8A9B-B38E-88F8-1951065669EC" refContainerID="8F173E68-4B03-F5D6-07B7-668EB632A45B" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="D1E7BCF8-5223-C986-B224-BA50F731494E" name="" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="EC8620EB-0725-3611-EC5E-8123C4C62F6F" name="AVISO_EMISOR_FK" containerID="D32ED67A-C577-DBDD-B341-1505DF7C246C" refContainerID="8F173E68-4B03-F5D6-07B7-668EB632A45B" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
 </oracle.dbtools.crest.model.design.relational.RelationalDesign>
