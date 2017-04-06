@@ -11,31 +11,30 @@ import javax.swing.JOptionPane;
 
 public class ControladorBaseDatos {
     
-    private Connection conexion;
+    private static Connection conexion;
     
    
 
-    public Connection getConexion() {
+    public static Connection getConexion() {
         return conexion;
     }
 
-    public void setConexion(Connection conexion) {
-        this.conexion = conexion;
-    }
-
-    public ControladorBaseDatos() {
+    public static void conectar() {
         try { 
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            conexion= DriverManager.getConnection("jdbc:oracle:thin:@10.10.10.9:1521:db12102","Aplicacion", "a12345Abcde");
-        } catch (SQLException ex) {
-            Logger.getLogger(General.class.getName()).log(Level.SEVERE, null, ex);
-            
+            String login="Aplicacion";
+            String pass="a12345Abcde";
+            String url="jdbc:oracle:thin:@10.10.10.9:1521:db12102";
+            conexion= DriverManager.getConnection(url, login, pass);
+            conexion.setAutoCommit(true);
+        } catch (SQLException  | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n"+ex.getMessage()); 
         }
-        catch (ClassNotFoundException ex) {
-           /* JOptionPane.showMessageDialog(, ex, "Error de conexion", 0);*/
-       
     }
     
+    public static void desconectar() throws SQLException{
+        conexion.close();
+        
     
 }
 }

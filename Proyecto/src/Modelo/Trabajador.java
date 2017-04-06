@@ -36,8 +36,7 @@ public class Trabajador {
     public Trabajador() {
     }
 
-    public Trabajador(int id_trabajador, String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, Date fechanac) {
-        this.id_trabajador = id_trabajador;
+    public Trabajador( String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, Date fechanac) {
         this.dni = dni;
         this.nombre = nombre;
         this.ap1 = ap1;
@@ -49,6 +48,24 @@ public class Trabajador {
         this.salario = salario;
         this.fechanac = fechanac;
     }
+
+    public Centro getCentro() {
+        return centro;
+    }
+
+    public void setCentro(Centro centro) {
+        this.centro = centro;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
 
     public int getId_trabajador() {
         return id_trabajador;
@@ -138,8 +155,10 @@ public class Trabajador {
         this.fechanac = fechanac;
     }
     
-    public void guardarTrabajador(){
+    public void guardarTrabajador(Trabajador t){
         
+        centro.añadeTrabajador(t);
+        t.setCentro(centro);
     }
     
     public List<Trabajador> listarTrabajadores(){
@@ -148,21 +167,7 @@ public class Trabajador {
     }
     
      public void modificarTrabajador(Trabajador t) {
-    String dni=t.getDni();
-    String nombre=t.getNombre();
-    String ap1=t.getAp1();
-    String ap2=t.getAp2();
-    String direccion=t.getDireccion();
-    String telf_empresa=t.getTelf_empresa();
-    String telf_personal=t.getTelf_personal();
-    Categoria categoria=t.getCategoria();
-    double salario=t.getSalario();
-    Date fechanac=t.getFechanac();
-    
-    ControladorBaseDatos cbd=new ControladorBaseDatos();
-
-  
-         
+     
     }
                         
      public void borrarTrabajador(){
