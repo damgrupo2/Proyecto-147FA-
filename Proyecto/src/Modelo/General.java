@@ -13,11 +13,7 @@ public class General {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
        
-   ControladorBaseDatos cbd=new ControladorBaseDatos();
-       cbd.crearConexion();
-        
-        ResultSet rs= null;
-        String sql="{call MOSTRARTRABAJADORES(?)}";
+  
        
        
    
