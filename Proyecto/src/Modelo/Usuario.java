@@ -7,8 +7,10 @@ package Modelo;
 
 /**
  *
- * @author TeHenua
+ * @author 7fbd06
  */
 public class Usuario {
+    
+    
     
 }
