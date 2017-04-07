@@ -11,32 +11,30 @@ import javax.swing.JOptionPane;
 
 public class ControladorBaseDatos {
     
-    private Connection conexion;
+    private static Connection conexion;
     
+   public static void conectar(){ 
+        try{ 
+            Class.forName("oracle.jdbc.OracleDriver"); 
+            //String login = "Aplicacion"; 
+            //String pass = "a12345Abcde"; 
+            String login = "sys"; 
+            String pass = "oracle"; 
+            //String url = "jdbc:oracle:thin:@10.10.10.9:1521:db12102"; 
+            String url = "jdbc:oracle:thin:@localhost:1521:xe"; 
+            conexion = DriverManager.getConnection(url,login,pass); 
+            conexion.setAutoCommit(true); 
+        }catch(ClassNotFoundException | SQLException e){ 
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+e.getMessage()); 
+        }  
+    }
    
-
-    public Connection getConexion() {
-        return conexion;
-    }
-
-    public void setConexion(Connection conexion) {
-        this.conexion = conexion;
-    }
-
-    public ControladorBaseDatos() {
-        try { 
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            conexion= DriverManager.getConnection("jdbc:oracle:thin:@10.10.10.9:1521:db12102","Aplicacion", "a12345Abcde");
-        } catch (SQLException ex) {
-            Logger.getLogger(General.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
-        catch (ClassNotFoundException ex) {
-           /* JOptionPane.showMessageDialog(, ex, "Error de conexion", 0);*/
-       
-    }
-    
-    
-}
+   public static void desconectar() throws SQLException{ 
+        conexion.close(); 
+    } 
+     
+    public static Connection getConexion(){ 
+        return conexion; 
+    } 
 }
 

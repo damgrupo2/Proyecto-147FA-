@@ -173,4 +173,9 @@ public class Trabajador {
         return null;
         
     }
+
+    void añadirCentro(Centro centro) {
+        this.centro = centro;
+        centro.añadirTrabajador(this);
+    }
 }
