@@ -48,11 +48,11 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         telPersonalTexto = new javax.swing.JTextField();
         salarioTexto = new javax.swing.JTextField();
         categoriaOpciones = new javax.swing.JComboBox<>();
-        nacimientoElegir = new com.toedter.calendar.JDateChooser();
         aceptarBoton = new javax.swing.JButton();
         atrasBoton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         centroTexto = new javax.swing.JTextField();
+        fechaTexto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +112,12 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
             }
         });
 
+        fechaTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechaTextoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,8 +158,8 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nacimientoElegir, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(centroTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE))))
+                            .addComponent(centroTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+                            .addComponent(fechaTexto))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -195,15 +201,15 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(salarioTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(nacimientoElegir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(centroTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarBoton)
                     .addComponent(atrasBoton))
@@ -237,7 +243,7 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         
         Modelo.Trabajador t=new Modelo.Trabajador(dniTexto.getText(),nombreTexto.getText(),
         ap1Texto.getText(), ap2Texto.getText(), direccionTexto.getText(),telEmpresaTexto.getText(),
-        telPersonalTexto.getText(),categoria, salario, nacimientoElegir.getDate());
+        telPersonalTexto.getText(),categoria, salario, fechaTexto.getText());
         
         
         t.guardarTrabajador(t);
@@ -248,6 +254,10 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
     private void centroTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_centroTextoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_centroTextoActionPerformed
+
+    private void fechaTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechaTextoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,6 +303,7 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
     private javax.swing.JTextField centroTexto;
     private javax.swing.JTextField direccionTexto;
     private javax.swing.JTextField dniTexto;
+    private javax.swing.JTextField fechaTexto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -304,7 +315,6 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private com.toedter.calendar.JDateChooser nacimientoElegir;
     private javax.swing.JTextField nombreTexto;
     private javax.swing.JTextField salarioTexto;
     private javax.swing.JTextField telEmpresaTexto;

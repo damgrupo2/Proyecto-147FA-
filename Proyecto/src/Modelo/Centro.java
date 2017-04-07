@@ -117,7 +117,7 @@ public class Centro {
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = Modelo.ControladorBaseDatos.getConexion().prepareStatement
-                    ("INSERT INTO CENTROS (NOMBRE,DIRECCION,CP, LOC, PROVINCIA,TELF) VALUES (?,?,?,?,?,?)");
+                    ("INSERT INTO CENTRO (NOMBRE,DIRECCION,CP, LOC, PROVINCIA,TELF) VALUES (?,?,?,?,?,?)");
             ps.setString(1, nombre);
             ps.setString(2, direccion);
             ps.setString(3, cp);
@@ -129,6 +129,7 @@ public class Centro {
         } catch (Exception e) {
            
         }
+        
         
     }
     

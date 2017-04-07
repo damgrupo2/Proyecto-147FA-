@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +27,7 @@ public class Trabajador {
     private String telf_personal;
     private Categoria categoria;
     private double salario;
-    private Date fechanac;
+    private String fechanac;
     
     private Centro centro;
     private List<Parte> parteList=new ArrayList<Parte>();
@@ -36,7 +38,7 @@ public class Trabajador {
     public Trabajador() {
     }
 
-    public Trabajador( String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, Date fechanac) {
+    public Trabajador( String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, String fechanac) {
         this.dni = dni;
         this.nombre = nombre;
         this.ap1 = ap1;
@@ -147,11 +149,11 @@ public class Trabajador {
         this.salario = salario;
     }
 
-    public Date getFechanac() {
+    public String getFechanac() {
         return fechanac;
     }
 
-    public void setFechanac(Date fechanac) {
+    public void setFechanac(String fechanac) {
         this.fechanac = fechanac;
     }
     
@@ -159,6 +161,28 @@ public class Trabajador {
         
         centro.añadeTrabajador(t);
         t.setCentro(centro);
+        
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = Modelo.ControladorBaseDatos.getConexion().prepareStatement
+                    ("INSERT INTO TRABAJADOR (DNI,NOMBRE,AP1,AP2,DIRECCION,TELF_EMPRESA, TELF_PERSONAL,CATEGORIA, "
+                                        + "SALARIO, FECHANAC) VALUES (?,?,?,?,?,?,?,?,?)");
+            ps.setString(1, dni);
+            ps.setString(2, nombre);
+            ps.setString(3, ap1);
+            ps.setString(4, ap2);
+            ps.setString(5, direccion);
+            ps.setString(6, telf_empresa);
+            ps.setString(7, telf_personal);
+            ps.setString(8, categoria.toString());
+            ps.setDouble(9, salario);
+            ps.setString(10, fechanac);
+            ps.execute();
+            ControladorBaseDatos.desconectar();
+        } catch (Exception e) {
+           
+        }
+      
     }
     
     public List<Trabajador> listarTrabajadores(){

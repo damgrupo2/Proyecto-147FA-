@@ -148,6 +148,7 @@ public class CentroFormulario extends javax.swing.JFrame {
         Modelo.Centro c =new Modelo.Centro(nombreTexto.getText(),direccionTexto.getText(), cpTexto.getText(),loctexto.getText(),
         provTexto.getText(),telfTexto.getText());
         
+        c.guardarCentro();
         
     }//GEN-LAST:event_aceptarBotonActionPerformed
 
