@@ -2,6 +2,8 @@ package Modelo;
 
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,9 +136,28 @@ public class Centro {
     }
     
     public List<Centro> listarCentros(){
-       List<Centro> centros = new ArrayList<>();
-       
-       return centros;
+        Statement stmt = null;
+        String query = "SELECT * FROM CENTRO";
+        try {
+            
+        stmt = ControladorBaseDatos.getConexion().createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+             int idCentro=rs.getInt("ID_CENTRO");
+             String nombre=rs.getString("NOMBRE");
+             String direccion=rs.getString("DIRECCION");
+             String cp=rs.getString("CP");
+             String loc=rs.getString("LOC");
+             String provincia=rs.getString("PROVINCIA");
+             String telf=rs.getString("TELF");
+        }
+        
+        
+   
+        } catch (Exception e) {
+        }
+      
+     return null;
     }
     
     public void modificarCentro(){

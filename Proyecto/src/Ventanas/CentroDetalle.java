@@ -27,21 +27,155 @@ public class CentroDetalle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        nombreTexto = new javax.swing.JTextField();
+        direccionTexto = new javax.swing.JTextField();
+        cpTexto = new javax.swing.JTextField();
+        loctexto = new javax.swing.JTextField();
+        provTexto = new javax.swing.JTextField();
+        telfTexto = new javax.swing.JTextField();
+        anteriorBoton = new javax.swing.JButton();
+        siguienteBoton = new javax.swing.JButton();
+        borrarBoton = new javax.swing.JButton();
+        editarBoton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("NOMBRE:");
+
+        jLabel2.setText("DIRECCIÓN:");
+
+        jLabel3.setText("CÓDIGO POSTAL:");
+
+        jLabel4.setText("LOCALIDAD:");
+
+        jLabel5.setText("PROVINCIA:");
+
+        jLabel6.setText("TELÉFONO:");
+
+        nombreTexto.setEditable(false);
+
+        direccionTexto.setEditable(false);
+
+        cpTexto.setEditable(false);
+        cpTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpTextoActionPerformed(evt);
+            }
+        });
+
+        loctexto.setEditable(false);
+
+        provTexto.setEditable(false);
+
+        telfTexto.setEditable(false);
+
+        anteriorBoton.setText("Anterior");
+        anteriorBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anteriorBotonActionPerformed(evt);
+            }
+        });
+
+        siguienteBoton.setText("Siguiente");
+
+        borrarBoton.setText("Borrar");
+
+        editarBoton.setText("Editar");
+        editarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarBotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(provTexto)
+                    .addComponent(loctexto)
+                    .addComponent(cpTexto)
+                    .addComponent(direccionTexto)
+                    .addComponent(nombreTexto)
+                    .addComponent(telfTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(93, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(anteriorBoton)
+                .addGap(208, 208, 208)
+                .addComponent(borrarBoton)
+                .addGap(18, 18, 18)
+                .addComponent(editarBoton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(siguienteBoton)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nombreTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(direccionTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cpTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(loctexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(provTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(telfTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(anteriorBoton)
+                    .addComponent(siguienteBoton)
+                    .addComponent(borrarBoton)
+                    .addComponent(editarBoton))
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cpTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpTextoActionPerformed
+
+    private void anteriorBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anteriorBotonActionPerformed
+
+    private void editarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editarBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +213,21 @@ public class CentroDetalle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton anteriorBoton;
+    private javax.swing.JButton borrarBoton;
+    private javax.swing.JTextField cpTexto;
+    private javax.swing.JTextField direccionTexto;
+    private javax.swing.JButton editarBoton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField loctexto;
+    private javax.swing.JTextField nombreTexto;
+    private javax.swing.JTextField provTexto;
+    private javax.swing.JButton siguienteBoton;
+    private javax.swing.JTextField telfTexto;
     // End of variables declaration//GEN-END:variables
 }
