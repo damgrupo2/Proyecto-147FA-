@@ -18,14 +18,14 @@ public class ControladorBaseDatos {
             Class.forName("oracle.jdbc.OracleDriver"); 
             //String login = "Aplicacion"; 
             //String pass = "a12345Abcde"; 
-            String login = "sys"; 
-            String pass = "oracle"; 
+            String login = "system"; 
+            String pass = "pusverlus"; 
             //String url = "jdbc:oracle:thin:@10.10.10.9:1521:db12102"; 
             String url = "jdbc:oracle:thin:@localhost:1521:xe"; 
             conexion = DriverManager.getConnection(url,login,pass); 
             conexion.setAutoCommit(true); 
-        }catch(ClassNotFoundException | SQLException e){ 
-            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+e.getMessage()); 
+        }catch(ClassNotFoundException | SQLException ex){ 
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
         }  
     }
    

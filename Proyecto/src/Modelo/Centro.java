@@ -3,12 +3,14 @@ package Modelo;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import oracle.jdbc.OracleTypes;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -94,13 +96,12 @@ public class Centro {
         this.telf = telf;
     }
 
-    public List<Trabajador> getTrabajadoresList() {
-        return trabajadores;
+    public String getLoc() {
+        return loc;
     }
 
-    
-    public void setTrabajadoresList(List<Trabajador> trabajadoresList) {
-        this.trabajadores = trabajadoresList;
+    public void setLoc(String loc) {
+        this.loc = loc;
     }
     
     /* métodos a utilizar */
@@ -118,9 +119,7 @@ public class Centro {
             ps.setString(4, loc);
             ps.setString(5, provincia);
             ps.setString(6, telf);
- 
             boolean correcto = ps.execute();
- 
             ControladorBaseDatos.desconectar();
  
         } catch (SQLException ex) {
@@ -137,28 +136,95 @@ public class Centro {
             ControladorBaseDatos.conectar();
             CallableStatement cs = ControladorBaseDatos.getConexion().
                     prepareCall("{call PAQ_CENTROS.CONSULTA_CENTROS(?)}");
-            cs.set
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()) {
+                Centro c = new Centro();
+                c.setNombre(rs.getString("NOMBRE"));
+                c.setId_centro(rs.getInt("ID_CENTRO"));
+                c.setLoc(rs.getString("LOC"));
+                centros.add(c);
+            }
+            ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
-            Logger.getLogger(Centro.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
         }
         return centros;
     }
     
     public void modificarCentro(){
-        
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("UPDATE CENTRO(NOMBRE,DIRECCION,LOC,PROVINCIA"
+                            + "CP,TELF SET(?,?,?,?,?) WHERE ID_CENTRO=?)");
+            ps.setString(1, nombre);
+            ps.setString(2, direccion);
+            ps.setString(3, loc);
+            ps.setString(4, provincia);
+            ps.setString(5, cp);
+            ps.setString(6, telf);
+            ps.setInt(7, id_centro);
+            ps.executeUpdate();
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+        }
     }
     
     public Centro verCentro(){
-        Centro c = new Centro();
-        return c;
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion().
+                    prepareCall("{call PAQ_CENTROS.CONSULTA_CENTRO(?,?)}");
+            cs.setInt(1, id_centro);
+            cs.registerOutParameter(2, OracleTypes.CURSOR);
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()) {
+                nombre = rs.getString("NOMBRE");
+                direccion = rs.getString("DIRECCION");
+                loc = rs.getString("LOC");
+                provincia = rs.getString("PROVINCIA");
+                cp = rs.getString("CP");
+                telf = rs.getString("TELF");
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+        }
+        return this;
     }
     
-    public void listarTrabajadoresCentro(){
-        
+    public Centro listarTrabajadoresCentro(){
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion()
+                    .prepareCall("{call PAQ_CENTROS.CONSULTA_CENTRO_TRABAJADORES(?,?,?)}");
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.registerOutParameter(2, OracleTypes.CURSOR);
+            cs.setInt(3, id_centro);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                nombre= rs.g;
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Centro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this;
     }
     
     public void borrarCentro(){
-        
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("DELETE FROM CENTRO WHERE ID_CENTRO=?");
+            ps.setInt(1, id_centro);
+            ps.execute();
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+        }
     }
 
     public void añadirTrabajador(Trabajador trabajador){
