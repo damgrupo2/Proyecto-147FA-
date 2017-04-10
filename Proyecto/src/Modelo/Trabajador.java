@@ -5,9 +5,14 @@
  */
 package Modelo;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,8 +41,7 @@ public class Trabajador {
     public Trabajador() {
     }
 
-    public Trabajador(int id_trabajador, String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, Date fechanac) {
-        this.id_trabajador = id_trabajador;
+    public Trabajador( String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, Date fechanac) {
         this.dni = dni;
         this.nombre = nombre;
         this.ap1 = ap1;
@@ -137,9 +141,42 @@ public class Trabajador {
     public void setFechanac(Date fechanac) {
         this.fechanac = fechanac;
     }
-    
-    public void guardarTrabajador(){
-        
+
+    void añadirCentro(Centro centro) {
+        this.centro = centro;
+        centro.añadirTrabajador(this);
+    }
+
+    public void guardarTrabajador(String nombreCentro){
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion().prepareStatement("SELECT ID_CENTRO FROM CENTRO WHERE NOMBRE = ?");
+            ps.setString(1,nombreCentro);
+            ResultSet rs = ps.executeQuery();
+            int idCentro=0;
+            while(rs.next()){
+                idCentro = rs.getInt("ID_CENTRO");
+            }
+            ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("INSERT INTO TRABAJADOR(DNI, NOMBRE, AP1, AP2, DIRECCION, TELF_EMPRESA, TELF_PERSONAL," +
+                            "CATEGORIA, SALARIO, FECHANAC, ID_CENTRO) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            ps.setString(1,dni);
+            ps.setString(2, nombre);
+            ps.setString(3, ap1);
+            ps.setString(4, ap2);
+            ps.setString(5, direccion);
+            ps.setString(6, telf_empresa);
+            ps.setString(7, telf_personal);
+            ps.setObject(8, categoria);
+            ps.setDouble(9, salario);
+            java.sql.Date f = new java.sql.Date(fechanac.getTime());
+            ps.setDate(10, f);
+            ps.setInt(11, idCentro);                    
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
     public List<Trabajador> listarTrabajadores(){
@@ -148,21 +185,7 @@ public class Trabajador {
     }
     
      public void modificarTrabajador(Trabajador t) {
-    String dni=t.getDni();
-    String nombre=t.getNombre();
-    String ap1=t.getAp1();
-    String ap2=t.getAp2();
-    String direccion=t.getDireccion();
-    String telf_empresa=t.getTelf_empresa();
-    String telf_personal=t.getTelf_personal();
-    Categoria categoria=t.getCategoria();
-    double salario=t.getSalario();
-    Date fechanac=t.getFechanac();
-    
-    ControladorBaseDatos cbd=new ControladorBaseDatos();
 
-  
-         
     }
                         
      public void borrarTrabajador(){
@@ -174,8 +197,5 @@ public class Trabajador {
         
     }
 
-    void añadirCentro(Centro centro) {
-        this.centro = centro;
-        centro.añadirTrabajador(this);
-    }
+
 }

@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
 
@@ -39,11 +37,11 @@ public class Centro {
     public Centro() {
     }
 
-    public Centro(int id_centro, String nombre, String direccion, String cp, String provincia, String telf) {
-        this.id_centro = id_centro;
+    public Centro( String nombre, String direccion, String cp, String loc , String provincia, String telf) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.cp = cp;
+        this.loc = loc;
         this.provincia = provincia;
         this.telf = telf;
     }
@@ -110,29 +108,6 @@ public class Centro {
         trabajadores.add(trabajador);
     }
 
-    public void guardarCentro(){
- 
-        try {
-            ControladorBaseDatos.conectar();
-            PreparedStatement ps = ControladorBaseDatos.getConexion().
-                    prepareStatement("INSERT INTO CENTRO(NOMBRE,DIRECCION,CP,"
-                            + "LOC,PROVINCIA,TELF) VALUES(?,?,?,?,?,?) ");
-            ps.setString(1, nombre);
-            ps.setString(2, direccion);
-            ps.setString(3, cp);
-            ps.setString(4, loc);
-            ps.setString(5, provincia);
-            ps.setString(6, telf);
-            boolean correcto = ps.execute();
-            ControladorBaseDatos.desconectar();
- 
-        } catch (SQLException ex) {
- 
-            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"
-                    +ex.getMessage());
-        }
-    }
-
     public Centro verCentro(){
         try {
             ControladorBaseDatos.conectar();
@@ -140,7 +115,8 @@ public class Centro {
                     prepareCall("{call PAQ_CENTROS.CONSULTA_CENTRO(?,?)}");
             cs.setInt(1, id_centro);
             cs.registerOutParameter(2, OracleTypes.CURSOR);
-            ResultSet rs = cs.executeQuery();
+            cs.execute();
+            ResultSet rs = (ResultSet)cs.getObject(2);
             while (rs.next()) {
                 nombre = rs.getString("NOMBRE");
                 direccion = rs.getString("DIRECCION");
@@ -163,7 +139,8 @@ public class Centro {
             CallableStatement cs = ControladorBaseDatos.getConexion().
                     prepareCall("{call PAQ_CENTROS.CONSULTA_CENTROS(?)}");
             cs.registerOutParameter(1, OracleTypes.CURSOR);
-            ResultSet rs = cs.executeQuery();
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(1);
             while (rs.next()) {
                 Centro c = new Centro();
                 c.setNombre(rs.getString("NOMBRE"));
@@ -180,15 +157,16 @@ public class Centro {
 
     public Centro listarTrabajadoresCentro(){
         try {
-            this = verCentro();
+            verCentro();
             ControladorBaseDatos.conectar();
             CallableStatement  cs = ControladorBaseDatos.getConexion().prepareCall("{call CONSULTA_TRABAJADORES(?)}");
             cs.registerOutParameter(1, OracleTypes.CURSOR);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
+                Categoria c =(Categoria) rs.getObject("CATEGORIA");
                 Trabajador t = new Trabajador(rs.getString("DNI"),rs.getString("NOMBRE"),rs.getString("AP1"),rs.getString("AP2"),
-                        rs.getString("DIRECCION"),rs.getString("TELF_EMPRESA"),rs.getString("TELF_PERSONAL"),rs.getString("CATEGORIA"),
-                        rs.getString("SALARIO"),rs.getDate("FECHANAC")));
+                        rs.getString("DIRECCION"),rs.getString("TELF_EMPRESA"),rs.getString("TELF_PERSONAL"),c,
+                        rs.getDouble("SALARIO"),rs.getDate("FECHANAC"));
                 t.añadirCentro(this);
                 trabajadores.add(t);
             }
@@ -198,13 +176,34 @@ public class Centro {
         }
         return this;
     }
-    
+
+    public void guardarCentro(){
+
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion().
+                    prepareStatement("INSERT INTO CENTRO(NOMBRE,DIRECCION,CP,"
+                            + "LOC,PROVINCIA,TELF) VALUES(?,?,?,?,?,?) ");
+            ps.setString(1, nombre);
+            ps.setString(2, direccion);
+            ps.setString(3, cp);
+            ps.setString(4, loc);
+            ps.setString(5, provincia);
+            ps.setString(6, telf);
+            boolean correcto = ps.execute();
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"
+                    +ex.getMessage());
+        }
+    }
+
     public void modificarCentro(){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
-                    .prepareStatement("UPDATE CENTRO(NOMBRE,DIRECCION,LOC,PROVINCIA"
-                            + "CP,TELF SET(?,?,?,?,?) WHERE ID_CENTRO=?)");
+                    .prepareStatement("UPDATE CENTRO SET NOMBRE=?,DIRECCION=?,"
+                            + "LOC=?,PROVINCIA=?,CP=?,TELF=? WHERE ID_CENTRO=?");
             ps.setString(1, nombre);
             ps.setString(2, direccion);
             ps.setString(3, loc);
@@ -231,16 +230,9 @@ public class Centro {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Centro{" + "id_centro=" + id_centro + ", nombre=" + nombre + ", direccion=" + direccion + ", cp=" + cp + ", loc=" + loc + ", provincia=" + provincia + ", telf=" + telf + '}';
+    }  
 }

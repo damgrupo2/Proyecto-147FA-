@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import static Modelo.Categoria.Transportista;
+import java.util.Date;
+
 /**
  *
  * @author TeHenua
@@ -15,8 +18,12 @@ public class MainTemporal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Centro c = new Centro(1, "centro", "calle numero piso", "01001", "provincia", "945945945");
-        c.guardarCentro();
+        Centro c = new Centro("centro", "calle numero piso", "01001", "localidad", "provincia", "945945945");
+        c.setId_centro(2);
+        Categoria ca = Transportista;
+        java.util.Date fecha = new Date("01/01/1990");
+        Trabajador t = new Trabajador("dni","nombre","ap1","ap2","direccion","telf_empresa","telf_personal", ca, 1200,fecha);
+        t.guardarTrabajador("28943");
     }
     
 }
