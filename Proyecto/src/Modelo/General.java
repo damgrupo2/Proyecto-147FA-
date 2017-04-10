@@ -13,7 +13,11 @@ public class General {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
        
-  
+        
+// Centro c=new Centro();
+// c.setId_centro(1);
+// c.listarCentros();
+//c.verCentro();
        
        
    

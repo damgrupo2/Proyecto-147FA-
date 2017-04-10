@@ -51,8 +51,8 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         aceptarBoton = new javax.swing.JButton();
         atrasBoton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        centroTexto = new javax.swing.JTextField();
         fechaTexto = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,15 +106,16 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
 
         jLabel11.setText("CENTRO AL QUE PERTENECE:");
 
-        centroTexto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                centroTextoActionPerformed(evt);
-            }
-        });
-
         fechaTexto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fechaTextoActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -158,8 +159,10 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(centroTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
-                            .addComponent(fechaTexto))))
+                            .addComponent(fechaTexto)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 414, Short.MAX_VALUE)))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -208,7 +211,7 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(centroTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarBoton)
@@ -251,13 +254,13 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_aceptarBotonActionPerformed
 
-    private void centroTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_centroTextoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_centroTextoActionPerformed
-
     private void fechaTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaTextoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaTextoActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,10 +303,10 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
     private javax.swing.JTextField ap2Texto;
     private javax.swing.JButton atrasBoton;
     private javax.swing.JComboBox<String> categoriaOpciones;
-    private javax.swing.JTextField centroTexto;
     private javax.swing.JTextField direccionTexto;
     private javax.swing.JTextField dniTexto;
     private javax.swing.JTextField fechaTexto;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
