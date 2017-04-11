@@ -190,7 +190,7 @@ public class Centro {
             ps.setString(4, loc);
             ps.setString(5, provincia);
             ps.setString(6, telf);
-            boolean correcto = ps.execute();
+            ps.execute();
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"
