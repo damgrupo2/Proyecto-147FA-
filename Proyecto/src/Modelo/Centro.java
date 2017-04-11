@@ -132,7 +132,7 @@ public class Centro {
         return this;
     }
     
-    public List<Centro> listarCentros(){
+    public static List<Centro> listarCentros(){
         List<Centro> centros = new ArrayList<>();
         try {
             ControladorBaseDatos.conectar();
@@ -177,8 +177,7 @@ public class Centro {
         return this;
     }
 
-    public void guardarCentro(){
-
+    public boolean guardarCentro(){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion().
@@ -192,9 +191,11 @@ public class Centro {
             ps.setString(6, telf);
             ps.execute();
             ControladorBaseDatos.desconectar();
+            return true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"
                     +ex.getMessage());
+            return false;
         }
     }
 

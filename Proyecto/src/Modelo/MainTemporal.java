@@ -27,6 +27,7 @@ public class MainTemporal {
         Trabajador t = new Trabajador("dni","nombre","ap1","ap2","direccion","telf_empresa","telf_personal", ca, 1200,fecha);
         t.guardarTrabajador("centro");*/
         //Usuario u = new Usuario("TeHenua", "aaaaa");
+        //u.guardarUsuario();
         //Categoria c =u.hacerLogin();
         //System.out.println(c);
         Login login =new Login();

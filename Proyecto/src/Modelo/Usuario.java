@@ -93,7 +93,7 @@ public class Usuario {
             cs.setNString(2, contraseña);
             cs.registerOutParameter(3, OracleTypes.VARCHAR);
             cs.execute();
-            String categoria =cs.getString(3);
+            String categoria = cs.getString(3);
             switch(categoria){
                 case "Transportista":
                     c = Categoria.Transportista;

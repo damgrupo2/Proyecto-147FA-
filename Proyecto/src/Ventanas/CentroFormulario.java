@@ -13,11 +13,15 @@ import Modelo.Centro;
  */
 public class CentroFormulario extends javax.swing.JFrame {
 
+    private CentroListado cl;
+    private CentroFormulario cf;
     /**
      * Creates new form CentroFormulario
      */
     public CentroFormulario() {
         initComponents();
+        int id = cl.getId();
+        
     }
 
     /**
@@ -48,6 +52,7 @@ public class CentroFormulario extends javax.swing.JFrame {
         jltitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Guardar centro");
 
         jlAviso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlAviso.setForeground(new java.awt.Color(0, 153, 0));
@@ -93,6 +98,11 @@ public class CentroFormulario extends javax.swing.JFrame {
 
         jtLimpiar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jtLimpiar.setText("Limpiar");
+        jtLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtLimpiarActionPerformed(evt);
+            }
+        });
 
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -161,10 +171,11 @@ public class CentroFormulario extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbGuardar)
-                    .addComponent(jtLimpiar)
-                    .addComponent(jlAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlAviso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbGuardar)
+                        .addComponent(jtLimpiar)))
                 .addContainerGap(183, Short.MAX_VALUE))
         );
 
@@ -196,9 +207,20 @@ public class CentroFormulario extends javax.swing.JFrame {
         String provincia = jtProvincia.getText();
         String telf = jtTelefono.getText();
         Centro c = new Centro(nombre, direccion, cp, loc, provincia, telf);
-        c.guardarCentro();
-        jlAviso.setText("Guardado correctamente");
+        boolean correcto = c.guardarCentro();
+        if(correcto){
+            jlAviso.setText("Guardado correctamente");
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtLimpiarActionPerformed
+        jtNombre.setText("");
+        jtDireccion.setText("");
+        jtLocalidad.setText("");
+        jtCP.setText("");
+        jtProvincia.setText("");
+        jtTelefono.setText("");
+    }//GEN-LAST:event_jtLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
