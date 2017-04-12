@@ -6,6 +6,13 @@
 package Ventanas;
 
 import Modelo.Categoria;
+import Modelo.ControladorBaseDatos;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,10 +23,26 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
     /**
      * Creates new form TrabajadorFormulario
      */
-    public TrabajadorFormulario() {
+    public TrabajadorFormulario() throws SQLException {
         initComponents();
-    }
+        String seleccion = "SELECT nombre FROM tabla";
+        PreparedStatement ps = ControladorBaseDatos.getConexion().prepareStatement(seleccion);
 
+        ArrayList<String> ls = new ArrayList<String>();
+
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()){
+
+        ls.add(rs.getString("NOMBRE")); 
+        }
+        centroCombo.removeAllItems();
+            for(int i=0; i<ls.size();i++){
+            centroCombo.addItem(ls.get(i));
+        }
+    
+    } 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,7 +75,7 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         atrasBoton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         fechaTexto = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        centroCombo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,10 +135,10 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        centroCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        centroCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                centroComboActionPerformed(evt);
             }
         });
 
@@ -161,7 +184,7 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fechaTexto)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(centroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 414, Short.MAX_VALUE)))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -211,7 +234,7 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(centroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarBoton)
@@ -244,12 +267,14 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         }
         double salario=Double.parseDouble(salarioTexto.getText());
         
+        String centro= centroCombo.getName();
+        
         Modelo.Trabajador t=new Modelo.Trabajador(dniTexto.getText(),nombreTexto.getText(),
         ap1Texto.getText(), ap2Texto.getText(), direccionTexto.getText(),telEmpresaTexto.getText(),
         telPersonalTexto.getText(),categoria, salario, fechaTexto.getText());
         
         
-        t.guardarTrabajador(t);
+        t.guardarTrabajador(centro,t);
         
         
     }//GEN-LAST:event_aceptarBotonActionPerformed
@@ -258,9 +283,9 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaTextoActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void centroComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_centroComboActionPerformed
         
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_centroComboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,7 +317,11 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TrabajadorFormulario().setVisible(true);
+                try {
+                    new TrabajadorFormulario().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TrabajadorFormulario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -303,10 +332,10 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
     private javax.swing.JTextField ap2Texto;
     private javax.swing.JButton atrasBoton;
     private javax.swing.JComboBox<String> categoriaOpciones;
+    private javax.swing.JComboBox<String> centroCombo;
     private javax.swing.JTextField direccionTexto;
     private javax.swing.JTextField dniTexto;
     private javax.swing.JTextField fechaTexto;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

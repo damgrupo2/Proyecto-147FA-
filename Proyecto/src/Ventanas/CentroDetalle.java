@@ -62,6 +62,7 @@ public class CentroDetalle extends javax.swing.JFrame {
         siguienteBoton = new javax.swing.JButton();
         borrarBoton = new javax.swing.JButton();
         editarBoton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +118,8 @@ public class CentroDetalle extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Guardar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,10 +145,12 @@ public class CentroDetalle extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(anteriorBoton)
-                .addGap(260, 260, 260)
+                .addGap(200, 200, 200)
                 .addComponent(borrarBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(70, 70, 70)
                 .addComponent(editarBoton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(siguienteBoton)
                 .addGap(40, 40, 40))
@@ -182,7 +187,8 @@ public class CentroDetalle extends javax.swing.JFrame {
                     .addComponent(anteriorBoton)
                     .addComponent(siguienteBoton)
                     .addComponent(borrarBoton)
-                    .addComponent(editarBoton))
+                    .addComponent(editarBoton)
+                    .addComponent(jButton1))
                 .addGap(27, 27, 27))
         );
 
@@ -210,12 +216,21 @@ public class CentroDetalle extends javax.swing.JFrame {
     }//GEN-LAST:event_anteriorBotonActionPerformed
 
     private void editarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarBotonActionPerformed
-        // TODO add your handling code here:
+        nombreTexto.setEditable(rootPaneCheckingEnabled);
+        direccionTexto.setEditable(rootPaneCheckingEnabled);
+        cpTexto.setEditable(rootPaneCheckingEnabled);
+        loctexto.setEditable(rootPaneCheckingEnabled);
+        provTexto.setEditable(rootPaneCheckingEnabled);
+        telfTexto.setEditable(rootPaneCheckingEnabled);
+        Centro c =new Centro(contador,nombreTexto.getText(),direccionTexto.getText(),cpTexto.getText(),
+                            loctexto.getText(),provTexto.getText(),telfTexto.getText());
+                   c.modificarCentro();
     }//GEN-LAST:event_editarBotonActionPerformed
 
     private void siguienteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBotonActionPerformed
          try {
             Centro c=new Centro();
+            
             nombreTexto.setText(c.verCentro().get(contador).getNombre());
             direccionTexto.setText(c.verCentro().get(contador).getDireccion());
             cpTexto.setText(c.verCentro().get(contador).getCp());
@@ -271,6 +286,7 @@ public class CentroDetalle extends javax.swing.JFrame {
     private javax.swing.JTextField cpTexto;
     private javax.swing.JTextField direccionTexto;
     private javax.swing.JButton editarBoton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

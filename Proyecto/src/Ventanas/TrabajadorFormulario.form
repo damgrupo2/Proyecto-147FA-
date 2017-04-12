@@ -67,7 +67,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="fechaTexto" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jComboBox1" min="-2" pref="191" max="-2" attributes="0"/>
+                              <Component id="centroCombo" min="-2" pref="191" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="414" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -133,7 +133,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="centroCombo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="80" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -257,7 +257,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fechaTextoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="centroCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -269,7 +269,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="centroComboActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

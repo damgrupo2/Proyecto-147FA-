@@ -1,6 +1,7 @@
 package Modelo;
 
 
+import Ventanas.CentroDetalle;
 import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -41,6 +42,18 @@ public class Centro {
     public Centro() {
     }
 
+    public Centro(int id_centro, String nombre, String direccion, String cp, String loc, String provincia, String telf) {
+        this.id_centro = id_centro;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.cp = cp;
+        this.loc = loc;
+        this.provincia = provincia;
+        this.telf = telf;
+    }
+
+    
+    
     public Centro(String nombre, String direccion, String cp, String loc, String provincia, String telf) {
         this.nombre = nombre;
         this.direccion = direccion;
@@ -175,7 +188,24 @@ public class Centro {
     }
     
     public void modificarCentro(){
-        
+         try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = Modelo.ControladorBaseDatos.getConexion().prepareStatement
+                    ("UPDATE CENTRO SET NOMBRE=?, DIRECCION=?, CP=?, LOC=?, PROVINCIA=?, TELF=? "
+                                        + "WHERE ID_CENTRO=?");
+            ps.setString(1, nombre);
+            ps.setString(2, direccion);
+            ps.setString(3, cp);
+            ps.setString(4, loc);
+            ps.setString(5, provincia);
+            ps.setString(6, telf);
+            ps.setInt(7, id_centro);
+            
+            ps.execute();
+            ControladorBaseDatos.desconectar();
+        } catch (Exception e) {
+           
+        }
     }
     
     public List<Centro> verCentro() throws SQLException{
@@ -188,7 +218,7 @@ public class Centro {
         ResultSet rs= (ResultSet)cst.getObject(2);
         List<Centro> centros=new ArrayList<>();
         while(rs.next()){
-           
+             int id_centro=rs.getInt("ID_CENTRO");
              String nombre=rs.getString("NOMBRE");
              String direccion =rs.getString("DIRECCION");
              String cp=rs.getString("CP");
@@ -196,7 +226,7 @@ public class Centro {
              String provincia =rs.getString("PROVINCIA");
              String telf=rs.getString("TELF");
              
-             Centro c=new Centro(nombre,direccion,cp,loc,provincia,telf);
+             Centro c=new Centro(id_centro,nombre,direccion,cp,loc,provincia,telf);
              centros.add(c);
         }
         
@@ -206,7 +236,18 @@ public class Centro {
 
     
     public void borrarCentro(){
-        
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = Modelo.ControladorBaseDatos.getConexion().prepareStatement
+                    ("DELETE CENTRO WHERE ID_CENTRO=?");
+            ps.setInt(1, id_centro);
+            
+ 
+            ps.execute();
+            ControladorBaseDatos.desconectar();
+        } catch (Exception e) {
+           
+        }
     }
     
     public void añadeTrabajador(Trabajador t){
