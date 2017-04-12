@@ -15,14 +15,28 @@ import java.util.List;
  *
  * @author 7fbd06
  */
-public class TrabajadorFormulario extends javax.swing.JFrame {
+public class TrabajadorFormularioEdit extends javax.swing.JFrame {
 
     private List<Centro> centros;
+    private Trabajador tra;
+    
     /**
      * Creates new form TrabajadorFormulario
      */
-    public TrabajadorFormulario() {
+    public TrabajadorFormularioEdit(int id) {
         initComponents();
+        tra = Trabajador.verTrabajador(id);
+        jtNombre.setText(tra.getNombre());
+        jtAp1.setText(tra.getAp1());
+        jtAp2.setText(tra.getAp2());
+        jtDireccion.setText(tra.getDireccion());
+        jtDni.setText(tra.getDni());
+        Double salario = tra.getSalario();
+        String salarioS = salario.toString();
+        jtSalario.setText(salarioS);
+        jtTelEmp.setText(tra.getTelf_empresa());
+        jtTelPer.setText(tra.getTelf_personal());
+        jdFecha.setDate(tra.getFechanac());
         jcCategoria.addItem(Categoria.Administrativo);
         jcCategoria.addItem(Categoria.Transportista);
     }
@@ -262,7 +276,7 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         long l = fecha.getTime();
         java.sql.Date fechaSql = new java.sql.Date(l);
         Trabajador t = new Trabajador(dni ,nombre, ap1, ap2, direccion, telEmp, telPer, Categoria.Transportista, salario, fechaSql);
-        boolean correcto = t.guardarTrabajador();
+        boolean correcto = t.modificarTrabajador();
         if(correcto){
             jlAviso.setText("Guardado correctamente");
         }
@@ -289,20 +303,21 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrabajadorFormularioEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrabajadorFormularioEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrabajadorFormularioEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrabajadorFormularioEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        //</editor-fold>
+        int id = TrabajadorListado.getId();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TrabajadorFormulario().setVisible(true);
+                new TrabajadorFormularioEdit(id).setVisible(true);
             }
         });
     }

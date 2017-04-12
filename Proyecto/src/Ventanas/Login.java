@@ -129,7 +129,6 @@ public class Login extends javax.swing.JFrame {
     private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
         String usuario = jtUsuario.getText();
         String contraseña = new String(jPassword.getPassword());
-        System.out.println(usuario+"  "+contraseña);
         Usuario u = new Usuario(usuario, contraseña);
         Categoria c = u.hacerLogin();
         switch(c){

@@ -29,6 +29,7 @@ public class CentroFormularioEdit extends javax.swing.JFrame {
         jtNombre.setText(centro.getNombre());
         jtProvincia.setText(centro.getProvincia());
         jtTelefono.setText(centro.getTelf()); 
+        
     }
 
 

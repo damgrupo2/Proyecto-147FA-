@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Modelo.Centro;
+import Modelo.Trabajador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +20,7 @@ public class CentroListado extends javax.swing.JFrame {
     private CentroFormularioEdit cfe;
     private CentroDetalle cd;
     private DefaultTableModel model;
+    private DefaultTableModel modelTra;
     private static int id;
     private List<Centro> centros;
 
@@ -39,7 +41,6 @@ public class CentroListado extends javax.swing.JFrame {
         centros = Centro.listarCentros();
         for(Centro c:centros){
             model.insertRow(model.getRowCount(), new Object[]{c.getId_centro(),c.getNombre(),c.getLoc()});
-            System.out.println(c);
         }
         
     }
@@ -111,7 +112,7 @@ public class CentroListado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "DNI", "Nombre", "Primer apellido", "Segundo apellido"
+                "ID", "DNI", "Nombre", "Primer apellido", "Segundo apellido"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -158,11 +159,12 @@ public class CentroListado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbTrabajadores)
-                    .addComponent(jbEditar)
-                    .addComponent(jbBorrar)
-                    .addComponent(jbDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbTrabajadores)
+                        .addComponent(jbEditar)
+                        .addComponent(jbBorrar)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -178,6 +180,11 @@ public class CentroListado extends javax.swing.JFrame {
 
     private void jbTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTrabajadoresActionPerformed
         //TODO listar trabajadores
+        List<Trabajador> trabajadores = Trabajador.listarTrabajadoresCentro(id);
+        modelTra= (DefaultTableModel)jTable2.getModel();
+        for(Trabajador t:trabajadores){
+            modelTra.insertRow(modelTra.getRowCount(), new Object[]{t.getId_trabajador(),t.getDni(),t.getNombre(),t.getAp1(),t.getAp2()});
+        }
     }//GEN-LAST:event_jbTrabajadoresActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed

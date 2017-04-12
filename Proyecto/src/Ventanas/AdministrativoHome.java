@@ -39,6 +39,7 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jmTrabaCentro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmNuevoTrab = new javax.swing.JMenuItem();
+        jmListarTrab = new javax.swing.JMenuItem();
         jmDetalleTrab = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jmNuevoUsu = new javax.swing.JMenuItem();
@@ -79,6 +80,14 @@ public class AdministrativoHome extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jmNuevoTrab);
+
+        jmListarTrab.setText("Listar trabajadores");
+        jmListarTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmListarTrabActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmListarTrab);
 
         jmDetalleTrab.setText("Detalle trabajador");
         jMenu2.add(jmDetalleTrab);
@@ -129,6 +138,11 @@ public class AdministrativoHome extends javax.swing.JFrame {
         tf.setVisible(true);
     }//GEN-LAST:event_jmNuevoTrabActionPerformed
 
+    private void jmListarTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarTrabActionPerformed
+        tl = new TrabajadorListado();
+        tl.setVisible(true);
+    }//GEN-LAST:event_jmListarTrabActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -172,6 +186,7 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private javax.swing.JLabel jltitulo;
     private javax.swing.JMenuItem jmDetalleTrab;
     private javax.swing.JMenuItem jmDetalleUsu;
+    private javax.swing.JMenuItem jmListarTrab;
     private javax.swing.JMenuItem jmNuevoCen;
     private javax.swing.JMenuItem jmNuevoTrab;
     private javax.swing.JMenuItem jmNuevoUsu;
