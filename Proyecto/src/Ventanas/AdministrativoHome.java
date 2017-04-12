@@ -36,7 +36,6 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmNuevoCen = new javax.swing.JMenuItem();
-        jmDetalleCen = new javax.swing.JMenuItem();
         jmTrabaCentro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmNuevoTrab = new javax.swing.JMenuItem();
@@ -61,15 +60,7 @@ public class AdministrativoHome extends javax.swing.JFrame {
         });
         jMenu1.add(jmNuevoCen);
 
-        jmDetalleCen.setText("Detalle centro");
-        jmDetalleCen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmDetalleCenActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jmDetalleCen);
-
-        jmTrabaCentro.setText("Trabajadores por centro");
+        jmTrabaCentro.setText("Listado centros");
         jmTrabaCentro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmTrabaCentroActionPerformed(evt);
@@ -82,6 +73,11 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jMenu2.setText("Trabajadores");
 
         jmNuevoTrab.setText("Nuevo trabajador");
+        jmNuevoTrab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmNuevoTrabActionPerformed(evt);
+            }
+        });
         jMenu2.add(jmNuevoTrab);
 
         jmDetalleTrab.setText("Detalle trabajador");
@@ -123,15 +119,15 @@ public class AdministrativoHome extends javax.swing.JFrame {
         cf.setVisible(true);
     }//GEN-LAST:event_jmNuevoCenActionPerformed
 
-    private void jmDetalleCenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDetalleCenActionPerformed
-        cd = new CentroDetalle();
-        cf.setVisible(true);
-    }//GEN-LAST:event_jmDetalleCenActionPerformed
-
     private void jmTrabaCentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTrabaCentroActionPerformed
         cl = new CentroListado();
         cl.setVisible(true);
     }//GEN-LAST:event_jmTrabaCentroActionPerformed
+
+    private void jmNuevoTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNuevoTrabActionPerformed
+        tf = new TrabajadorFormulario();
+        tf.setVisible(true);
+    }//GEN-LAST:event_jmNuevoTrabActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,7 +170,6 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel jltitulo;
-    private javax.swing.JMenuItem jmDetalleCen;
     private javax.swing.JMenuItem jmDetalleTrab;
     private javax.swing.JMenuItem jmDetalleUsu;
     private javax.swing.JMenuItem jmNuevoCen;

@@ -22,7 +22,7 @@ import oracle.jdbc.OracleTypes;
  */
 public class Centro {
     
-    private int id_centro;
+    private static int id_centro;
     private String nombre;
     private String direccion;
     private String cp;
@@ -108,28 +108,30 @@ public class Centro {
         trabajadores.add(trabajador);
     }
 
-    public Centro verCentro(){
+    public static Centro verCentro(int id){
+        Centro c= null;
         try {
             ControladorBaseDatos.conectar();
             CallableStatement cs = ControladorBaseDatos.getConexion().
                     prepareCall("{call PAQ_CENTROS.CONSULTA_CENTRO(?,?)}");
-            cs.setInt(1, id_centro);
+            cs.setInt(1, id);
             cs.registerOutParameter(2, OracleTypes.CURSOR);
             cs.execute();
             ResultSet rs = (ResultSet)cs.getObject(2);
             while (rs.next()) {
-                nombre = rs.getString("NOMBRE");
-                direccion = rs.getString("DIRECCION");
-                loc = rs.getString("LOC");
-                provincia = rs.getString("PROVINCIA");
-                cp = rs.getString("CP");
-                telf = rs.getString("TELF");
+                String nombre = rs.getString("NOMBRE");
+                String direccion = rs.getString("DIRECCION");
+                String loc = rs.getString("LOC");
+                String provincia = rs.getString("PROVINCIA");
+                String cp = rs.getString("CP");
+                String telf = rs.getString("TELF");
+                c = new Centro(nombre, direccion, cp, loc, provincia, telf);
             }
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
         }
-        return this;
+        return c;
     }
     
     public static List<Centro> listarCentros(){
@@ -147,6 +149,8 @@ public class Centro {
                 c.setId_centro(rs.getInt("ID_CENTRO"));
                 c.setLoc(rs.getString("LOC"));
                 centros.add(c);
+                System.out.println(c);
+                //TODO error ids
             }
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
@@ -157,7 +161,7 @@ public class Centro {
 
     public Centro listarTrabajadoresCentro(){
         try {
-            verCentro();
+            //verCentro();
             ControladorBaseDatos.conectar();
             CallableStatement  cs = ControladorBaseDatos.getConexion().prepareCall("{call CONSULTA_TRABAJADORES(?)}");
             cs.registerOutParameter(1, OracleTypes.CURSOR);
@@ -199,7 +203,7 @@ public class Centro {
         }
     }
 
-    public void modificarCentro(){
+    public boolean modificarCentro(){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
@@ -214,8 +218,10 @@ public class Centro {
             ps.setInt(7, id_centro);
             ps.executeUpdate();
             ControladorBaseDatos.desconectar();
+            return true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+            return false;
         }
     }
 

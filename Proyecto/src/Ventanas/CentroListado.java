@@ -16,23 +16,30 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CentroListado extends javax.swing.JFrame {
 
-    private CentroFormulario cf;
+    private CentroFormularioEdit cfe;
+    private CentroDetalle cd;
     private DefaultTableModel model;
-    private int id;
-    
-    public int getId(){
+    private static int id;
+    private List<Centro> centros;
+
+    public static int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * Creates new form CentroListado
      */
     public CentroListado() {
         initComponents();
         model= (DefaultTableModel)jTable1.getModel();
-        List<Centro> centros =  new ArrayList<>();
         centros = Centro.listarCentros();
         for(Centro c:centros){
             model.insertRow(model.getRowCount(), new Object[]{c.getId_centro(),c.getNombre(),c.getLoc()});
+            System.out.println(c);
         }
         
     }
@@ -54,9 +61,9 @@ public class CentroListado extends javax.swing.JFrame {
         jbBorrar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jbDetalle = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listado centros");
 
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -93,6 +100,11 @@ public class CentroListado extends javax.swing.JFrame {
         });
 
         jbBorrar.setText("Borrar");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,7 +116,12 @@ public class CentroListado extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jButton1.setText("Ver detalle");
+        jbDetalle.setText("Ver detalle");
+        jbDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDetalleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +135,7 @@ public class CentroListado extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jbDetalle)
                 .addGap(18, 18, 18)
                 .addComponent(jbEditar)
                 .addGap(18, 18, 18)
@@ -145,7 +162,7 @@ public class CentroListado extends javax.swing.JFrame {
                     .addComponent(jbTrabajadores)
                     .addComponent(jbEditar)
                     .addComponent(jbBorrar)
-                    .addComponent(jButton1))
+                    .addComponent(jbDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -160,13 +177,24 @@ public class CentroListado extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jbTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTrabajadoresActionPerformed
-        
+        //TODO listar trabajadores
     }//GEN-LAST:event_jbTrabajadoresActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-        cf = new CentroFormulario();
-        
+        Centro c = Centro.verCentro(id);
+        cfe = new CentroFormularioEdit(id);
+        cfe.setVisible(true);
     }//GEN-LAST:event_jbEditarActionPerformed
+
+    private void jbDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDetalleActionPerformed
+        Centro c = Centro.verCentro(id);
+        cd = new CentroDetalle(id);
+        cd.setVisible(true);
+    }//GEN-LAST:event_jbDetalleActionPerformed
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        // TODO borrar centro
+    }//GEN-LAST:event_jbBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,12 +232,12 @@ public class CentroListado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JButton jbBorrar;
+    private javax.swing.JButton jbDetalle;
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbTrabajadores;
     private javax.swing.JLabel jltitulo;

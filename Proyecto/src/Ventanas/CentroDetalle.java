@@ -5,17 +5,27 @@
  */
 package Ventanas;
 
+import Modelo.Centro;
+
 /**
  *
  * @author 7fbd06
  */
 public class CentroDetalle extends javax.swing.JFrame {
 
+    private CentroListado cl;
     /**
      * Creates new form CentroDetalle
      */
-    public CentroDetalle() {
+    public CentroDetalle(int id) {
         initComponents();
+        Centro c = Centro.verCentro(id);
+        jlCP.setText(c.getCp());
+        jlDireccion.setText(c.getDireccion());
+        jlLocalidad.setText(c.getLoc());
+        jlNombre.setText(c.getNombre());
+        jlProvincia.setText(c.getProvincia());
+        jlTelefono.setText(c.getTelf());
     }
 
     /**
@@ -41,7 +51,7 @@ public class CentroDetalle extends javax.swing.JFrame {
         jlProvincia = new javax.swing.JLabel();
         jlTelefono = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalle centro");
 
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -169,11 +179,11 @@ public class CentroDetalle extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CentroDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        int id = CentroListado.getId();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CentroDetalle().setVisible(true);
+                new CentroDetalle(id).setVisible(true);
             }
         });
     }

@@ -17,17 +17,9 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmNuevoCenActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmDetalleCen">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Detalle centro"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmDetalleCenActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmTrabaCentro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Trabajadores por centro"/>
+                <Property name="text" type="java.lang.String" value="Listado centros"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmTrabaCentroActionPerformed"/>
@@ -44,6 +36,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo trabajador"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmNuevoTrabActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmDetalleTrab">
               <Properties>

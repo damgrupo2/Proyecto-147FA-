@@ -11,17 +11,26 @@ import Modelo.Centro;
  *
  * @author 7fbd06
  */
-public class CentroFormulario extends javax.swing.JFrame {
+public class CentroFormularioEdit extends javax.swing.JFrame {
 
     private CentroListado cl;
-    private CentroFormulario cf;
-    private int id=0;
+    private CentroFormularioEdit cf;
+    private Centro centro;
     /**
      * Creates new form CentroFormulario
+     * @param centro
      */
-    public CentroFormulario() {
+    public CentroFormularioEdit(int id) {
         initComponents();
+        centro = Centro.verCentro(id);
+        jtCP.setText(centro.getCp());
+        jtDireccion.setText(centro.getDireccion());
+        jtLocalidad.setText(centro.getLoc());
+        jtNombre.setText(centro.getNombre());
+        jtProvincia.setText(centro.getProvincia());
+        jtTelefono.setText(centro.getTelf()); 
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,14 +208,14 @@ public class CentroFormulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        String nombre = jtNombre.getText();
-        String direccion = jtDireccion.getText();
-        String loc = jtLocalidad.getText();
-        String cp = jtCP.getText();
-        String provincia = jtProvincia.getText();
-        String telf = jtTelefono.getText();
-        Centro c = new Centro(nombre, direccion, cp, loc, provincia, telf);
-        boolean correcto = c.guardarCentro();        
+        System.out.println(centro);
+        centro.setNombre(jtNombre.getText());
+        centro.setDireccion(jtDireccion.getText());
+        centro.setLoc(jtLocalidad.getText());
+        centro.setCp(jtCP.getText());
+        centro.setProvincia(jtProvincia.getText());
+        centro.setTelf(jtTelefono.getText());
+        boolean correcto = centro.modificarCentro();
         if(correcto){
             jlAviso.setText("Guardado correctamente");
         }
@@ -238,20 +247,21 @@ public class CentroFormulario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CentroFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CentroFormularioEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CentroFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CentroFormularioEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CentroFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CentroFormularioEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CentroFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CentroFormularioEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        int id = CentroListado.getId();
+        //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CentroFormulario().setVisible(true);
+                new CentroFormularioEdit(id).setVisible(true);
             }
         });
     }
