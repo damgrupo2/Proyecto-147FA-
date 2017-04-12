@@ -60,6 +60,22 @@ public class Trabajador {
         this.ap1 = ap1;
         this.ap2 = ap2;
     }
+
+    public Trabajador(int id_trabajador, String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, String fechanac) {
+        this.id_trabajador = id_trabajador;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.ap1 = ap1;
+        this.ap2 = ap2;
+        this.direccion = direccion;
+        this.telf_empresa = telf_empresa;
+        this.telf_personal = telf_personal;
+        this.categoria = categoria;
+        this.salario = salario;
+        this.fechanac = fechanac;
+    }
+    
+    
     
     
 
@@ -243,7 +259,7 @@ public class Trabajador {
          try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = Modelo.ControladorBaseDatos.getConexion().prepareStatement
-                    ("UPDATE CENTRO SET NOMBRE=?, AP1=?, AP2=?, LOC=?, PROVINCIA=?, TELF=? "
+                    ("UPDATE TRABAJADOR SET NOMBRE=?, AP1=?, AP2=?, LOC=?, PROVINCIA=?, TELF=? "
                                         + "WHERE ID_CENTRO=?");
             ps.setString(1, t.dni );
             ps.setString(2, t.nombre);
@@ -263,16 +279,16 @@ public class Trabajador {
         }
      
     }
-     public List<Trabajador> verTrabajador() throws SQLException{
+     public List<Trabajador> verTrabajador(int idTrabajador) throws SQLException{
             ControladorBaseDatos.conectar();
-        String query="{call UN_TRABAJADOR (?,?)}";
-        CallableStatement cst=ControladorBaseDatos.getConexion().prepareCall(query);
-        cst.setInt(1, 1);
-        cst.registerOutParameter(2, OracleTypes.CURSOR);
-        cst.execute();
-        ResultSet rs= (ResultSet)cst.getObject(2);
-        List<Trabajador> trabajadores=new ArrayList<>();
-        while(rs.next()){
+            String query="{call UN_TRABAJADOR (?,?)}";
+            CallableStatement cst=ControladorBaseDatos.getConexion().prepareCall(query);
+            cst.setInt(1, idTrabajador);
+            cst.registerOutParameter(2, OracleTypes.CURSOR);
+            cst.execute();
+            ResultSet rs= (ResultSet)cst.getObject(2);
+            List<Trabajador> trabajadores=new ArrayList<>();
+            while(rs.next()){
              int id_trabajador=rs.getInt("ID_TRABAJADOR");
              String dni=rs.getString("DNI");
              String nombre=rs.getString("NOMBRE");
@@ -285,7 +301,14 @@ public class Trabajador {
              double salario =rs.getDouble("SALARIO");
              String fechanac= rs.getString("FECHANAC");
              
-             Trabajador t=new Trabajador();
+             Modelo.Categoria categoriaBuena;
+        if(categoria.equalsIgnoreCase(Modelo.Categoria.Administrativo.toString())){
+            categoriaBuena = Categoria.Administrativo;
+        }else{
+            categoriaBuena =Categoria.Transportista;
+        }
+       
+             Trabajador t=new Trabajador(id_trabajador,dni,nombre,ap1,ap2,direccion,telf_empresa,telf_personal,categoriaBuena,salario,fechanac);
              trabajadores.add(t);
         }
         

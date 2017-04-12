@@ -73,6 +73,11 @@ public class CentroFormulario extends javax.swing.JFrame {
         });
 
         atrasBoton.setText("Atras");
+        atrasBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasBotonActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Crear un centro");
 
@@ -161,6 +166,10 @@ public class CentroFormulario extends javax.swing.JFrame {
         c.guardarCentro();
         
     }//GEN-LAST:event_aceptarBotonActionPerformed
+
+    private void atrasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBotonActionPerformed
+       
+    }//GEN-LAST:event_atrasBotonActionPerformed
 
     /**
      * @param args the command line arguments

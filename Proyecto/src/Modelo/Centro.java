@@ -235,7 +235,7 @@ public class Centro {
     }
 
     
-    public void borrarCentro(){
+    public void borrarCentro(int id_centro){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = Modelo.ControladorBaseDatos.getConexion().prepareStatement

@@ -6,12 +6,16 @@
 package Ventanas;
 
 import Modelo.Centro;
+import Modelo.ControladorBaseDatos;
 import java.net.ContentHandlerFactory;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import oracle.jdbc.OracleTypes;
 
 /**
  *
@@ -62,7 +66,7 @@ public class CentroDetalle extends javax.swing.JFrame {
         siguienteBoton = new javax.swing.JButton();
         borrarBoton = new javax.swing.JButton();
         editarBoton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        guardarBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +114,11 @@ public class CentroDetalle extends javax.swing.JFrame {
         });
 
         borrarBoton.setText("Borrar");
+        borrarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarBotonActionPerformed(evt);
+            }
+        });
 
         editarBoton.setText("Editar");
         editarBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +127,12 @@ public class CentroDetalle extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Guardar");
+        guardarBoton.setText("Guardar");
+        guardarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarBotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,7 +164,7 @@ public class CentroDetalle extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addComponent(editarBoton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(guardarBoton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(siguienteBoton)
                 .addGap(40, 40, 40))
@@ -188,7 +202,7 @@ public class CentroDetalle extends javax.swing.JFrame {
                     .addComponent(siguienteBoton)
                     .addComponent(borrarBoton)
                     .addComponent(editarBoton)
-                    .addComponent(jButton1))
+                    .addComponent(guardarBoton))
                 .addGap(27, 27, 27))
         );
 
@@ -206,7 +220,7 @@ public class CentroDetalle extends javax.swing.JFrame {
             nombreTexto.setText(c.verCentro().get(contador).getNombre());
             direccionTexto.setText(c.verCentro().get(contador).getDireccion());
             cpTexto.setText(c.verCentro().get(contador).getCp());
-            loctexto.setText(c.listarCentros().get(contador).getLoc());
+            loctexto.setText(c.verCentro().get(contador).getLoc());
             provTexto.setText(c.verCentro().get(contador).getProvincia());
             telfTexto.setText(c.verCentro().get(contador).getTelf());
             
@@ -222,9 +236,7 @@ public class CentroDetalle extends javax.swing.JFrame {
         loctexto.setEditable(rootPaneCheckingEnabled);
         provTexto.setEditable(rootPaneCheckingEnabled);
         telfTexto.setEditable(rootPaneCheckingEnabled);
-        Centro c =new Centro(contador,nombreTexto.getText(),direccionTexto.getText(),cpTexto.getText(),
-                            loctexto.getText(),provTexto.getText(),telfTexto.getText());
-                   c.modificarCentro();
+        
     }//GEN-LAST:event_editarBotonActionPerformed
 
     private void siguienteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBotonActionPerformed
@@ -234,7 +246,7 @@ public class CentroDetalle extends javax.swing.JFrame {
             nombreTexto.setText(c.verCentro().get(contador).getNombre());
             direccionTexto.setText(c.verCentro().get(contador).getDireccion());
             cpTexto.setText(c.verCentro().get(contador).getCp());
-            loctexto.setText(c.listarCentros().get(contador).getLoc());
+            loctexto.setText(c.verCentro().get(contador).getLoc());
             provTexto.setText(c.verCentro().get(contador).getProvincia());
             telfTexto.setText(c.verCentro().get(contador).getTelf());
             contador++;
@@ -244,6 +256,34 @@ public class CentroDetalle extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_siguienteBotonActionPerformed
+
+    private void guardarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBotonActionPerformed
+        
+        Centro c =new Centro(contador,nombreTexto.getText(),direccionTexto.getText(),cpTexto.getText(),
+                            loctexto.getText(),provTexto.getText(),telfTexto.getText());
+                   c.modificarCentro();
+    }//GEN-LAST:event_guardarBotonActionPerformed
+
+    private void borrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarBotonActionPerformed
+       int id_centro=0;
+        try {
+            ControladorBaseDatos.conectar();
+        String query="{call ID_CENTRO_NOMBRE (?,?)}";
+        CallableStatement cst=ControladorBaseDatos.getConexion().prepareCall(query);
+        cst.setString(1, nombreTexto.getText());
+        cst.registerOutParameter(2, OracleTypes.CURSOR);
+        cst.execute();
+        ResultSet rs= (ResultSet)cst.getObject(1);
+        while(rs.next()){
+           
+             id_centro=rs.getInt("ID_CENTRO");
+            
+        }
+            ControladorBaseDatos.desconectar();
+        } catch (Exception e) {
+           
+        }
+    }//GEN-LAST:event_borrarBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,7 +326,7 @@ public class CentroDetalle extends javax.swing.JFrame {
     private javax.swing.JTextField cpTexto;
     private javax.swing.JTextField direccionTexto;
     private javax.swing.JButton editarBoton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton guardarBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
