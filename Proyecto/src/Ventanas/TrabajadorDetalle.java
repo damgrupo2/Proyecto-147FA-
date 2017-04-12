@@ -5,6 +5,12 @@
  */
 package Ventanas;
 
+import Modelo.Centro;
+import Modelo.Trabajador;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author 7fbd06
@@ -27,21 +33,233 @@ public class TrabajadorDetalle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        siguienteBoton = new javax.swing.JButton();
+        anteriorBoton = new javax.swing.JButton();
+        borrarBoton = new javax.swing.JButton();
+        editarBoton = new javax.swing.JButton();
+        guardarBoton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        dniTexto = new javax.swing.JTextField();
+        nombreTexto = new javax.swing.JTextField();
+        fechaTexto = new javax.swing.JTextField();
+        ap1Texto = new javax.swing.JTextField();
+        ap2Texto = new javax.swing.JTextField();
+        direccionTexto = new javax.swing.JTextField();
+        telEmpresaTexto = new javax.swing.JTextField();
+        telPersonalTexto = new javax.swing.JTextField();
+        salarioTexto = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        categoriaTexto = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        siguienteBoton.setText("Siguiente");
+        siguienteBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteBotonActionPerformed(evt);
+            }
+        });
+
+        anteriorBoton.setText("Anterior");
+        anteriorBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anteriorBotonActionPerformed(evt);
+            }
+        });
+
+        borrarBoton.setText("Borrar");
+
+        editarBoton.setText("Editar");
+
+        guardarBoton.setText("Guardar");
+        guardarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarBotonActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("FECHA DE NACIMIENTO:");
+
+        fechaTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechaTextoActionPerformed(evt);
+            }
+        });
+
+        ap1Texto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ap1TextoActionPerformed(evt);
+            }
+        });
+
+        ap2Texto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ap2TextoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("D.N.I.:");
+
+        jLabel2.setText("NOMBRE:");
+
+        jLabel3.setText("APELLIDO 1:");
+
+        jLabel4.setText("APELLIDO 2:");
+
+        jLabel5.setText("DIRECCIÓN:");
+
+        jLabel6.setText("TELÉFONO DE EMPRESA:");
+
+        jLabel7.setText("TELÉFONO PERSONAL:");
+
+        jLabel8.setText("CATEGORIA:");
+
+        jLabel9.setText("SALARIO");
+
+        categoriaTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriaTextoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1002, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(anteriorBoton)
+                .addGap(165, 165, 165)
+                .addComponent(borrarBoton)
+                .addGap(115, 115, 115)
+                .addComponent(editarBoton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(guardarBoton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(siguienteBoton)
+                .addGap(43, 43, 43))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dniTexto)
+                            .addComponent(nombreTexto)
+                            .addComponent(ap1Texto)
+                            .addComponent(ap2Texto)
+                            .addComponent(direccionTexto)
+                            .addComponent(telEmpresaTexto)
+                            .addComponent(telPersonalTexto)
+                            .addComponent(salarioTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                            .addComponent(categoriaTexto)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(fechaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(73, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(dniTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(nombreTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(ap1Texto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(ap2Texto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(direccionTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(telEmpresaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(telPersonalTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(categoriaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(salarioTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(fechaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(siguienteBoton)
+                    .addComponent(anteriorBoton)
+                    .addComponent(borrarBoton)
+                    .addComponent(editarBoton)
+                    .addComponent(guardarBoton))
+                .addGap(59, 59, 59))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void anteriorBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anteriorBotonActionPerformed
+
+    private void guardarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarBotonActionPerformed
+
+    private void fechaTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechaTextoActionPerformed
+
+    private void ap1TextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ap1TextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ap1TextoActionPerformed
+
+    private void ap2TextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ap2TextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ap2TextoActionPerformed
+
+    private void categoriaTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoriaTextoActionPerformed
+
+    private void siguienteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBotonActionPerformed
+      
+    }//GEN-LAST:event_siguienteBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +297,30 @@ public class TrabajadorDetalle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton anteriorBoton;
+    private javax.swing.JTextField ap1Texto;
+    private javax.swing.JTextField ap2Texto;
+    private javax.swing.JButton borrarBoton;
+    private javax.swing.JTextField categoriaTexto;
+    private javax.swing.JTextField direccionTexto;
+    private javax.swing.JTextField dniTexto;
+    private javax.swing.JButton editarBoton;
+    private javax.swing.JTextField fechaTexto;
+    private javax.swing.JButton guardarBoton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField nombreTexto;
+    private javax.swing.JTextField salarioTexto;
+    private javax.swing.JButton siguienteBoton;
+    private javax.swing.JTextField telEmpresaTexto;
+    private javax.swing.JTextField telPersonalTexto;
     // End of variables declaration//GEN-END:variables
 }

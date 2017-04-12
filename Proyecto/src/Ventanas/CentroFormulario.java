@@ -165,6 +165,7 @@ public class CentroFormulario extends javax.swing.JFrame {
         
         c.guardarCentro();
         
+        
     }//GEN-LAST:event_aceptarBotonActionPerformed
 
     private void atrasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBotonActionPerformed
