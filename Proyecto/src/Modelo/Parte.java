@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -25,6 +26,11 @@ public class Parte {
     private boolean abierto;
     private double excesoHoras;
     private boolean validado;
+    
+    private Trabajador trabajador;
+    private List<Reparto> repartos;
+    private Vehiculo vehiculo;
+    private Aviso aviso;
 
     public Parte() {
     }
