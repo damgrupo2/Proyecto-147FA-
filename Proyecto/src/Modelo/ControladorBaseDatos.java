@@ -13,8 +13,6 @@ public class ControladorBaseDatos {
     
     private Connection conexion;
     
-   
-
     public Connection getConexion() {
         return conexion;
     }
@@ -32,7 +30,7 @@ public class ControladorBaseDatos {
             
         }
         catch (ClassNotFoundException ex) {
-           /* JOptionPane.showMessageDialog(, ex, "Error de conexion", 0);*/
+           /*JOptionPane.showMessageDialog(, ex, "Error de conexion", 0);*/
        
     }
     
