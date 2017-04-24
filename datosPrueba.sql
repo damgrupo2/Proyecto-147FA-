@@ -1,0 +1,9 @@
+INSERT INTO TRABAJADOR(DNI,NOMBRE,AP1,AP2,DIRECCION,TELF_EMPRESA,TELF_PERSONAL,CATEGORIA,SALARIO,FECHANAC) 
+VALUES('12312312A','Nombre','Apellido','Apellido','Direccion','654644654','945945945','Administrativo',1200,sysdate);
+INSERT INTO CENTRO(NOMBRE,DIRECCION,CP,LOC,PROVINCIA,TELF) VALUES('Nombre','Direccion','12345','Localidad','Provincia','987987987');
+INSERT INTO USUARIO VALUES('TeHenua','aaaaa');
+UPDATE TRABAJADOR SET ID_USUARIO='TeHenua', ID_CENTRO=1 WHERE ID_TRABAJADOR=1;
+COMMIT;
+update usuario set "CONTRASEÑA"=ora_hash('aaaaa') where id_usuario='TeHenua';
+
+select * from trabajador;
