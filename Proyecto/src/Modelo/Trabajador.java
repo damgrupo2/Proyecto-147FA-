@@ -5,9 +5,17 @@
  */
 package Modelo;
 
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import oracle.jdbc.OracleTypes;
 
 /**
  *
@@ -25,7 +33,7 @@ public class Trabajador {
     private String telf_personal;
     private Categoria categoria;
     private double salario;
-    private Date fechanac;
+    private java.sql.Date fechanac;
     
     private Centro centro;
     private List<Parte> parteList=new ArrayList<Parte>();
@@ -36,8 +44,9 @@ public class Trabajador {
     public Trabajador() {
     }
 
-    public Trabajador(int id_trabajador, String dni, String nombre, String ap1, String ap2, String direccion, String telf_empresa, String telf_personal, Categoria categoria, double salario, Date fechanac) {
-        this.id_trabajador = id_trabajador;
+    public Trabajador( String dni, String nombre, String ap1, String ap2, 
+            String direccion, String telf_empresa, String telf_personal, 
+            Categoria categoria, double salario, java.sql.Date fechanac) {
         this.dni = dni;
         this.nombre = nombre;
         this.ap1 = ap1;
@@ -134,43 +143,178 @@ public class Trabajador {
         return fechanac;
     }
 
-    public void setFechanac(Date fechanac) {
+    public void setFechanac(java.sql.Date fechanac) {
         this.fechanac = fechanac;
     }
-    
-    public void guardarTrabajador(){
-        
-    }
-    
-    public List<Trabajador> listarTrabajadores(){
-        return null;
-        
-    }
-    
-     public void modificarTrabajador(Trabajador t) {
-    String dni=t.getDni();
-    String nombre=t.getNombre();
-    String ap1=t.getAp1();
-    String ap2=t.getAp2();
-    String direccion=t.getDireccion();
-    String telf_empresa=t.getTelf_empresa();
-    String telf_personal=t.getTelf_personal();
-    Categoria categoria=t.getCategoria();
-    double salario=t.getSalario();
-    Date fechanac=t.getFechanac();
-    
-    ControladorBaseDatos cbd=new ControladorBaseDatos();
 
-  
-         
+    public void añadirCentro(Centro centro) {
+        this.centro = centro;
+        centro.añadirTrabajador(this);
     }
-                        
-     public void borrarTrabajador(){
+    
+    public void añadirUsuario(Usuario usuario){
+        this.usuario = usuario;
+        usuario.añadirTrabajador(this);
+    }
+    
+    public boolean guardarTrabajador(){
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("INSERT INTO TRABAJADOR(DNI, NOMBRE, AP1, AP2, DIRECCION, TELF_EMPRESA, TELF_PERSONAL," +
+                            "CATEGORIA, SALARIO, FECHANAC) VALUES(?,?,?,?,?,?,?,?,?,?)");
+            ps.setString(1,dni);
+            ps.setString(2, nombre);
+            ps.setString(3, ap1);
+            ps.setString(4, ap2);
+            ps.setString(5, direccion);
+            ps.setString(6, telf_empresa);
+            ps.setString(7, telf_personal);
+            ps.setString(8, categoria.toString());
+            ps.setDouble(9, salario);
+            java.sql.Date f = new java.sql.Date(fechanac.getTime());
+            ps.setDate(10, f);        
+            ps.execute();
+            ControladorBaseDatos.desconectar();
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+            return false;
+        }
+
+    }
+    
+    public boolean modificarTrabajador() {
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("UPDATE TRABAJADOR SET NOMBRE=?,AP1=?,"
+                            + "AP2=?,DIRECCION=?,TELF_EMPRESA=?,TELF_PERSONAL=?,"
+                            + "CATEGORIA=?, SALARIO=?, FECHANAC=?, DNI=? "
+                            + "WHERE ID_TRABAJADOR=?");
+            ps.setString(1, nombre);
+            ps.setString(2, ap1);
+            ps.setString(3, ap2);
+            ps.setString(4, direccion);
+            ps.setString(5, telf_empresa);
+            ps.setString(6, telf_personal);
+            ps.setString(7, categoria.toString());
+            ps.setDouble(8, salario);
+            ps.setDate(9, fechanac);
+            ps.setString(10, dni);
+            ps.setInt(11, id_trabajador);
+            ps.executeUpdate();
+            ControladorBaseDatos.desconectar();
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+            return false;
+        }
+    }
+    
+    public void borrarTrabajador(){
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("DELETE FROM TRABAJADOR WHERE ID_TRABAJADOR=?");
+            ps.setInt(1, id_trabajador);
+            ps.execute();
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+        }
+    }
+    
+    public static List<Trabajador> listarTrabajadores(){
+        List<Trabajador> trabajadores = new ArrayList<>();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion().
+                    prepareCall("{call TRABAJADORES.CONSULTA_TRABAJADORES(?)}");
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(1);
+            
+            while (rs.next()) {
+                Trabajador t= new Trabajador();
+                t.setDni(rs.getString("DNI"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1(rs.getString("AP1"));
+                t.setAp2(rs.getString("AP2"));
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                trabajadores.add(t);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
+        }
+        return trabajadores;
+    }
+    
+    public static List<Trabajador> listarTrabajadoresCentro(int id_centro){
+        List<Trabajador> trabajadores = new ArrayList<>();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion().
+                    prepareCall("{call TRABAJADORES.CONSULTA_TRABAJADORES_CENTRO(?,?)}");
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.setInt(2, id_centro);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(1);
+            while (rs.next()) {
+                Trabajador t= new Trabajador();
+                t.setDni(rs.getString("DNI"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1(rs.getString("AP1"));
+                t.setAp2(rs.getString("AP2"));
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                trabajadores.add(t);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
+        }
+        return trabajadores;
+    }
+    
+    public static Trabajador verTrabajador(int id){
+        Trabajador t= new Trabajador();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion().
+                    prepareCall("{call TRABAJADORES.CONSULTA_TRABAJADOR(?,?)}");
+            cs.setInt(1, id);
+            cs.registerOutParameter(2, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet)cs.getObject(2);
+            while (rs.next()) {
+                t.setDni(rs.getString("DNI"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1(rs.getString("AP1"));
+                t.setAp2(rs.getString("AP2"));
+                t.setDireccion(rs.getString("DIRECCION"));
+                t.setTelf_empresa(rs.getString("TELF_EMPRESA"));
+                t.setTelf_personal(rs.getString("TELF_PERSONAL"));
+                t.setSalario(rs.getDouble("SALARIO"));
+                t.setFechanac(rs.getDate("FECHANAC"));
+                String categoria =  rs.getString("CATEGORIA");
+                Categoria c = null;
+                switch(categoria){
+                    case "Administrativo":
+                        c = Categoria.Administrativo;
+                        break;
+                    case "Transportista":
+                        c = Categoria.Transportista;
+                }
+                t.setCategoria(c);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+        }
+        return t;
         
     }
-     
-      public Trabajador verTrabajador(){
-        return null;
-        
-    }
+
+
 }

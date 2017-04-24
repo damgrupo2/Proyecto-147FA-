@@ -5,17 +5,35 @@
  */
 package Ventanas;
 
+import Modelo.Centro;
+import Modelo.Trabajador;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 7fbd06
  */
 public class TrabajadorListado extends javax.swing.JFrame {
+    private TrabajadorDetalle td;
+    private TrabajadorFormularioEdit tfe;
+    private DefaultTableModel model;
+    private List<Trabajador> trabajadores;
+    private static int id;
 
+    public static int getId() {
+        return id;
+    } 
     /**
      * Creates new form TrabajadorListado
      */
     public TrabajadorListado() {
         initComponents();
+        model= (DefaultTableModel)jTable1.getModel();
+        trabajadores = Trabajador.listarTrabajadores();
+        for(Trabajador t:trabajadores){
+            model.insertRow(model.getRowCount(), new Object[]{t.getId_trabajador(),t.getDni(),t.getNombre(),t.getAp1(),t.getAp2()});
+        }
     }
 
     /**
@@ -27,21 +45,113 @@ public class TrabajadorListado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jltitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jbEditar = new javax.swing.JButton();
+        jbBorrar = new javax.swing.JButton();
+        jbDetalle = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Listado trabajadores");
+
+        jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jltitulo.setText("Listado trabajadores");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "DNI", "Nombre", "Primer apellido", "Segundo apellido"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jbEditar.setText("Editar");
+        jbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarActionPerformed(evt);
+            }
+        });
+
+        jbBorrar.setText("Borrar");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
+
+        jbDetalle.setText("Ver detalle");
+        jbDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDetalleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(395, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbDetalle)
+                .addGap(18, 18, 18)
+                .addComponent(jbBorrar)
+                .addGap(18, 18, 18)
+                .addComponent(jbEditar)
+                .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbEditar)
+                    .addComponent(jbBorrar)
+                    .addComponent(jbDetalle))
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void jbDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDetalleActionPerformed
+        td = new TrabajadorDetalle(id);
+        td.setVisible(true);
+    }//GEN-LAST:event_jbDetalleActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int fila = jTable1.getSelectedRow();
+        id = Integer.parseInt(model.getValueAt(fila,0).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+        tfe = new TrabajadorFormularioEdit(id);
+        tfe.setVisible(true);
+    }//GEN-LAST:event_jbEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +189,11 @@ public class TrabajadorListado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbBorrar;
+    private javax.swing.JButton jbDetalle;
+    private javax.swing.JButton jbEditar;
+    private javax.swing.JLabel jltitulo;
     // End of variables declaration//GEN-END:variables
 }
