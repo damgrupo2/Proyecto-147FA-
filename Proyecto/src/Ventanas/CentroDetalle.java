@@ -5,17 +5,27 @@
  */
 package Ventanas;
 
+import Modelo.Centro;
+
 /**
  *
  * @author 7fbd06
  */
 public class CentroDetalle extends javax.swing.JFrame {
 
+    private CentroListado cl;
     /**
      * Creates new form CentroDetalle
      */
-    public CentroDetalle() {
+    public CentroDetalle(int id) {
         initComponents();
+        Centro c = Centro.verCentro(id);
+        jlCP.setText(c.getCp());
+        jlDireccion.setText(c.getDireccion());
+        jlLocalidad.setText(c.getLoc());
+        jlNombre.setText(c.getNombre());
+        jlProvincia.setText(c.getProvincia());
+        jlTelefono.setText(c.getTelf());
     }
 
     /**
@@ -27,17 +37,117 @@ public class CentroDetalle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jltitulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jlNombre = new javax.swing.JLabel();
+        jlDireccion = new javax.swing.JLabel();
+        jlLocalidad = new javax.swing.JLabel();
+        jlCP = new javax.swing.JLabel();
+        jlProvincia = new javax.swing.JLabel();
+        jlTelefono = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Detalle centro");
+
+        jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jltitulo.setText("Detalle centro");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Nombre");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Dirección");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Localidad");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("CP");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Provincia");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("Telefono");
+
+        jlNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jlDireccion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jlLocalidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jlCP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jlProvincia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jlTelefono.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(359, 359, 359)
+                        .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlDireccion)
+                            .addComponent(jlTelefono)
+                            .addComponent(jlNombre)
+                            .addComponent(jlLocalidad)
+                            .addComponent(jlCP)
+                            .addComponent(jlProvincia))))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlNombre)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlDireccion)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlLocalidad)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlCP)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlProvincia)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlTelefono)))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         pack();
@@ -69,15 +179,28 @@ public class CentroDetalle extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CentroDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        int id = CentroListado.getId();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CentroDetalle().setVisible(true);
+                new CentroDetalle(id).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jlCP;
+    private javax.swing.JLabel jlDireccion;
+    private javax.swing.JLabel jlLocalidad;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlProvincia;
+    private javax.swing.JLabel jlTelefono;
+    private javax.swing.JLabel jltitulo;
     // End of variables declaration//GEN-END:variables
 }
