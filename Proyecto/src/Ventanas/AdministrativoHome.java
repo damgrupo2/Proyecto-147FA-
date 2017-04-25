@@ -18,6 +18,8 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private TrabajadorFormulario tf;
     private TrabajadorDetalle td;
     private TrabajadorListado tl;
+    private VehiculoFormulario vf;
+    private VehiculoListado vl;
     /** Creates new form AdministrativoHome */
     public AdministrativoHome() {
         initComponents();
@@ -40,10 +42,12 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmNuevoTrab = new javax.swing.JMenuItem();
         jmListarTrab = new javax.swing.JMenuItem();
-        jmDetalleTrab = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jmNuevoUsu = new javax.swing.JMenuItem();
         jmDetalleUsu = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,9 +92,6 @@ public class AdministrativoHome extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jmListarTrab);
-
-        jmDetalleTrab.setText("Detalle trabajador");
-        jMenu2.add(jmDetalleTrab);
         jMenu2.add(jSeparator2);
 
         jmNuevoUsu.setText("Nuevo usuario");
@@ -100,6 +101,26 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jMenu2.add(jmDetalleUsu);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Vehículos");
+
+        jMenuItem1.setText("Nuevo Vehículo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setText("Listar Vehículo");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -143,6 +164,16 @@ public class AdministrativoHome extends javax.swing.JFrame {
         tl.setVisible(true);
     }//GEN-LAST:event_jmListarTrabActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        vf= new VehiculoFormulario();
+        vf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        vl=new VehiculoListado();
+        vl.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -181,10 +212,12 @@ public class AdministrativoHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel jltitulo;
-    private javax.swing.JMenuItem jmDetalleTrab;
     private javax.swing.JMenuItem jmDetalleUsu;
     private javax.swing.JMenuItem jmListarTrab;
     private javax.swing.JMenuItem jmNuevoCen;
