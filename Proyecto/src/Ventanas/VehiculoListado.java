@@ -15,11 +15,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author 7fbd06
  */
-public class TrabajadorListado extends javax.swing.JFrame {
-    private TrabajadorDetalle td;
-    private TrabajadorFormularioEdit tfe;
+public class VehiculoListado extends javax.swing.JFrame {
+    private VehiculoDetalle vd;
+    private VehiculoFormularioEdit vfe;
     private DefaultTableModel model;
-    private List<Trabajador> trabajadores;
+    private List<Modelo.Vehiculo> vehiculos;
     private static int id;
 
     public static int getId() {
@@ -28,12 +28,12 @@ public class TrabajadorListado extends javax.swing.JFrame {
     /**
      * Creates new form TrabajadorListado
      */
-    public TrabajadorListado() {
+    public VehiculoListado() {
         initComponents();
         model= (DefaultTableModel)jTable1.getModel();
-        trabajadores = Trabajador.listarTrabajadores();
-        for(Trabajador t:trabajadores){
-            model.insertRow(model.getRowCount(), new Object[]{t.getId_trabajador(),t.getDni(),t.getNombre(),t.getAp1(),t.getAp2()});
+        vehiculos = Modelo.Vehiculo.listarVehiculos();
+        for(Modelo.Vehiculo v: vehiculos){
+            model.insertRow(model.getRowCount(), new Object[]{v.getIdVehiculo(),v.getMatricula(),v.getModelo(),v.getMarca()});
         }
     }
 
@@ -58,14 +58,14 @@ public class TrabajadorListado extends javax.swing.JFrame {
 
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jltitulo.setText("Listado trabajadores");
+        jltitulo.setText("Listado vehiculos");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "DNI", "Nombre", "Primer apellido", "Segundo apellido"
+                "ID", "Matrícula", "Modelo", "Marca"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,15 +136,15 @@ public class TrabajadorListado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-       JOptionPane.showConfirmDialog(rootPane, "¿Estas segur@ de querer borrar?");
-       Trabajador t=new Trabajador();
-       t.setId_trabajador(id);
-       t.borrarTrabajador();
+        JOptionPane.showConfirmDialog(rootPane, "¿Estas segur@ de querer borrar?");
+       Modelo.Vehiculo v=new Modelo.Vehiculo();
+       v.setIdVehiculo(id);
+       v.borrarVehiculo();
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDetalleActionPerformed
-        td = new TrabajadorDetalle(id);
-        td.setVisible(true);
+        vd = new VehiculoDetalle(id);
+        vd.setVisible(true);
     }//GEN-LAST:event_jbDetalleActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -153,8 +153,8 @@ public class TrabajadorListado extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-        tfe = new TrabajadorFormularioEdit(id);
-        tfe.setVisible(true);
+        vfe = new VehiculoFormularioEdit(id);
+        vfe.setVisible(true);
     }//GEN-LAST:event_jbEditarActionPerformed
 
     /**
@@ -174,20 +174,21 @@ public class TrabajadorListado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorListado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VehiculoListado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorListado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VehiculoListado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorListado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VehiculoListado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrabajadorListado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VehiculoListado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TrabajadorListado().setVisible(true);
+                new VehiculoListado().setVisible(true);
             }
         });
     }
