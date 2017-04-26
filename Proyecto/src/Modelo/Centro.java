@@ -159,27 +159,6 @@ public class Centro {
         return centros;
     }
 
-    public Centro listarTrabajadoresCentro(){
-        try {
-            //verCentro();
-            ControladorBaseDatos.conectar();
-            CallableStatement  cs = ControladorBaseDatos.getConexion().prepareCall("{call CONSULTA_TRABAJADORES(?)}");
-            cs.registerOutParameter(1, OracleTypes.CURSOR);
-            ResultSet rs = cs.executeQuery();
-            while(rs.next()){
-                Categoria c =(Categoria) rs.getObject("CATEGORIA");
-                Trabajador t = new Trabajador(rs.getString("DNI"),rs.getString("NOMBRE"),rs.getString("AP1"),rs.getString("AP2"),
-                        rs.getString("DIRECCION"),rs.getString("TELF_EMPRESA"),rs.getString("TELF_PERSONAL"),c,
-                        rs.getDouble("SALARIO"),rs.getDate("FECHANAC"));
-                t.añadirCentro(this);
-                trabajadores.add(t);
-            }
-            ControladorBaseDatos.desconectar();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
-        }
-        return this;
-    }
 
     public boolean guardarCentro(){
         try {
