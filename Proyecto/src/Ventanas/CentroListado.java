@@ -9,7 +9,6 @@ import Modelo.Centro;
 import Modelo.Trabajador;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -201,10 +200,7 @@ public class CentroListado extends javax.swing.JFrame {
     }//GEN-LAST:event_jbDetalleActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-       JOptionPane.showConfirmDialog(rootPane, "¿Estas segur@ de querer borrar?");
-       Centro c=new Centro();
-       c.setId_centro(id);
-       c.borrarCentro();
+        // TODO borrar centro
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     /**
