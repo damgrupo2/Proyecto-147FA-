@@ -37,12 +37,12 @@ public class ControladorBaseDatos {
    public static void conectar(){ 
         try{ 
             Class.forName("oracle.jdbc.OracleDriver"); 
-            //String login = "Aplicacion"; 
-            //String pass = "a12345Abcde"; 
-            //String url = "jdbc:oracle:thin:@10.10.10.9:1521:db12102";             
-            String login = "noc05";
-            String pass = "noc05";
-            String url = "jdbc:oracle:thin:@SrvOracle:1521:orcl";
+            String login = "Aplicacion"; 
+            String pass = "a12345Abcde"; 
+            String url = "jdbc:oracle:thin:@10.10.10.9:1521:db12102";             
+            //String login = "noc05";
+            //String pass = "noc05";
+            //String url = "jdbc:oracle:thin:@SrvOracle:1521:orcl";
             conexion = DriverManager.getConnection(url,login,pass); 
             conexion.setAutoCommit(true); 
         }catch(ClassNotFoundException | SQLException ex){ 
