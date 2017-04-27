@@ -28,8 +28,8 @@ public class MainTemporal {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException, ParseException {
-        //Login login =new Login();
-        //login.setVisible(true);
+        /*Login login =new Login();
+        login.setVisible(true);
         ControladorBaseDatos.conectar();
         CallableStatement cs= ControladorBaseDatos.getConexion().prepareCall("{call TODOS_CERRADOS_FECHAS (?,?,?)}");
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
@@ -41,6 +41,23 @@ public class MainTemporal {
         cs.setDate(2, sql2);
         cs.registerOutParameter(3, OracleTypes.CURSOR);
         cs.execute();
+       ResultSet rs = (ResultSet) cs.getObject(3);
+       while(rs.next()){
+           System.out.println(rs.getInt("ID_TRABAJADOR"));
+           System.out.println(rs.getDate("FECHA_PARTE"));
+           System.out.println(rs.getDouble("HORAS_TOTALES"));
+           System.out.println(rs.getInt("ABIERTO"));
+       }*/
+        ControladorBaseDatos.conectar();
+        CallableStatement cs= ControladorBaseDatos.getConexion().prepareCall("{call PARTES.UNO(?,?,?,?)}");
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        Date parsed = format.parse("20170425");
+       java.sql.Date sql = new java.sql.Date(parsed.getTime());
+       cs.setInt(1, 1);
+       cs.setDate(2, sql);
+       cs.registerOutParameter(3, OracleTypes.CURSOR);
+       cs.registerOutParameter(4, OracleTypes.CURSOR);
+       cs.execute();
        ResultSet rs = (ResultSet) cs.getObject(3);
        while(rs.next()){
            System.out.println(rs.getInt("ID_TRABAJADOR"));

@@ -5,12 +5,10 @@
  */
 package Modelo;
 
-
-
 /**
  *
  * @author 7fbd06
  */
-public enum Categoria {
-    Administrativo, Transportista
+public class Reparto {
+    
 }

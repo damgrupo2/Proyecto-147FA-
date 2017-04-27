@@ -8,6 +8,7 @@ package Ventanas;
 import Modelo.Centro;
 import Modelo.Trabajador;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -135,7 +136,10 @@ public class TrabajadorListado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-        // TODO add your handling code here:
+       JOptionPane.showConfirmDialog(rootPane, "¿Estas segur@ de querer borrar?");
+       Trabajador t=new Trabajador();
+       t.setId_trabajador(id);
+       t.borrarTrabajador();
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDetalleActionPerformed
