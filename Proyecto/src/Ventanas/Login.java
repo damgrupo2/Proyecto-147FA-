@@ -139,6 +139,7 @@ public class Login extends javax.swing.JFrame {
             case Transportista:
                 break;
         }
+        
     }//GEN-LAST:event_jbLoginActionPerformed
 
     private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
