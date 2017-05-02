@@ -48,23 +48,22 @@ public class MainTemporal {
            System.out.println(rs.getDouble("HORAS_TOTALES"));
            System.out.println(rs.getInt("ABIERTO"));
        }*/
-        ControladorBaseDatos.conectar();
-        CallableStatement cs= ControladorBaseDatos.getConexion().prepareCall("{call PARTES.UNO(?,?,?,?)}");
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         Date parsed = format.parse("20170425");
        java.sql.Date sql = new java.sql.Date(parsed.getTime());
-       cs.setInt(1, 1);
-       cs.setDate(2, sql);
-       cs.registerOutParameter(3, OracleTypes.CURSOR);
-       cs.registerOutParameter(4, OracleTypes.CURSOR);
-       cs.execute();
-       ResultSet rs = (ResultSet) cs.getObject(3);
-       while(rs.next()){
-           System.out.println(rs.getInt("ID_TRABAJADOR"));
-           System.out.println(rs.getDate("FECHA_PARTE"));
-           System.out.println(rs.getDouble("HORAS_TOTALES"));
-           System.out.println(rs.getInt("ABIERTO"));
-       }
+        Parte p = new Parte(sql, 1, 2, 1, 1, 1, 1, null, true, 0, false);
+        SimpleDateFormat hora = new SimpleDateFormat("yyyy-MM-dd-HH:mm:");
+        Date horai =format.parse("2017-04-25-10:00");
+        java.sql.Date hi =new java.sql.Date(horai.getTime());
+        Date horaf =format.parse("2017-04-25-11:00");
+        java.sql.Date hf =new java.sql.Date(horaf.getTime());
+        p.añadirReparto(new Reparto(sql, "123", hi, hf));
+        Trabajador t =new Trabajador();
+        t.setId_trabajador(1);
+        p.setTrabajador(t);
+        Vehiculo v = new Vehiculo(1, "", "", "");
+        p.setVehiculo(v);
+        p.guardarParte();
     }
     
 }
