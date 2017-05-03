@@ -154,7 +154,7 @@ public class Trabajador {
     
     public void añadirUsuario(Usuario usuario){
         this.usuario = usuario;
-        usuario.añadirTrabajador(this);
+        usuario.setT(this);
     }
     
     public void añadirParte(Parte parte){

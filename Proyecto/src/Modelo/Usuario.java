@@ -25,7 +25,10 @@ public class Usuario {
     private String usuario;
     private String contraseña;
 
-    private Trabajador trabajador;
+    private static Trabajador t=new Trabajador();
+    private static Parte p = new Parte();
+    private static Vehiculo v = new Vehiculo();
+    
 
     public Usuario(String usuario, String contraseña) {
         this.usuario = usuario;
@@ -48,9 +51,24 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public void añadirTrabajador(Trabajador trabajador) {
-        this.trabajador = trabajador;
+    public static Trabajador getT() {
+        return t;
     }
+
+    public static void setT(Trabajador t) {
+        Usuario.t = t;
+    }
+
+    
+    public static Parte getP() {
+        return p;
+    }
+
+    public static Vehiculo getV() {
+        return v;
+    }
+
+    
 
     public void guardarUsuario() {
         try {
@@ -89,8 +107,7 @@ public class Usuario {
 
     public Categoria hacerLogin() {
         Categoria c = null;
-        Trabajador t = new Trabajador();
-        Parte p = new Parte();
+        
         try {
             ControladorBaseDatos.conectar();
             CallableStatement cs = ControladorBaseDatos.getConexion().prepareCall("{call USUARIOS.USUARIO_LOGIN(?,?,?,?,?,?,?)}");
@@ -131,7 +148,7 @@ public class Usuario {
 
             if (t.getCategoria() == Categoria.Transportista) {
                 while (rsp.next()) {
-
+                    p.setFecha(rsp.getDate("FECHA"));
                     p.setKmInicio(rsp.getDouble("KM_INICIO"));
                     p.setKmFin(rsp.getDouble("KM_FIN"));
                     p.setGasoil(rsp.getDouble("GASOIL"));
@@ -152,7 +169,7 @@ public class Usuario {
                         p.añadirReparto(r);
 
                         while (rsv.next()) {
-                            Vehiculo v = new Vehiculo();
+                            
                             v.setMatricula(rsv.getString("MATRICULA"));
                             v.setModelo(rsv.getString("MODELO"));
                             v.setMarca(rsv.getString("MARCA"));
@@ -174,8 +191,10 @@ public class Usuario {
                     a = new Aviso(idAviso, texto, idTrabajadorE,
                             idTrabajadorR, parteFecha);
                 }
+            
+           
             }
-
+           
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());

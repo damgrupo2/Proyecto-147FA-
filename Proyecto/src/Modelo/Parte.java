@@ -45,7 +45,7 @@ public class Parte {
     public Parte() {
     }
 
-    public Parte(Date fecha, double kmInicio, double kmFin, double gasoil, double autopista, double dietas, double otrosGastos, String incidencias, boolean abierto, double excesoHoras, boolean validado) {
+    public Parte(Date fecha, double kmInicio, double kmFin, double gasoil, double autopista, double dietas, double otrosGastos, String incidencias) {
         this.fecha = fecha;
         this.kmInicio = kmInicio;
         this.kmFin = kmFin;
@@ -54,9 +54,7 @@ public class Parte {
         this.dietas = dietas;
         this.otrosGastos = otrosGastos;
         this.incidencias = incidencias;
-        this.abierto = abierto;
-        this.excesoHoras = excesoHoras;
-        this.validado = validado;
+        
     }
 
     public Date getFecha() {
@@ -146,6 +144,8 @@ public class Parte {
     public void setValidado(boolean validado) {
         this.validado = validado;
     }
+    
+    
 
     @Override
     public String toString() {
@@ -249,7 +249,7 @@ public class Parte {
     }
     
     //Antes de llamar a esta función hay que haber asignado vehiculo,trabajador y repartos al parte
-    public boolean guardarParte(){
+    public boolean guardarParte(int id_trabajador, int id_vehiculo){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
@@ -259,7 +259,7 @@ public class Parte {
                             + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             java.sql.Date sql = new java.sql.Date(fecha.getTime());
             ps.setDate(1, sql);
-            ps.setInt(2, trabajador.getId_trabajador());
+            ps.setInt(2, id_trabajador);
             ps.setDouble(3, kmInicio);
             ps.setDouble(4, kmFin);
             ps.setDouble(5, gasoil);
@@ -268,7 +268,7 @@ public class Parte {
             ps.setDouble(8, otrosGastos);
             ps.setString(9, incidencias);
             ps.setBoolean(10, true);
-            ps.setInt(11, vehiculo.getIdVehiculo());
+            ps.setInt(11, id_vehiculo);
             ps.setBoolean(12, false);
             ps.execute();
             
@@ -278,7 +278,7 @@ public class Parte {
                         .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
                 java.sql.Date sqlr = new java.sql.Date(fecha.getTime());
                 psr.setDate(1, sqlr);
-                psr.setInt(2, trabajador.getId_trabajador());
+                psr.setInt(2, id_trabajador);
                 psr.setString(3, r.getAlbaran());
                 psr.setTimestamp(4, (Timestamp) r.getHoraInicio());
                 psr.setTimestamp(5, (Timestamp) r.getHoraFin());
