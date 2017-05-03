@@ -13,6 +13,27 @@ public class ControladorBaseDatos {
     
     private static Connection conexion;
     
+<<<<<<< HEAD
+    public Connection getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Connection conexion) {
+        this.conexion = conexion;
+    }
+
+    public ControladorBaseDatos() {
+        try { 
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conexion= DriverManager.getConnection("jdbc:oracle:thin:@10.10.10.9:1521:db12102","Aplicacion", "a12345Abcde");
+        } catch (SQLException ex) {
+            Logger.getLogger(General.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        catch (ClassNotFoundException ex) {
+           /*JOptionPane.showMessageDialog(, ex, "Error de conexion", 0);*/
+       
+=======
    public static void conectar(){ 
         try{ 
             Class.forName("oracle.jdbc.OracleDriver"); 
@@ -27,6 +48,7 @@ public class ControladorBaseDatos {
         }catch(ClassNotFoundException | SQLException ex){ 
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
         }  
+>>>>>>> master
     }
    
    public static void desconectar() throws SQLException{ 
