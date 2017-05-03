@@ -53,7 +53,7 @@ public class VehiculoFormulario extends javax.swing.JFrame {
         jltitulo.setText("Guardar vehiculo");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Matícula");
+        jLabel1.setText("Matrícula");
 
         jtMatricula.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
