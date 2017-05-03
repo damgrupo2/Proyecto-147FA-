@@ -23,6 +23,8 @@ public class AdministrativoHome extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -33,6 +35,7 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jltitulo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmNuevoCen = new javax.swing.JMenuItem();
@@ -50,6 +53,13 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jltitulo.setText("Bienvenido ");
+
+        jButton1.setText("Avisos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Centros");
 
@@ -108,8 +118,13 @@ public class AdministrativoHome extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jButton1)))
                 .addContainerGap(340, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,7 +132,9 @@ public class AdministrativoHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addGap(91, 91, 91)
+                .addComponent(jButton1)
+                .addContainerGap(234, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,6 +160,15 @@ public class AdministrativoHome extends javax.swing.JFrame {
         tl.setVisible(true);
     }//GEN-LAST:event_jmListarTrabActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        VentanaAviso aviso = new VentanaAviso();
+        aviso.setVisible(true);   
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -179,6 +205,7 @@ public class AdministrativoHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

@@ -54,11 +54,11 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jtSalario = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jdFecha = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jlAviso = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jtDni = new javax.swing.JTextField();
+        jdFecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -136,10 +136,6 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(133, 133, 133)
-                        .addComponent(jtSalario))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
@@ -156,11 +152,6 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                         .addGap(114, 114, 114)
                         .addComponent(jtDireccion))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(24, 24, 24)
-                        .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +161,17 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(jtTelPer, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtTelPer, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jtSalario))))
                 .addGap(42, 42, 42))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -233,12 +234,13 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jlAviso)))
                     .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jlAviso))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 

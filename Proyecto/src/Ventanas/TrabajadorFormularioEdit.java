@@ -41,6 +41,7 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
         jcCategoria.addItem(Categoria.Transportista);
     }
     
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,6 +85,11 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
         jLabel1.setText("Nombre");
 
         jtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtNombreActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Primer apellido");
@@ -285,6 +291,10 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
     private void jcCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriaActionPerformed
         
     }//GEN-LAST:event_jcCategoriaActionPerformed
+
+    private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtNombreActionPerformed
 
     /**
      * @param args the command line arguments

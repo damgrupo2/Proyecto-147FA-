@@ -47,6 +47,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Contraseña");
 
+        jtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtUsuarioActionPerformed(evt);
+            }
+        });
+
         jPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordActionPerformed(evt);
@@ -144,6 +150,10 @@ public class Login extends javax.swing.JFrame {
     private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
         jbLogin.doClick();
     }//GEN-LAST:event_jPasswordActionPerformed
+
+    private void jtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

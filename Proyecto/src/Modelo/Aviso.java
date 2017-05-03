@@ -98,7 +98,8 @@ public class Aviso {
         this.trabajador = trabajador;
     }
 
-    /* métodos a utilizar */
+    /* métodos a utilizar----------------------------- */
+    
     public void añadirAviso(Aviso aviso) {
         aviso.add(aviso);
     }
@@ -155,13 +156,12 @@ public class Aviso {
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion().
-                    prepareStatement("INSERT INTO AVISO (ID_AVISO,TEXTO,ID_TRABAJDOR_E,"
-                            + "ID_TRABAJADOR_R,PARTE_FECHA) VALUES(?,?,?,?,?,?) ");
-            ps.setInt(1, idAviso);
-            ps.setString(2, texto);
-            ps.setInt(3, idTrabajadorE);
-            ps.setInt(4, idTrabajadorR);
-            ps.setDate(5, (Date) parteFecha);
+                    prepareStatement("INSERT INTO AVISO (TEXTO,ID_TRABAJDOR_E,"
+                            + "ID_TRABAJADOR_R,PARTE_FECHA) VALUES(?,?,?,?,?) ");
+            ps.setString(1, texto);
+            ps.setInt(2, idTrabajadorE);
+            ps.setInt(3, idTrabajadorR);
+            ps.setDate(4, (Date) parteFecha);
             ps.execute();
             ControladorBaseDatos.desconectar();
             return true;
@@ -181,12 +181,19 @@ public class Aviso {
             ps.execute();
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" 
+                    + ex.getMessage());
         }
     }
 
     private void add(Aviso aviso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
+        //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+//To change body of generated methods, choose Tools | Templates.
     }
 
 }
