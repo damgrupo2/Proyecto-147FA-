@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Ventanas/CentroListado.java</file>
-            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Ventanas/RepartoFormulario.java</file>
-            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Modelo/Centro.java</file>
-            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Modelo/Reparto.java</file>
-            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Modelo/Aviso.java</file>
-            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Ventanas/ParteFormulario.java</file>
+            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Modelo/Trabajador.java</file>
+            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Ventanas/TrabajadorDetalle.java</file>
+            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Modelo/Parte.java</file>
             <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Ventanas/TrabajadorListado.java</file>
-            <file>file:/C:/Users/7fbd06/Documents/Proyecto/Proyecto-147FA-/Proyecto/src/Modelo/ControladorBaseDatos.java</file>
         </group>
     </open-files>
 </project-private>

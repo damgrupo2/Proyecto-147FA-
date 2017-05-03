@@ -30,7 +30,7 @@ public class Centro {
     private String provincia;
     private String telf;
     
-    /* relación con trabajador*/
+    
     
     private List<Trabajador>trabajadores = new ArrayList<>();
 

@@ -157,6 +157,10 @@ public class Trabajador {
         usuario.añadirTrabajador(this);
     }
     
+    public void añadirParte (Parte parte) {
+        parteList.add(parte);
+    }
+    
     public boolean guardarTrabajador(){
         try {
             ControladorBaseDatos.conectar();

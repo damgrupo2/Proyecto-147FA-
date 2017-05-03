@@ -7,7 +7,6 @@ package Ventanas;
 
 import Modelo.Centro;
 import Modelo.Trabajador;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
