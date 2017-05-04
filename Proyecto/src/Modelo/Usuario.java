@@ -147,6 +147,7 @@ public class Usuario {
             }
 
             if (t.getCategoria() == Categoria.Transportista) {
+                //ERROR AQUI
                 while (rsp.next()) {
                     p.setFecha(rsp.getDate("FECHA"));
                     p.setKmInicio(rsp.getDouble("KM_INICIO"));

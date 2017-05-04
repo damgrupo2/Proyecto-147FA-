@@ -282,7 +282,7 @@ public class Parte {
                 psr.setString(3, r.getAlbaran());
                 psr.setTimestamp(4, (Timestamp) r.getHoraInicio());
                 psr.setTimestamp(5, (Timestamp) r.getHoraFin());
-                ps.execute();
+                psr.execute();
             }
             ControladorBaseDatos.desconectar();
             return true;

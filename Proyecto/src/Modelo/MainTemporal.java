@@ -54,8 +54,7 @@ public class MainTemporal {
         java.sql.Timestamp t=new Timestamp(17, 05, 03, 21, 30,40, 00);
         java.sql.Timestamp t2=new Timestamp(17, 05, 03, 22, 30,40, 00);
         Parte p = new Parte(fecha, 1.1, 1.2, 1, 1, 1, 1, incidencias);
-        
-        Reparto r=new Reparto(fecha, "123456", t, t2);
+        Reparto r = new Reparto(fecha, "111", t, t2);
         p.añadirReparto(r);
         p.guardarParte(21, 1);
     }
