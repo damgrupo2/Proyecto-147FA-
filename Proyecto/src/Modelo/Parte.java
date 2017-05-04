@@ -54,7 +54,7 @@ public class Parte {
         this.dietas = dietas;
         this.otrosGastos = otrosGastos;
         this.incidencias = incidencias;
-        
+        Parte.repartos=new ArrayList<>();
     }
 
     public Date getFecha() {
@@ -153,7 +153,7 @@ public class Parte {
     }
 
     //BORRAR DESPUES DE LAS PRUEBAS
-    public static List<Reparto> getRepartos() {
+    public List<Reparto> getRepartos() {
         return repartos;
     }
 
@@ -185,6 +185,8 @@ public class Parte {
         repartos.add(reparto);
         reparto.setParte(this);
     }
+    
+    
     
     //Hacer esta consulta en el login
     /*public static Parte parteAbierto(int idTrabajador){
@@ -280,8 +282,8 @@ public class Parte {
                 psr.setDate(1, sqlr);
                 psr.setInt(2, id_trabajador);
                 psr.setString(3, r.getAlbaran());
-                psr.setTimestamp(4, (Timestamp) r.getHoraInicio());
-                psr.setTimestamp(5, (Timestamp) r.getHoraFin());
+                psr.setTimestamp(4, new java.sql.Timestamp(r.getHoraInicio().getTime()));
+                psr.setTimestamp(5, new java.sql.Timestamp(r.getHoraFin().getTime()));
                 psr.execute();
             }
             ControladorBaseDatos.desconectar();
