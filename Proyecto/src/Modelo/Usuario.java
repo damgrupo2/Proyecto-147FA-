@@ -110,7 +110,7 @@ public class Usuario {
         
         try {
             ControladorBaseDatos.conectar();
-            CallableStatement cs = ControladorBaseDatos.getConexion().prepareCall("{call USUARIOS.USUARIO_LOGIN(?,?,?,?,?,?,?)}");
+            CallableStatement cs = ControladorBaseDatos.getConexion().prepareCall("{call USUARIOS.USUARIO_LOGIN(?,?,?,?,?,?,?,?)}");
             cs.setString(1, usuario);
             cs.setNString(2, contraseña);
             cs.registerOutParameter(3, OracleTypes.CURSOR);
@@ -118,12 +118,14 @@ public class Usuario {
             cs.registerOutParameter(5, OracleTypes.CURSOR);
             cs.registerOutParameter(6, OracleTypes.CURSOR);
             cs.registerOutParameter(7, OracleTypes.CURSOR);
+             cs.registerOutParameter(8, OracleTypes.NUMBER);
             cs.execute();
             ResultSet rst = (ResultSet) cs.getObject(3);
             ResultSet rsp = (ResultSet) cs.getObject(4);
             ResultSet rsr = (ResultSet) cs.getObject(5);
             ResultSet rsa = (ResultSet) cs.getObject(6);
             ResultSet rsv = (ResultSet) cs.getObject(7);
+            int contador= cs.getInt(8);
             while (rst.next()) {
                 t.setDni(rst.getString("DNI"));
                 t.setNombre(rst.getString("NOMBRE"));
@@ -147,7 +149,7 @@ public class Usuario {
             }
 
             if (t.getCategoria() == Categoria.Transportista) {
-                //ERROR AQUI
+                if(contador==1){
                 while (rsp.next()) {
                     p.setFecha(rsp.getDate("FECHA"));
                     p.setKmInicio(rsp.getDouble("KM_INICIO"));
@@ -170,7 +172,7 @@ public class Usuario {
                         p.añadirReparto(r);
 
                         while (rsv.next()) {
-                            
+                            v.setIdVehiculo(rsv.getInt("ID_VEHICULO"));
                             v.setMatricula(rsv.getString("MATRICULA"));
                             v.setModelo(rsv.getString("MODELO"));
                             v.setMarca(rsv.getString("MARCA"));
@@ -180,7 +182,7 @@ public class Usuario {
 
                 }
                 t.añadirParte(p);
-
+                }
             } else {
                 while (rsa.next()) {
                     Aviso a = null;

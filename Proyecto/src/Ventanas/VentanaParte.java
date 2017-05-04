@@ -5,30 +5,85 @@
  */
 package Ventanas;
 
+import Modelo.Centro;
 import Modelo.Parte;
 import Modelo.Trabajador;
 import Modelo.Vehiculo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Jose
  */
 public class VentanaParte extends javax.swing.JFrame {
+
+    static void setVehiculo(Vehiculo v) {
+        VentanaParte.v=v;
+    }
     
     private VentanaReparto vr;
-    private static Trabajador t;
-    private static Parte p;
-    private static Vehiculo v;
+    private static Trabajador t=new Trabajador();
+    private static Parte p=new Parte();
+    private static Vehiculo v=new Vehiculo();
+    private DefaultTableModel model;
+    private BuscarVehiculo bv;
+    private static int id;
     
+    
+    public static void añadeReparto(Modelo.Reparto r){
+        p.getRepartos().add(r);
+    }
 
     /**
      * Creates new form VentanaParte
      */
-    public VentanaParte(Trabajador t, Parte p, Vehiculo v) {
+    
+    public static void setId(int id) {
         
+        VentanaParte.id = id;
+    }
+    
+    public static void configurarVehiculoVentana(int id){
+        //jtV
+    }
+
+    public VentanaParte(Trabajador t, Parte p, Vehiculo v) {
         initComponents();
+        if(p.getFecha()!=null){
+            Double kmINI = p.getKmInicio();
+            String kmINi = kmINI.toString();
+            jtKmIni.setText(kmINi);
+            Double kmFIN = p.getKmFin();
+            String kmFin = kmFIN.toString();
+            jtKmFin.setText(kmFin);
+            Double gD = p.getGasoil();
+            String g = gD.toString();
+            jtGasoil.setText(g);
+            Double aD = p.getAutopista();
+            String a= aD.toString();
+            jtAutopista.setText(a);
+            Double dd = p.getDietas();
+            String d = dd.toString();
+            jtDietas.setText(d);
+            Double od = p.getOtrosGastos();
+            String o = od.toString();
+            jtOtros.setText(o);
+            jtIncidencias.setText(p.getIncidencias());
+            Integer idv=p.getVehiculo().getIdVehiculo();
+            String idVe=idv.toString();
+           
+            jtVehiculo.setText(idVe);
+            
+            
+            DefaultTableModel model= (DefaultTableModel)jTable1.getModel();
+            List<Modelo.Reparto> repartos = p.getRepartos();
+            for(Modelo.Reparto r:repartos){
+                model.insertRow(model.getRowCount(), new Object[]{r.getAlbaran(),r.getHoraInicio(),r.getHoraFin()});
+            }
+        }
     }
 
     VentanaParte() {
@@ -109,6 +164,8 @@ public class VentanaParte extends javax.swing.JFrame {
 
         jLabel10.setText("VEHICULO");
 
+        jtVehiculo.setEditable(false);
+        jtVehiculo.setEnabled(false);
         jtVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtVehiculoActionPerformed(evt);
@@ -263,7 +320,9 @@ public class VentanaParte extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
+        bv=new BuscarVehiculo();
+        bv.setVisible(true);
+       
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jtAutopistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtAutopistaActionPerformed
@@ -281,7 +340,7 @@ public class VentanaParte extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        vr = new VentanaReparto();
+        vr=new VentanaReparto();
         vr.setVisible(true);
        
             

@@ -5,17 +5,30 @@
  */
 package Ventanas;
 
+import Modelo.Reparto;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+
 /**
  *
- * @author 7FBD05
+ * @author Jose
  */
 public class VentanaReparto extends javax.swing.JFrame {
+
+    private Object JSpinner3;
+    private SpinnerDateModel sm;
+    private SpinnerDateModel sm3;
 
     /**
      * Creates new form VentanaReparto
      */
     public VentanaReparto() {
         initComponents();
+
     }
 
     /**
@@ -27,21 +40,119 @@ public class VentanaReparto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        java.util.Date date = new java.util.Date();
+        sm =
+        new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        jsinicio = new javax.swing.JSpinner(sm);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jtalbaran = new javax.swing.JTextField();
+        java.util.Date date3 = new java.util.Date();
+        sm3 =
+        new SpinnerDateModel(date3, null, null, Calendar.HOUR_OF_DAY);
+        jsfin = new javax.swing.JSpinner(sm3);
+        jguardaboton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(jsinicio, "HH:mm:ss");
+        jsinicio.setEditor(de);
+
+        jLabel1.setText("Hora Inicio");
+
+        jLabel2.setText("Hora Fin");
+
+        jLabel3.setText("REPARTO");
+
+        jLabel4.setText("Albarán");
+
+        jtalbaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtalbaranActionPerformed(evt);
+            }
+        });
+
+        JSpinner.DateEditor de3 = new JSpinner.DateEditor(jsfin, "HH:mm:ss");
+        jsfin.setEditor(de3);
+
+        jguardaboton.setText("GUARDAR");
+        jguardaboton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jguardabotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jsinicio)
+                    .addComponent(jtalbaran, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                    .addComponent(jsfin))
+                .addGap(51, 51, 51))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jguardaboton)
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jsinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jsfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtalbaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jguardaboton)
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jguardabotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jguardabotonActionPerformed
+        java.util.Date fecha = new java.util.Date();
+
+        java.util.Date horaini = sm.getDate();
+        java.util.Date horafin = sm3.getDate();
+
+        String albaran = jtalbaran.getText();
+        Modelo.Reparto r = new Reparto(fecha, albaran, horaini, horafin);
+        VentanaParte.añadeReparto(r);
+        this.dispose();
+        
+        
+
+
+    }//GEN-LAST:event_jguardabotonActionPerformed
+
+    private void jtalbaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtalbaranActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtalbaranActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +190,13 @@ public class VentanaReparto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton jguardaboton;
+    private javax.swing.JSpinner jsfin;
+    private javax.swing.JSpinner jsinicio;
+    private javax.swing.JTextField jtalbaran;
     // End of variables declaration//GEN-END:variables
 }

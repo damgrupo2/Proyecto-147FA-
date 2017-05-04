@@ -7,6 +7,7 @@ package Ventanas;
 
 import Modelo.Centro;
 import Modelo.Trabajador;
+import Modelo.Vehiculo;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,12 +20,18 @@ public class VehiculoListado extends javax.swing.JFrame {
     private VehiculoDetalle vd;
     private VehiculoFormularioEdit vfe;
     private DefaultTableModel model;
-    private List<Modelo.Vehiculo> vehiculos;
+    private static List<Modelo.Vehiculo> vehiculos;
     private static int id;
 
     public static int getId() {
         return id;
     } 
+
+    public static List<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
+    
+    
     /**
      * Creates new form TrabajadorListado
      */
