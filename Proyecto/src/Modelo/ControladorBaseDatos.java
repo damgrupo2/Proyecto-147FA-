@@ -13,6 +13,7 @@ public class ControladorBaseDatos {
     
     private static Connection conexion;
     
+
    public static void conectar(){ 
         try{ 
             Class.forName("oracle.jdbc.OracleDriver"); 
@@ -27,6 +28,7 @@ public class ControladorBaseDatos {
         }catch(ClassNotFoundException | SQLException ex){ 
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
         }  
+
     }
    
    public static void desconectar() throws SQLException{ 

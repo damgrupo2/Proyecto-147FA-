@@ -157,9 +157,11 @@ public class Trabajador {
         usuario.setT(this);
     }
     
+
     public void añadirParte(Parte parte){
         parteList.add(parte);
         parte.setTrabajador(this);
+
     }
     
     public boolean guardarTrabajador(){
