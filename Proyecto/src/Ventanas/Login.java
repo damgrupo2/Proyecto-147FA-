@@ -6,7 +6,10 @@
 package Ventanas;
 
 import Modelo.Categoria;
+import Modelo.Parte;
+import Modelo.Trabajador;
 import Modelo.Usuario;
+import Modelo.Vehiculo;
 import java.util.Arrays;
 
 /**
@@ -16,6 +19,10 @@ import java.util.Arrays;
 public class Login extends javax.swing.JFrame {
 
     private AdministrativoHome ah;
+    private VentanaParte vp;
+    
+    private Usuario us;
+  
     /**
      * Creates new form Login
      */
@@ -137,6 +144,8 @@ public class Login extends javax.swing.JFrame {
                 ah.setVisible(true);
                 break;
             case Transportista:
+                vp=new VentanaParte(Usuario.getT(),Usuario.getP(),Usuario.getV());
+                vp.setVisible(true);
                 break;
         }
         

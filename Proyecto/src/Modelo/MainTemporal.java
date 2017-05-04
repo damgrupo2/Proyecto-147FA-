@@ -11,6 +11,7 @@ import Ventanas.Login;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,22 +49,14 @@ public class MainTemporal {
            System.out.println(rs.getDouble("HORAS_TOTALES"));
            System.out.println(rs.getInt("ABIERTO"));
        }*/
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        Date parsed = format.parse("20170425");
-       java.sql.Date sql = new java.sql.Date(parsed.getTime());
-        Parte p = new Parte(sql, 1, 2, 1, 1, 1, 1, null, true, 0, false);
-        SimpleDateFormat hora = new SimpleDateFormat("yyyy-MM-dd-HH:mm:");
-        Date horai =format.parse("2017-04-25-10:00");
-        java.sql.Date hi =new java.sql.Date(horai.getTime());
-        Date horaf =format.parse("2017-04-25-11:00");
-        java.sql.Date hf =new java.sql.Date(horaf.getTime());
-        p.añadirReparto(new Reparto(sql, "123", hi, hf));
-        Trabajador t =new Trabajador();
-        t.setId_trabajador(1);
-        p.setTrabajador(t);
-        Vehiculo v = new Vehiculo(1, "", "", "");
-        p.setVehiculo(v);
-        p.guardarParte();
+        String incidencias="";
+        Date fecha = new Date();
+        java.sql.Timestamp t=new Timestamp(17, 05, 03, 21, 30,40, 00);
+        java.sql.Timestamp t2=new Timestamp(17, 05, 03, 22, 30,40, 00);
+        Parte p = new Parte(fecha, 1.1, 1.2, 1, 1, 1, 1, incidencias);
+        Reparto r = new Reparto(fecha, "111", t, t2);
+        p.añadirReparto(r);
+        p.guardarParte(21, 1);
     }
     
 }
