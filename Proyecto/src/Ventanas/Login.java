@@ -144,7 +144,7 @@ public class Login extends javax.swing.JFrame {
                 ah.setVisible(true);
                 break;
             case Transportista:
-                vp=new VentanaParte(Usuario.getT(),Usuario.getP(),Usuario.getV());
+                vp=new VentanaParte();
                 vp.setVisible(true);
                 break;
         }

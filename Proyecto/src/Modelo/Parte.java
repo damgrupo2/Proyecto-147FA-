@@ -153,7 +153,7 @@ public class Parte {
     }
 
     //BORRAR DESPUES DE LAS PRUEBAS
-    public List<Reparto> getRepartos() {
+    public static List<Reparto> getRepartos() {
         return repartos;
     }
 
@@ -275,7 +275,7 @@ public class Parte {
             ps.execute();
             
             //Guardar repartos
-            for(Reparto r:repartos){
+            for(Reparto r:Parte.repartos){
                 PreparedStatement psr = ControladorBaseDatos.getConexion()
                         .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
                 java.sql.Date sqlr = new java.sql.Date(fecha.getTime());
@@ -289,9 +289,25 @@ public class Parte {
             ControladorBaseDatos.desconectar();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(Parte.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
             return false;
         }
     }
     
+    public boolean cerrarParte(){
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("UPDATE PARTE SET ABIERTO=0 WHERE FECHA=? AND ID_TRABAJADOR =?");
+            java.sql.Date sqlr = new java.sql.Date(fecha.getTime());
+            ps.setDate(1, sqlr);
+            ps.setInt(2, trabajador.getId_trabajador());
+            ps.executeUpdate();
+            ControladorBaseDatos.desconectar();
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+            return false;
+        }
+    }
 }
