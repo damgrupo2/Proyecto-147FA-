@@ -18,12 +18,12 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private TrabajadorFormulario tf;
     private TrabajadorDetalle td;
     private TrabajadorListado tl;
-    private VehiculoFormulario vf;
-    private VehiculoListado vl;
     /** Creates new form AdministrativoHome */
     public AdministrativoHome() {
         initComponents();
     }
+
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -34,7 +34,10 @@ public class AdministrativoHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
         jltitulo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmNuevoCen = new javax.swing.JMenuItem();
@@ -42,18 +45,34 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmNuevoTrab = new javax.swing.JMenuItem();
         jmListarTrab = new javax.swing.JMenuItem();
+        jmDetalleTrab = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jmNuevoUsu = new javax.swing.JMenuItem();
         jmDetalleUsu = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem6 = new javax.swing.JCheckBoxMenuItem();
+
+        jCheckBoxMenuItem2.setSelected(true);
+        jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
+
+        jCheckBoxMenuItem5.setSelected(true);
+        jCheckBoxMenuItem5.setText("jCheckBoxMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jltitulo.setText("Bienvenido ");
+
+        jButton1.setText("Avisos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Centros");
 
@@ -92,6 +111,9 @@ public class AdministrativoHome extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jmListarTrab);
+
+        jmDetalleTrab.setText("Detalle trabajador");
+        jMenu2.add(jmDetalleTrab);
         jMenu2.add(jSeparator2);
 
         jmNuevoUsu.setText("Nuevo usuario");
@@ -102,23 +124,33 @@ public class AdministrativoHome extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Vehículos");
+        jMenu3.setText("Partes");
 
-        jMenuItem1.setText("Nuevo Vehículo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("Ver todos los partes");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jCheckBoxMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        jMenu3.add(jCheckBoxMenuItem1);
 
-        jMenuItem2.setText("Listar Vehículo");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxMenuItem3.setSelected(true);
+        jCheckBoxMenuItem3.setText("Ver partes cerrados por fechas");
+        jMenu3.add(jCheckBoxMenuItem3);
+
+        jCheckBoxMenuItem4.setSelected(true);
+        jCheckBoxMenuItem4.setText("Buscar parte por fecha");
+        jCheckBoxMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jCheckBoxMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem2);
+        jMenu3.add(jCheckBoxMenuItem4);
+
+        jCheckBoxMenuItem6.setSelected(true);
+        jCheckBoxMenuItem6.setText("Buscar parte por fecha y trabajador");
+        jMenu3.add(jCheckBoxMenuItem6);
 
         jMenuBar1.add(jMenu3);
 
@@ -129,8 +161,13 @@ public class AdministrativoHome extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jButton1)))
                 .addContainerGap(340, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -138,7 +175,9 @@ public class AdministrativoHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addGap(91, 91, 91)
+                .addComponent(jButton1)
+                .addContainerGap(234, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,16 +203,23 @@ public class AdministrativoHome extends javax.swing.JFrame {
         tl.setVisible(true);
     }//GEN-LAST:event_jmListarTrabActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        vf= new VehiculoFormulario();
-        vf.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        VentanaAviso aviso = new VentanaAviso();
+        aviso.setVisible(true);   
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        vl=new VehiculoListado();
-        vl.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
+    private void jCheckBoxMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxMenuItem4ActionPerformed
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -210,14 +256,20 @@ public class AdministrativoHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel jltitulo;
+    private javax.swing.JMenuItem jmDetalleTrab;
     private javax.swing.JMenuItem jmDetalleUsu;
     private javax.swing.JMenuItem jmListarTrab;
     private javax.swing.JMenuItem jmNuevoCen;

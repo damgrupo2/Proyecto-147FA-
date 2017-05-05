@@ -35,6 +35,11 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
+    public Usuario() {
+    }
+    
+    
+
     public String getUsuario() {
         return usuario;
     }
@@ -70,7 +75,7 @@ public class Usuario {
 
     
 
-    public void guardarUsuario() {
+    public boolean guardarUsuario() {
         try {
             ControladorBaseDatos.conectar();
             CallableStatement cs = ControladorBaseDatos.getConexion().prepareCall("{call USUARIOS.USUARIO_NUEVO(?,?)}");
@@ -83,9 +88,12 @@ public class Usuario {
             ps.setString(2, contraseña);
             ps.execute();*/
             ControladorBaseDatos.desconectar();
+            return true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+            return false;
         }
+        
     }
 
     public void modificarUsuario() {
@@ -204,5 +212,27 @@ public class Usuario {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
         }
         return c;
+    }
+    
+    public static List<Usuario> listarUsuarios(){
+        List<Usuario> usuarios = new ArrayList<>();
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion().
+                    prepareStatement("SELECT ID_USUARIO FROM USUARIO");
+            ResultSet rs =  ps.executeQuery();
+            while (rs.next()) {
+                Modelo.Usuario u = new Modelo.Usuario();
+                u.setUsuario(rs.getString("ID_USUARIO"));
+                
+                usuarios.add(u);
+             
+                //TODO error ids
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
+        }
+        return usuarios;
     }
 }

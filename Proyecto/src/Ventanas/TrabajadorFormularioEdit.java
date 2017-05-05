@@ -78,7 +78,7 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
 
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jltitulo.setText("Guardar trabajador");
+        jltitulo.setText("Editar trabajador");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Nombre");
