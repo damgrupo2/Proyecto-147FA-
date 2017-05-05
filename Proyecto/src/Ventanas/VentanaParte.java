@@ -12,26 +12,38 @@ import Modelo.Vehiculo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Jose
  */
-public class VentanaParte extends javax.swing.JFrame {
-
-    static void setVehiculo(Vehiculo v) {
-        VentanaParte.v=v;
-    }
-    
+public class VentanaParte extends javax.swing.JFrame {   
     private VentanaReparto vr;
-    private static Trabajador t=new Trabajador();
-    private static Parte p=new Parte();
-    private static Vehiculo v=new Vehiculo();
+    private static Trabajador t=Modelo.Usuario.getT();
+    private static Parte p=Modelo.Usuario.getP();
+    private static Vehiculo v=Modelo.Usuario.getV();
     private DefaultTableModel model;
     private BuscarVehiculo bv;
     private static int id;
+
+    public void setJtVehiculo(String id) {
+        this.jtVehiculo.setText(id);
+    }
     
+    public static void setVehiculo(Vehiculo v) {
+        VentanaParte.v=v;
+    }
+
+    public void recargarTabla() {
+        DefaultTableModel model= (DefaultTableModel)jTable1.getModel();
+        model.setRowCount(0);
+        List<Modelo.Reparto> repartos = p.getRepartos();
+        for(Modelo.Reparto r:repartos){
+            model.insertRow(model.getRowCount(), new Object[]{r.getAlbaran(),r.getHoraInicio(),r.getHoraFin()});
+        }
+    }
     
     public static void añadeReparto(Modelo.Reparto r){
         p.getRepartos().add(r);
@@ -50,7 +62,7 @@ public class VentanaParte extends javax.swing.JFrame {
         //jtV
     }
 
-    public VentanaParte(Trabajador t, Parte p, Vehiculo v) {
+    public VentanaParte() {
         initComponents();
         if(p.getFecha()!=null){
             Double kmINI = p.getKmInicio();
@@ -74,20 +86,9 @@ public class VentanaParte extends javax.swing.JFrame {
             jtIncidencias.setText(p.getIncidencias());
             Integer idv=p.getVehiculo().getIdVehiculo();
             String idVe=idv.toString();
-           
             jtVehiculo.setText(idVe);
-            
-            
-            DefaultTableModel model= (DefaultTableModel)jTable1.getModel();
-            List<Modelo.Reparto> repartos = p.getRepartos();
-            for(Modelo.Reparto r:repartos){
-                model.insertRow(model.getRowCount(), new Object[]{r.getAlbaran(),r.getHoraInicio(),r.getHoraFin()});
-            }
+            recargarTabla();
         }
-    }
-
-    VentanaParte() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -201,6 +202,11 @@ public class VentanaParte extends javax.swing.JFrame {
         });
 
         jbCerrar.setText("Cerrar");
+        jbCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCerrarActionPerformed(evt);
+            }
+        });
 
         jlAviso.setForeground(new java.awt.Color(51, 255, 0));
 
@@ -321,6 +327,7 @@ public class VentanaParte extends javax.swing.JFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         bv=new BuscarVehiculo();
+        bv.setVp(this);
         bv.setVisible(true);
        
     }//GEN-LAST:event_jbBuscarActionPerformed
@@ -338,40 +345,34 @@ public class VentanaParte extends javax.swing.JFrame {
     }//GEN-LAST:event_jtVehiculoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
+
         vr=new VentanaReparto();
+        vr.setVp(this);
         vr.setVisible(true);
-       
-            
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        String kmInis = jtKmIni.getText();
-        double kmIni=Double.parseDouble(kmInis);
-        String kmFins = jtKmFin.getText();
-        double kmFin=Double.parseDouble(kmFins);
-        String gasoils = jtGasoil.getText();
-        double gasoil=Double.parseDouble(gasoils);
-        String autos = jtAutopista.getText();
-        double auto=Double.parseDouble(autos);
-        String dies = jtDietas.getText();
-        double diet=Double.parseDouble(dies);
-        String otros = jtOtros.getText();
-        double otro_gastos=Double.parseDouble(otros);
-        String incidencias=jtIncidencias.getText();
+        p.setKmInicio(Double.parseDouble(jtKmIni.getText()));
+        p.setKmFin(Double.parseDouble(jtKmFin.getText()));
+        p.setGasoil(Double.parseDouble(jtGasoil.getText()));
+        p.setAutopista(Double.parseDouble(jtAutopista.getText()));
+        p.setDietas(Double.parseDouble(jtDietas.getText()));
+        p.setOtrosGastos(Double.parseDouble(jtOtros.getText()));
+        p.setIncidencias(jtIncidencias.getText());
         Date fecha= new Date();
- 
-        
-        
-        
-        Parte p= new Parte(fecha, kmIni,kmFin,gasoil,auto,diet,otro_gastos,incidencias);
+        p.setFecha(fecha);
         boolean correcto = p.guardarParte(t.getId_trabajador(),v.getIdVehiculo());
         if(correcto){
             jlAviso.setText("Guardado correctamente");
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
+        boolean correcto = p.cerrarParte();
+        if(correcto){
+            jlAviso.setText("Parte cerrado correctamente");
+        }
+    }//GEN-LAST:event_jbCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,7 +406,7 @@ public class VentanaParte extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaParte( t,  p,  v).setVisible(true);
+                new VentanaParte().setVisible(true);
             }
         });
     }

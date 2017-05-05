@@ -5,8 +5,10 @@
  */
 package Ventanas;
 
+import Modelo.Parte;
 import Modelo.Reparto;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.awt.Container;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,7 +24,11 @@ public class VentanaReparto extends javax.swing.JFrame {
     private Object JSpinner3;
     private SpinnerDateModel sm;
     private SpinnerDateModel sm3;
+    private VentanaParte vp;
 
+    public void setVp(VentanaParte vp) {
+        this.vp = vp;
+    }
     /**
      * Creates new form VentanaReparto
      */
@@ -136,18 +142,13 @@ public class VentanaReparto extends javax.swing.JFrame {
 
     private void jguardabotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jguardabotonActionPerformed
         java.util.Date fecha = new java.util.Date();
-
         java.util.Date horaini = sm.getDate();
         java.util.Date horafin = sm3.getDate();
-
         String albaran = jtalbaran.getText();
         Modelo.Reparto r = new Reparto(fecha, albaran, horaini, horafin);
         VentanaParte.añadeReparto(r);
+        vp.recargarTabla();
         this.dispose();
-        
-        
-
-
     }//GEN-LAST:event_jguardabotonActionPerformed
 
     private void jtalbaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtalbaranActionPerformed
