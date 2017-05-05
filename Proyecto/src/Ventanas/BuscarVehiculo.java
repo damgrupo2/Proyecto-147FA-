@@ -18,6 +18,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private DefaultTableModel model;
     private static List<Modelo.Vehiculo> vehiculos;
     private static Modelo.Vehiculo v;
+    private VentanaParte vp;
 
     /**
      * Creates new form BuscarVehiculo
@@ -106,6 +107,8 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             VentanaParte.setVehiculo(v);
+            String ids = String.valueOf(v.getIdVehiculo());
+            vp.setJtVehiculo(ids);
             this.dispose();
             
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -160,4 +163,8 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    void setVp(VentanaParte vp) {
+        this.vp=vp;
+    }
 }

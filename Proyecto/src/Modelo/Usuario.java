@@ -97,7 +97,7 @@ public class Usuario {
             ps.executeUpdate();
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
         }
     }
 
@@ -127,6 +127,7 @@ public class Usuario {
             ResultSet rsv = (ResultSet) cs.getObject(7);
             int contador= cs.getInt(8);
             while (rst.next()) {
+                t.setId_trabajador(rst.getInt("ID_TRABAJADOR"));
                 t.setDni(rst.getString("DNI"));
                 t.setNombre(rst.getString("NOMBRE"));
                 t.setAp1(rst.getString("AP1"));
