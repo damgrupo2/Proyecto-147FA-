@@ -59,6 +59,11 @@ public class Trabajador {
         this.fechanac = fechanac;
     }
 
+    public void setCentro(Centro centro) {
+        this.centro = centro;
+    }
+
+    
     public int getId_trabajador() {
         return id_trabajador;
     }
@@ -163,13 +168,18 @@ public class Trabajador {
         parte.setTrabajador(this);
 
     }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
     
     public boolean guardarTrabajador(){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
                     .prepareStatement("INSERT INTO TRABAJADOR(DNI, NOMBRE, AP1, AP2, DIRECCION, TELF_EMPRESA, TELF_PERSONAL," +
-                            "CATEGORIA, SALARIO, FECHANAC) VALUES(?,?,?,?,?,?,?,?,?,?)");
+                            "CATEGORIA, SALARIO, FECHANAC,ID_CENTRO, ID_USUARIO) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1,dni);
             ps.setString(2, nombre);
             ps.setString(3, ap1);
@@ -180,7 +190,10 @@ public class Trabajador {
             ps.setString(8, categoria.toString());
             ps.setDouble(9, salario);
             java.sql.Date f = new java.sql.Date(fechanac.getTime());
-            ps.setDate(10, f);        
+            ps.setDate(10, f);  
+            ps.setInt(11, centro.getId_centro());
+            ps.setString(12, usuario.getUsuario());
+            
             ps.execute();
             ControladorBaseDatos.desconectar();
             return true;

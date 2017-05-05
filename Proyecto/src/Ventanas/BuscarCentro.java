@@ -5,17 +5,32 @@
  */
 package Ventanas;
 
+import Modelo.Centro;
+import Modelo.Vehiculo;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jose
  */
 public class BuscarCentro extends javax.swing.JFrame {
+    
+    private DefaultTableModel model;
+    private static List<Modelo.Centro> centros;
+    private static Modelo.Centro c;
+    private TrabajadorFormulario tf;
 
     /**
      * Creates new form BuscarCentro
      */
     public BuscarCentro() {
         initComponents();
+        model= (DefaultTableModel)jTable1.getModel();
+        centros = Modelo.Centro.listarCentros();
+        for(Modelo.Centro c: centros){
+            model.insertRow(model.getRowCount(), new Object[]{c.getId_centro(),c.getNombre(),c.getLoc()});
+        }
     }
 
     /**
@@ -42,11 +57,21 @@ public class BuscarCentro extends javax.swing.JFrame {
                 "Id_Centro", "Nombre", "Localidad"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Buscar Centro");
 
         jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,6 +104,21 @@ public class BuscarCentro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String ids = String.valueOf(c.getId_centro());
+            tf.setJidcentro(ids);
+            this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int fila=jTable1.getSelectedRow();
+        int id=Integer.parseInt(model.getValueAt(fila,0).toString());
+        String nombre=model.getValueAt(fila,1).toString();
+        String loc=model.getValueAt(fila,2).toString();
+        
+        c=new Centro(id,nombre,loc);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -121,4 +161,8 @@ public class BuscarCentro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    void setTf(TrabajadorFormulario tf) {
+        this.tf=tf;
+    }
 }

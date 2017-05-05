@@ -23,7 +23,7 @@ import oracle.jdbc.OracleTypes;
  */
 public class Centro {
     
-    private static int id_centro;
+    private  int id_centro;
     private String nombre;
     private String direccion;
     private String cp;
@@ -46,6 +46,14 @@ public class Centro {
         this.provincia = provincia;
         this.telf = telf;
     }
+
+    public Centro(int id_centro, String nombre, String loc) {
+        this.nombre = nombre;
+        this.loc = loc;
+        this.id_centro=id_centro;
+    }
+    
+    
 
     public int getId_centro() {
         return id_centro;
