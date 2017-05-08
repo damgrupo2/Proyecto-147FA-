@@ -155,6 +155,14 @@ public class Usuario {
                         p.setAbierto(rsp.getBoolean("ABIERTO"));
                         p.setValidado(rsp.getBoolean("VALIDADO"));
                         p.setExcesoHoras(rsp.getDouble("EXCESO_HORAS"));
+                        
+                        while (rsv.next()) {
+                                v.setIdVehiculo(rsv.getInt("ID_VEHICULO"));
+                                v.setMatricula(rsv.getString("MATRICULA"));
+                                v.setModelo(rsv.getString("MODELO"));
+                                v.setMarca(rsv.getString("MARCA"));
+                                p.setVehiculo(v);
+                            }
                         while (rsr.next()) {
                             java.util.Date fechaR = rsr.getDate("FECHA");
                             String albaran = rsr.getString("ALBARAN");
@@ -162,13 +170,7 @@ public class Usuario {
                             java.util.Date horaFin = rsr.getTimestamp("HORA_FIN");
                             Reparto r = new Reparto(fechaR, albaran, horaIni, horaFin);
                             p.añadirReparto(r);
-                            while (rsv.next()) {
-                                v.setIdVehiculo(rsv.getInt("ID_VEHICULO"));
-                                v.setMatricula(rsv.getString("MATRICULA"));
-                                v.setModelo(rsv.getString("MODELO"));
-                                v.setMarca(rsv.getString("MARCA"));
-                                p.setVehiculo(v);
-                            }
+                           
                         }
                     }
                     t.añadirParte(p);

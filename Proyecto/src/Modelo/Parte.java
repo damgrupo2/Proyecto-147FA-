@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
+
 import oracle.jdbc.OracleTypes;
+
 
 /**
  *
@@ -33,7 +34,7 @@ public class Parte {
     
     //relaciones
     private Trabajador trabajador;
-    private static List<Reparto> repartos = new ArrayList<>();
+    private List<Reparto> repartos = new ArrayList<>();
     private Vehiculo vehiculo;
     private Aviso aviso;
 
@@ -186,7 +187,7 @@ public class Parte {
     }
  
     //métodos
-    public static Parte verParte(Date fecha, int idTrabajador){
+    public Parte verParte(Date fecha, int idTrabajador){
         Parte p = new Parte();
         try {
             ControladorBaseDatos.conectar();
@@ -252,11 +253,11 @@ public class Parte {
             ps.execute();
             
             //Guardar repartos
-            for(Reparto r:Parte.repartos){
+            for(Reparto r:repartos){
                 PreparedStatement psr = ControladorBaseDatos.getConexion()
                         .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
-                java.sql.Date sqlr = new java.sql.Date(fecha.getTime());
-                psr.setDate(1, sqlr);
+
+                psr.setDate(1, sql);
                 psr.setInt(2, id_trabajador);
                 psr.setString(3, r.getAlbaran());
                 psr.setTimestamp(4, new java.sql.Timestamp(r.getHoraInicio().getTime()));
@@ -275,24 +276,25 @@ public class Parte {
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
-                    .prepareStatement("UPDATE PARTE SET FECHA=?, ID_TRABAJADOR=?,"
+                    .prepareStatement("UPDATE PARTE SET "
                             + "KM_INICIO=?, KM_FIN=?, GASOIL=?, AUTOPISTA=?, DIETAS=?,"
-                            + "OTROS_GASTOS=?,INCIDENCIAS=?, ID_VEHICULO=?");
+                            + "OTROS_GASTOS=?,INCIDENCIAS=?, ID_VEHICULO=? WHERE FECHA =? AND ID_TRABAJADOR =?" );
             java.sql.Date sql = new java.sql.Date(fecha.getTime());
-            ps.setDate(1, sql);
-            ps.setInt(2, id_trabajador);
-            ps.setDouble(3, kmInicio);
-            ps.setDouble(4, kmFin);
-            ps.setDouble(5, gasoil);
-            ps.setDouble(6, autopista);
-            ps.setDouble(7, dietas);
-            ps.setDouble(8, otrosGastos);
-            ps.setString(9, incidencias);
-            ps.setInt(10, id_vehiculo);
+           
+            ps.setDouble(1, kmInicio);
+            ps.setDouble(2, kmFin);
+            ps.setDouble(3, gasoil);
+            ps.setDouble(4, autopista);
+            ps.setDouble(5, dietas);
+            ps.setDouble(6, otrosGastos);
+            ps.setString(7, incidencias);
+            ps.setInt(8, id_vehiculo);
+            ps.setDate(9, sql);
+            ps.setInt(10, id_trabajador);
             ps.executeUpdate();
             
             //Guardar repartos
-            for(Reparto r:Parte.repartos){
+            for(Reparto r:repartos){
                 PreparedStatement psp = ControladorBaseDatos.getConexion()
                         .prepareStatement("SELECT ALBARAN FROM REPARTO WHERE ALBARAN=?");
                 psp.setString(1, r.getAlbaran());
@@ -306,8 +308,8 @@ public class Parte {
                 }else{
                     PreparedStatement psr = ControladorBaseDatos.getConexion()
                         .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
-                    java.sql.Date sqlr = new java.sql.Date(fecha.getTime());
-                    psr.setDate(1, sqlr);
+
+                    psr.setDate(1, sql);
                     psr.setInt(2, id_trabajador);
                     psr.setString(3, r.getAlbaran());
                     psr.setTimestamp(4, new java.sql.Timestamp(r.getHoraInicio().getTime()));
@@ -355,7 +357,7 @@ public class Parte {
                 p= new Parte();
                 t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
                 t.setNombre(rs.getString("NOMBRE"));
-                t.setAp1("AP1");
+                t.setAp1(rs.getString("AP1"));
                 p.setTrabajador(t);
                 p.setFecha(rs.getDate("FECHA_PARTE"));
                 p.setHorasTotales(rs.getInt("HORAS_TOTALES"));
