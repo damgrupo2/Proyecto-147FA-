@@ -9,7 +9,13 @@ import Modelo.Aviso;
 import Modelo.Parte;
 import Modelo.Trabajador;
 import Modelo.Usuario;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +38,8 @@ public class TodosLosPartes extends javax.swing.JFrame {
     private BuscarTrabajador bt;
     private Parte p = new Parte();
     private VentanaParte vp;
+    private int fila;
+    private int id_trabajador;
 
     public void setBt(BuscarTrabajador bt) {
         this.bt = bt;
@@ -82,22 +90,22 @@ public class TodosLosPartes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jbCrearAviso = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jdFechaIniSolo = new com.toedter.calendar.JDateChooser();
         jbFiltrarFecha = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jdFechaTra = new com.toedter.calendar.JDateChooser();
         jbFiltrarFechaTra = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jbBuscarTra = new javax.swing.JButton();
         jtTrabajador = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jdFechaFinSolo = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
-        jdFechaTra1 = new com.toedter.calendar.JDateChooser();
         jlAviso = new javax.swing.JLabel();
+        jdFechaIniSolo = new com.toedter.calendar.JDateChooser();
+        jdFechaIniSolo2 = new com.toedter.calendar.JDateChooser();
+        jdFechaFinSolo = new com.toedter.calendar.JDateChooser();
+        jdFechaFinSolo2 = new com.toedter.calendar.JDateChooser();
         jbValidar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jbBorrar = new javax.swing.JButton();
@@ -186,37 +194,37 @@ public class TodosLosPartes extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jdFechaIniSolo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jdFechaFinSolo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addComponent(jbFiltrarFecha)
+                                        .addComponent(jbBuscarTra)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtTrabajador))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel7))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jdFechaFinSolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(51, 51, 51)
+                                                .addComponent(jbFiltrarFecha))
+                                            .addComponent(jdFechaIniSolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 11, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbBuscarTra)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtTrabajador))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(jdFechaTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jdFechaTra1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel3))
-                        .addGap(74, 74, 74))
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jdFechaFinSolo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jdFechaIniSolo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(74, 84, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,26 +240,28 @@ public class TodosLosPartes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jdFechaIniSolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel7)
-                        .addComponent(jdFechaFinSolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbFiltrarFecha))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel7))
+                    .addComponent(jbFiltrarFecha)
+                    .addComponent(jdFechaFinSolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jdFechaTra1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jdFechaTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8))
+                    .addComponent(jdFechaIniSolo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jdFechaFinSolo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -259,7 +269,7 @@ public class TodosLosPartes extends javax.swing.JFrame {
                     .addComponent(jtTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbFiltrarFechaTra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jlAviso)
                 .addContainerGap())
         );
@@ -279,6 +289,11 @@ public class TodosLosPartes extends javax.swing.JFrame {
         });
 
         jbBorrar.setText("Borrar parte");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -289,7 +304,7 @@ public class TodosLosPartes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -314,7 +329,7 @@ public class TodosLosPartes extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbCrearAviso)
@@ -331,9 +346,9 @@ public class TodosLosPartes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int fila=jTable1.getSelectedRow();
-        int id=Integer.parseInt(dm.getValueAt(fila,0).toString());
-        tParte.setId_trabajador(id);
+        fila=jTable1.getSelectedRow();
+        id_trabajador=Integer.parseInt(dm.getValueAt(fila,0).toString());
+        tParte.setId_trabajador(id_trabajador);
         fecha = (java.util.Date) dm.getValueAt(fila, 2);       
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -370,7 +385,7 @@ public class TodosLosPartes extends javax.swing.JFrame {
     private void jbFiltrarFechaTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFiltrarFechaTraActionPerformed
         dm.setRowCount(0);
         dm= (DefaultTableModel)jTable1.getModel();
-        partes = Parte.todosPartesFechaTra(jdFechaIniSolo.getDate(),jdFechaFinSolo.getDate(),Integer.parseInt(jtTrabajador.getText()));
+        partes = Parte.todosPartesFechaTra(jdFechaIniSolo2.getDate(),jdFechaFinSolo2.getDate(),Integer.parseInt(jtTrabajador.getText()));
         for(Parte p : partes){
             String abierto;
             if(p.isAbierto()){
@@ -392,9 +407,20 @@ public class TodosLosPartes extends javax.swing.JFrame {
     }//GEN-LAST:event_jbValidarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        vp = new VentanaParte();
-        vp.setVisible(true);
+        
+            vp = new VentanaParte();
+           //String fechaS=dm.getValueAt(fila,2).toString();
+            //DateFormat df=new SimpleDateFormat("YYYY-mm-dd");
+            //Date fechaD=df.parse(fechaS);
+            vp.setP(p.verParte(partes.get(fila).getFecha(), id_trabajador));
+            vp.setVisible(true);
+        
+        
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+       
+    }//GEN-LAST:event_jbBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,9 +477,9 @@ public class TodosLosPartes extends javax.swing.JFrame {
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbValidar;
     private com.toedter.calendar.JDateChooser jdFechaFinSolo;
+    private com.toedter.calendar.JDateChooser jdFechaFinSolo2;
     private com.toedter.calendar.JDateChooser jdFechaIniSolo;
-    private com.toedter.calendar.JDateChooser jdFechaTra;
-    private com.toedter.calendar.JDateChooser jdFechaTra1;
+    private com.toedter.calendar.JDateChooser jdFechaIniSolo2;
     private javax.swing.JLabel jlAviso;
     private javax.swing.JTextField jtTrabajador;
     // End of variables declaration//GEN-END:variables
