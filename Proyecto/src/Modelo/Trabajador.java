@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import java.sql.CallableStatement;
@@ -12,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
 
@@ -22,7 +15,7 @@ import oracle.jdbc.OracleTypes;
  * @author 7fbd06
  */
 public class Trabajador {
-    
+    //variables
     private int id_trabajador;
     private String dni;
     private String nombre;
@@ -35,12 +28,13 @@ public class Trabajador {
     private double salario;
     private java.sql.Date fechanac;
     
+    //relaciones
     private Centro centro;
     private List<Parte> parteList=new ArrayList<Parte>();
     private List<Aviso> avisosList=new ArrayList<>();
     private Usuario usuario;
     
-
+    //constructores
     public Trabajador() {
     }
 
@@ -59,10 +53,14 @@ public class Trabajador {
         this.fechanac = fechanac;
     }
 
+    //getter y setter
     public void setCentro(Centro centro) {
         this.centro = centro;
     }
 
+    public Centro getCentro() {
+        return centro;
+    }
     
     public int getId_trabajador() {
         return id_trabajador;
@@ -162,18 +160,16 @@ public class Trabajador {
         usuario.setT(this);
     }
     
-
     public void añadirParte(Parte parte){
         parteList.add(parte);
         parte.setTrabajador(this);
-
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
     
-    
+    //métodos
     public boolean guardarTrabajador(){
         try {
             ControladorBaseDatos.conectar();
@@ -193,7 +189,6 @@ public class Trabajador {
             ps.setDate(10, f);  
             ps.setInt(11, centro.getId_centro());
             ps.setString(12, usuario.getUsuario());
-            
             ps.execute();
             ControladorBaseDatos.desconectar();
             return true;
@@ -201,7 +196,6 @@ public class Trabajador {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
             return false;
         }
-
     }
     
     public boolean modificarTrabajador() {
@@ -254,7 +248,6 @@ public class Trabajador {
             cs.registerOutParameter(1, OracleTypes.CURSOR);
             cs.execute();
             ResultSet rs = (ResultSet) cs.getObject(1);
-            
             while (rs.next()) {
                 Trabajador t= new Trabajador();
                 t.setDni(rs.getString("DNI"));
@@ -333,8 +326,5 @@ public class Trabajador {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
         }
         return t;
-        
     }
-
-
 }

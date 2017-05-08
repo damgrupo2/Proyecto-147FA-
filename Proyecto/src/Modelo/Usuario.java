@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import java.sql.CallableStatement;
@@ -11,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
 
@@ -21,15 +14,16 @@ import oracle.jdbc.OracleTypes;
  * @author 7fbd06
  */
 public class Usuario {
-
+    //variables
     private String usuario;
     private String contraseña;
 
+    //relaciones
     private static Trabajador t=new Trabajador();
     private static Parte p = new Parte();
     private static Vehiculo v = new Vehiculo();
     
-
+    //constructores
     public Usuario(String usuario, String contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
@@ -38,8 +32,7 @@ public class Usuario {
     public Usuario() {
     }
     
-    
-
+    //getter y setter
     public String getUsuario() {
         return usuario;
     }
@@ -64,7 +57,6 @@ public class Usuario {
         Usuario.t = t;
     }
 
-    
     public static Parte getP() {
         return p;
     }
@@ -73,8 +65,7 @@ public class Usuario {
         return v;
     }
 
-    
-
+    //métodos
     public boolean guardarUsuario() {
         try {
             ControladorBaseDatos.conectar();
@@ -82,18 +73,12 @@ public class Usuario {
             cs.setString(1, usuario);
             cs.setString(2, contraseña);
             cs.execute();
-
-            /*PreparedStatement ps = ControladorBaseDatos.getConexion().prepareStatement("INSERT INTO USUARIO VALUES(?,ORA_HASH(?))");
-            ps.setString(1, usuario);
-            ps.setString(2, contraseña);
-            ps.execute();*/
             ControladorBaseDatos.desconectar();
             return true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
             return false;
         }
-        
     }
 
     public void modificarUsuario() {
@@ -110,12 +95,11 @@ public class Usuario {
     }
 
     public void borrarUsuario() {
-
+        //TODO
     }
 
     public Categoria hacerLogin() {
         Categoria c = null;
-        
         try {
             ControladorBaseDatos.conectar();
             CallableStatement cs = ControladorBaseDatos.getConexion().prepareCall("{call USUARIOS.USUARIO_LOGIN(?,?,?,?,?,?,?,?)}");
@@ -159,38 +143,35 @@ public class Usuario {
 
             if (t.getCategoria() == Categoria.Transportista) {
                 if(contador==1){
-                while (rsp.next()) {
-                    p.setFecha(rsp.getDate("FECHA"));
-                    p.setKmInicio(rsp.getDouble("KM_INICIO"));
-                    p.setKmFin(rsp.getDouble("KM_FIN"));
-                    p.setGasoil(rsp.getDouble("GASOIL"));
-                    p.setAutopista(rsp.getDouble("AUTOPISTA"));
-                    p.setDietas(rsp.getDouble("DIETAS"));
-                    p.setOtrosGastos(rsp.getDouble("OTROS_GASTOS"));
-                    p.setIncidencias(rsp.getString("INCIDENCIAS"));
-                    p.setAbierto(rsp.getBoolean("ABIERTO"));
-                    p.setValidado(rsp.getBoolean("VALIDADO"));
-                    p.setExcesoHoras(rsp.getDouble("EXCESO_HORAS"));
-
-                    while (rsr.next()) {
-                        java.util.Date fechaR = rsr.getDate("FECHA");
-                        String albaran = rsr.getString("ALBARAN");
-                        java.util.Date horaIni = rsr.getTimestamp("HORA_INICIO");
-                        java.util.Date horaFin = rsr.getTimestamp("HORA_FIN");
-                        Reparto r = new Reparto(fechaR, albaran, horaIni, horaFin);
-                        p.añadirReparto(r);
-
-                        while (rsv.next()) {
-                            v.setIdVehiculo(rsv.getInt("ID_VEHICULO"));
-                            v.setMatricula(rsv.getString("MATRICULA"));
-                            v.setModelo(rsv.getString("MODELO"));
-                            v.setMarca(rsv.getString("MARCA"));
-                            p.setVehiculo(v);
+                    while (rsp.next()) {
+                        p.setFecha(rsp.getDate("FECHA"));
+                        p.setKmInicio(rsp.getDouble("KM_INICIO"));
+                        p.setKmFin(rsp.getDouble("KM_FIN"));
+                        p.setGasoil(rsp.getDouble("GASOIL"));
+                        p.setAutopista(rsp.getDouble("AUTOPISTA"));
+                        p.setDietas(rsp.getDouble("DIETAS"));
+                        p.setOtrosGastos(rsp.getDouble("OTROS_GASTOS"));
+                        p.setIncidencias(rsp.getString("INCIDENCIAS"));
+                        p.setAbierto(rsp.getBoolean("ABIERTO"));
+                        p.setValidado(rsp.getBoolean("VALIDADO"));
+                        p.setExcesoHoras(rsp.getDouble("EXCESO_HORAS"));
+                        while (rsr.next()) {
+                            java.util.Date fechaR = rsr.getDate("FECHA");
+                            String albaran = rsr.getString("ALBARAN");
+                            java.util.Date horaIni = rsr.getTimestamp("HORA_INICIO");
+                            java.util.Date horaFin = rsr.getTimestamp("HORA_FIN");
+                            Reparto r = new Reparto(fechaR, albaran, horaIni, horaFin);
+                            p.añadirReparto(r);
+                            while (rsv.next()) {
+                                v.setIdVehiculo(rsv.getInt("ID_VEHICULO"));
+                                v.setMatricula(rsv.getString("MATRICULA"));
+                                v.setModelo(rsv.getString("MODELO"));
+                                v.setMarca(rsv.getString("MARCA"));
+                                p.setVehiculo(v);
+                            }
                         }
                     }
-
-                }
-                t.añadirParte(p);
+                    t.añadirParte(p);
                 }
             } else {
                 while (rsa.next()) {
@@ -203,10 +184,7 @@ public class Usuario {
                     a = new Aviso(idAviso, texto, idTrabajadorE,
                             idTrabajadorR, parteFecha);
                 }
-            
-           
             }
-           
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
@@ -224,10 +202,7 @@ public class Usuario {
             while (rs.next()) {
                 Modelo.Usuario u = new Modelo.Usuario();
                 u.setUsuario(rs.getString("ID_USUARIO"));
-                
                 usuarios.add(u);
-             
-                //TODO error ids
             }
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {

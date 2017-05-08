@@ -77,16 +77,22 @@ public class CentroDetalle extends javax.swing.JFrame {
         jLabel6.setText("Telefono");
 
         jlNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlNombre.setText("nombre");
 
         jlDireccion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlDireccion.setText("direccion");
 
         jlLocalidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlLocalidad.setText("localidad");
 
         jlCP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlCP.setText("cp");
 
         jlProvincia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlProvincia.setText("provincia");
 
         jlTelefono.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlTelefono.setText("telefono");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,59 +101,63 @@ public class CentroDetalle extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(359, 359, 359)
-                        .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(52, 52, 52)
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3))
+                                .addGap(2, 2, 2)))
+                        .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlDireccion)
                             .addComponent(jlTelefono)
                             .addComponent(jlNombre)
                             .addComponent(jlLocalidad)
                             .addComponent(jlCP)
-                            .addComponent(jlProvincia))))
-                .addContainerGap(396, Short.MAX_VALUE))
+                            .addComponent(jlProvincia)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(27, 27, 27)
                 .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jlNombre))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jlDireccion))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jlLocalidad))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlCP)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jlProvincia))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlNombre)
-                        .addGap(18, 18, 18)
-                        .addComponent(jlDireccion)
-                        .addGap(18, 18, 18)
-                        .addComponent(jlLocalidad)
-                        .addGap(18, 18, 18)
-                        .addComponent(jlCP)
-                        .addGap(18, 18, 18)
-                        .addComponent(jlProvincia)
-                        .addGap(18, 18, 18)
-                        .addComponent(jlTelefono)))
-                .addContainerGap(199, Short.MAX_VALUE))
+                    .addComponent(jlTelefono))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();

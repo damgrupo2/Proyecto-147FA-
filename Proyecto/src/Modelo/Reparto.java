@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import java.util.Date;
@@ -13,14 +7,17 @@ import java.util.Date;
  * @author 7fbd06
  */
 public class Reparto {
+    //variables
     private Date fecha;
     private String albaran;
     private Date horaInicio;
     private Date horaFin;
     
+    //relaciones
     private static Parte parte;
     private Trabajador trabajador;
 
+    //constructores
     public Reparto(Date fecha, String albaran, Date horaInicio, Date horaFin) {
         this.fecha = fecha;
         this.albaran = albaran;
@@ -28,6 +25,7 @@ public class Reparto {
         this.horaFin = horaFin;
     }
 
+    //getter y setter
     public Date getFecha() {
         return fecha;
     }
