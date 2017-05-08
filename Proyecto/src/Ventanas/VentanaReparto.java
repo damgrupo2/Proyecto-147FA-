@@ -5,12 +5,7 @@
  */
 package Ventanas;
 
-import Modelo.Parte;
 import Modelo.Reparto;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import java.awt.Container;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;

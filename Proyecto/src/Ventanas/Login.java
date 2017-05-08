@@ -6,12 +6,7 @@
 package Ventanas;
 
 import Modelo.Categoria;
-import Modelo.Parte;
-import Modelo.Trabajador;
 import Modelo.Usuario;
-import Modelo.Vehiculo;
-import java.util.Arrays;
-
 /**
  *
  * @author sirlocus
@@ -47,7 +42,7 @@ public class Login extends javax.swing.JFrame {
         jbLogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
 
         jLabel1.setText("Usuario");
@@ -148,7 +143,7 @@ public class Login extends javax.swing.JFrame {
                 vp.setVisible(true);
                 break;
         }
-        
+        this.dispose();
     }//GEN-LAST:event_jbLoginActionPerformed
 
     private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed

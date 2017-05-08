@@ -178,7 +178,6 @@ public class CentroListado extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jbTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTrabajadoresActionPerformed
-        //TODO listar trabajadores
         List<Trabajador> trabajadores = Trabajador.listarTrabajadoresCentro(id);
         modelTra= (DefaultTableModel)jTable2.getModel();
         for(Trabajador t:trabajadores){
