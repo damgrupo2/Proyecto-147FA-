@@ -6,12 +6,7 @@
 package Ventanas;
 
 import Modelo.Categoria;
-import Modelo.Parte;
-import Modelo.Trabajador;
 import Modelo.Usuario;
-import Modelo.Vehiculo;
-import java.util.Arrays;
-
 /**
  *
  * @author sirlocus

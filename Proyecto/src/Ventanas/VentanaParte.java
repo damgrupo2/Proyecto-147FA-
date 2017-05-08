@@ -5,14 +5,11 @@
  */
 package Ventanas;
 
-import Modelo.Centro;
 import Modelo.Parte;
 import Modelo.Trabajador;
 import Modelo.Vehiculo;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +21,6 @@ public class VentanaParte extends javax.swing.JFrame {
     private static Trabajador t=Modelo.Usuario.getT();
     private static Parte p=Modelo.Usuario.getP();
     private static Vehiculo v=Modelo.Usuario.getV();
-    private DefaultTableModel model;
     private BuscarVehiculo bv;
     private static int id;
 

@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
 
@@ -24,8 +15,8 @@ import oracle.jdbc.OracleTypes;
  * @author 7fbd06
  */
 public class Parte {
-    
-    private Date fecha;
+    //variables
+    private java.util.Date fecha;
     private double kmInicio;
     private double kmFin;
     private double gasoil;
@@ -36,12 +27,15 @@ public class Parte {
     private boolean abierto;
     private double excesoHoras;
     private boolean validado;
+    private int horasTotales;
     
+    //relaciones
     private Trabajador trabajador;
     private static List<Reparto> repartos = new ArrayList<>();
     private Vehiculo vehiculo;
     private Aviso aviso;
 
+    //constructores
     public Parte() {
     }
 
@@ -54,9 +48,10 @@ public class Parte {
         this.dietas = dietas;
         this.otrosGastos = otrosGastos;
         this.incidencias = incidencias;
-        Parte.repartos=new ArrayList<>();
+        this.repartos=new ArrayList<>();
     }
 
+    //getter y setter
     public Date getFecha() {
         return fecha;
     }
@@ -144,16 +139,10 @@ public class Parte {
     public void setValidado(boolean validado) {
         this.validado = validado;
     }
-    
-    
 
-    @Override
-    public String toString() {
-        return "Parte{" + ", fecha=" + fecha + ", kmInicio=" + kmInicio + ", kmFin=" + kmFin + ", gasoil=" + gasoil + ", autopista=" + autopista + ", dietas=" + dietas + ", otrosGastos=" + otrosGastos + ", incidencias=" + incidencias + ", abierto=" + abierto + ", excesoHoras=" + excesoHoras + ", validado=" + validado + '}';
-    }
 
     //BORRAR DESPUES DE LAS PRUEBAS
-    public static List<Reparto> getRepartos() {
+    public List<Reparto> getRepartos() {
         return repartos;
     }
 
@@ -185,30 +174,16 @@ public class Parte {
         repartos.add(reparto);
         reparto.setParte(this);
     }
-    
-    
-    
-    //Hacer esta consulta en el login
-    /*public static Parte parteAbierto(int idTrabajador){
-        Parte p=null;
-        try {
-            ControladorBaseDatos.conectar();
-            CallableStatement cs = ControladorBaseDatos.getConexion().prepareCall("{call ABIERTO(?,?)}");
-            cs.setInt(1, idTrabajador);
-            cs.registerOutParameter(2, OracleTypes.CURSOR);
-            cs.execute();
-            ResultSet rs=(ResultSet) cs.getObject(2);
-            while(rs.next()){
-                p = verParte(rs.getDate("FECHA"), idTrabajador);
-            }
-            ControladorBaseDatos.desconectar();
-            return p;
-        } catch (SQLException ex) {
-            Logger.getLogger(Parte.class.getName()).log(Level.SEVERE, null, ex);
-            return p;
-        }
-    }*/
-    
+
+    public int getHorasTotales() {
+        return horasTotales;
+    }
+
+    public void setHorasTotales(int horasTotales) {
+        this.horasTotales = horasTotales;
+    }
+ 
+    //métodos
     public static Parte verParte(Date fecha, int idTrabajador){
         Parte p = new Parte();
         try {
@@ -309,5 +284,70 @@ public class Parte {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
             return false;
         }
+    }
+    
+    public static ArrayList<Parte> todosPartes(){
+        ArrayList<Parte> partes = new ArrayList<>();
+        Parte p ;
+        Trabajador t = new Trabajador();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion()
+                    .prepareCall("{call PARTES.TODOS(?)}");
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(1);
+            while(rs.next()){
+                p= new Parte();
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1("AP1");
+                p.setTrabajador(t);
+                p.setFecha(rs.getDate("FECHA_PARTE"));
+                p.setHorasTotales(rs.getInt("HORAS_TOTALES"));
+                p.setAbierto(rs.getBoolean("ABIERTO"));
+                partes.add(p);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+        }
+        return partes;
+    }
+    
+    public static ArrayList<Parte> todosPartesFecha(java.util.Date fecha){
+        ArrayList<Parte> partes = new ArrayList<>();
+        Parte p ;
+        Trabajador t = new Trabajador();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion()
+                    .prepareCall("{call PARTES.TODOS_FECHA(?,?)}");
+            java.sql.Date sql = new java.sql.Date(fecha.getTime());
+            cs.setDate(1, sql);
+            cs.registerOutParameter(2, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(2);
+            while(rs.next()){
+                p= new Parte();
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1("AP1");
+                p.setTrabajador(t);
+                p.setFecha(rs.getDate("FECHA_PARTE"));
+                p.setHorasTotales(rs.getInt("HORAS_TOTALES"));
+                p.setAbierto(rs.getBoolean("ABIERTO"));
+                partes.add(p);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+        }
+        return partes;
+    }
+    
+    @Override
+    public String toString() {
+        return "Parte{" + ", fecha=" + fecha + ", kmInicio=" + kmInicio + ", kmFin=" + kmFin + ", gasoil=" + gasoil + ", autopista=" + autopista + ", dietas=" + dietas + ", otrosGastos=" + otrosGastos + ", incidencias=" + incidencias + ", abierto=" + abierto + ", excesoHoras=" + excesoHoras + ", validado=" + validado + '}';
     }
 }

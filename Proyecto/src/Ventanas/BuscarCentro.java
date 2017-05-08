@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
 import Modelo.Centro;
-import Modelo.Vehiculo;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,7 +41,7 @@ public class BuscarCentro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,7 +110,6 @@ public class BuscarCentro extends javax.swing.JFrame {
         int id=Integer.parseInt(model.getValueAt(fila,0).toString());
         String nombre=model.getValueAt(fila,1).toString();
         String loc=model.getValueAt(fila,2).toString();
-        
         c=new Centro(id,nombre,loc);
     }//GEN-LAST:event_jTable1MouseClicked
 
