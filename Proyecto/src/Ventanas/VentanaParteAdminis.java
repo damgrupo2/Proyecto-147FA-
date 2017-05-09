@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jose
  */
-public class VentanaParte extends javax.swing.JFrame {   
+public class VentanaParteAdminis extends javax.swing.JFrame {   
     private VentanaReparto vr;
     private Trabajador t;
     private Parte p;
@@ -63,15 +63,12 @@ public class VentanaParte extends javax.swing.JFrame {
         this.p = p;
     }
 
-    public VentanaParte(GraphicsConfiguration gc) {
+    public VentanaParteAdminis(GraphicsConfiguration gc) {
         super(gc);
     }
     public void setPRell(Parte p){
         this.p = p;
         rellenarForm();
-        jbGuardar.setEnabled(false);
-        jbUpdate.setEnabled(true);
-        
     }
 
     public void setT(Trabajador t) {
@@ -80,7 +77,6 @@ public class VentanaParte extends javax.swing.JFrame {
     
     public void rellenarForm(){
         if(p.getFecha()!=null){
-            
             Double kmINI = p.getKmInicio();
             String kmINi = kmINI.toString();
             jtKmIni.setText(kmINi);
@@ -108,10 +104,10 @@ public class VentanaParte extends javax.swing.JFrame {
         
     }
 
-    public VentanaParte() {
+    public VentanaParteAdminis() {
         initComponents();
-        jbUpdate.setEnabled(false);
-        jbGuardar.setEnabled(true);
+        jbGuardar.setEnabled(false);
+        jbUpdate.setEnabled(true);
         
     }
 
@@ -319,7 +315,6 @@ public class VentanaParte extends javax.swing.JFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbUpdate)
                                 .addGap(74, 74, 74)
                                 .addComponent(jbGuardar)
@@ -396,7 +391,7 @@ public class VentanaParte extends javax.swing.JFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         bv=new BuscarVehiculo();
-        bv.setVp(this);
+        bv.setVpa(this);
         bv.setVisible(true);
        
     }//GEN-LAST:event_jbBuscarActionPerformed
@@ -415,7 +410,7 @@ public class VentanaParte extends javax.swing.JFrame {
 
     private void jbañadirRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbañadirRepActionPerformed
         vr=new VentanaReparto();
-        vr.setVp(this);
+        vr.setVpa(this);
         vr.setVisible(true);
     }//GEN-LAST:event_jbañadirRepActionPerformed
 
@@ -449,11 +444,10 @@ public class VentanaParte extends javax.swing.JFrame {
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
         //if(null==t){
-           // t.setId_trabajador(id);
+            t.setId_trabajador(id);
         //}
-        Trabajador j=new Trabajador();
-        j.setId_trabajador(id);
-        p.setTrabajador(j);
+        
+        p.setTrabajador(t);
         boolean correcto = p.cerrarParte();
         if(correcto){
             jlAviso.setText("Parte cerrado correctamente");
@@ -521,20 +515,21 @@ public class VentanaParte extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaParteAdminis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaParteAdminis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaParteAdminis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaParteAdminis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
           
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaParte().setVisible(true);
+                new VentanaParteAdminis().setVisible(true);
             }
         });
     }

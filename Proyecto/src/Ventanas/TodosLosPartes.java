@@ -40,6 +40,11 @@ public class TodosLosPartes extends javax.swing.JFrame {
         this.bt = bt;
     }
 
+    public Trabajador gettParte() {
+        return tParte;
+    }
+
+    
     public AdministrativoHome getAh() {
         return ah;
     }
@@ -419,8 +424,7 @@ public class TodosLosPartes extends javax.swing.JFrame {
         if(validado.equalsIgnoreCase("No")){
             Parte a = Parte.verParte(fecha,id_trabajador);
             a.setVehiculo(Parte.getVehiculoSt());
-            Trabajador t = new Trabajador();
-            t.setId_trabajador(id_trabajador);
+            int id_delParte=(int) dm.getValueAt(fila, 0);
 
             vp = new VentanaParte();
             vp.setPRell(a);
@@ -429,7 +433,8 @@ public class TodosLosPartes extends javax.swing.JFrame {
             for(Modelo.Reparto r: repartos){
                 vp.añadeReparto(r);
             }
-            vp.setId(id_trabajador);
+            vp.setId(id_delParte);
+            
             vp.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Los partes validados no se pueden modificar");
