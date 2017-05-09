@@ -22,6 +22,7 @@ public class Usuario {
     private static Trabajador t=new Trabajador();
     private static Parte p = new Parte();
     private static Vehiculo v = new Vehiculo();
+    private Ventanas.VentanaParte vp;
     
     //constructores
     public Usuario(String usuario, String contraseña) {
@@ -66,7 +67,12 @@ public class Usuario {
     }
 
     //métodos
-    public boolean guardarUsuario() {
+
+    /**
+     *
+     * @return
+     */
+        public boolean guardarUsuario() {
         try {
             ControladorBaseDatos.conectar();
             CallableStatement cs = ControladorBaseDatos.getConexion().prepareCall("{call USUARIOS.USUARIO_NUEVO(?,?)}");
@@ -81,6 +87,9 @@ public class Usuario {
         }
     }
 
+    /**
+     *
+     */
     public void modificarUsuario() {
         try {
             ControladorBaseDatos.conectar();
@@ -94,10 +103,17 @@ public class Usuario {
         }
     }
 
+    /**
+     *
+     */
     public void borrarUsuario() {
         //TODO
     }
 
+    /**
+     *
+     * @return
+     */
     public Categoria hacerLogin() {
         Categoria c = null;
         try {
@@ -170,7 +186,6 @@ public class Usuario {
                             java.util.Date horaFin = rsr.getTimestamp("HORA_FIN");
                             Reparto r = new Reparto(fechaR, albaran, horaIni, horaFin);
                             p.añadirReparto(r);
-                           
                         }
                     }
                     t.añadirParte(p);
@@ -194,6 +209,10 @@ public class Usuario {
         return c;
     }
     
+    /**
+     *
+     * @return
+     */
     public static List<Usuario> listarUsuarios(){
         List<Usuario> usuarios = new ArrayList<>();
         try {

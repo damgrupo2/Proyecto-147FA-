@@ -170,7 +170,12 @@ public class Trabajador {
     }
     
     //métodos
-    public boolean guardarTrabajador(){
+
+    /**
+     *
+     * @return
+     */
+        public boolean guardarTrabajador(){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
@@ -198,6 +203,10 @@ public class Trabajador {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean modificarTrabajador() {
         try {
             ControladorBaseDatos.conectar();
@@ -226,6 +235,9 @@ public class Trabajador {
         }
     }
     
+    /**
+     *
+     */
     public void borrarTrabajador(){
         try {
             ControladorBaseDatos.conectar();
@@ -239,6 +251,10 @@ public class Trabajador {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public static List<Trabajador> listarTrabajadores(){
         List<Trabajador> trabajadores = new ArrayList<>();
         try {
@@ -264,6 +280,40 @@ public class Trabajador {
         return trabajadores;
     }
     
+    /**
+     *
+     * @return
+     */
+    public static List<Trabajador> listarTrabajadoresTrans(){
+        List<Trabajador> trabajadores = new ArrayList<>();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion().
+                    prepareCall("{call TRABAJADORES.CONSULTA_TRANSPORTISTAS(?)}");
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(1);
+            while (rs.next()) {
+                Trabajador t= new Trabajador();
+                t.setDni(rs.getString("DNI"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1(rs.getString("AP1"));
+                t.setAp2(rs.getString("AP2"));
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                trabajadores.add(t);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
+        }
+        return trabajadores;
+    }
+    
+    /**
+     *
+     * @param id_centro
+     * @return
+     */
     public static List<Trabajador> listarTrabajadoresCentro(int id_centro){
         List<Trabajador> trabajadores = new ArrayList<>();
         try {
@@ -290,6 +340,11 @@ public class Trabajador {
         return trabajadores;
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Trabajador verTrabajador(int id){
         Trabajador t= new Trabajador();
         try {

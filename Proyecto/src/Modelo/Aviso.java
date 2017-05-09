@@ -92,7 +92,13 @@ public class Aviso {
     }
 
     //métodos
-    public static Aviso verAviso(int id) {
+
+    /**
+     * Consultar el detalle de un aviso
+     * @param id int
+     * @return aviso Aviso
+     */
+        public static Aviso verAviso(int id) {
         Aviso a = null;
         try {
             ControladorBaseDatos.conectar();
@@ -116,6 +122,11 @@ public class Aviso {
         return a;
     }
 
+     /**
+     * Consultar todos los avisos correspondientes a ese trabajador
+     * @param id int
+     * @return avisos ArrayList de Avisos
+     */
     public static ArrayList<Aviso> listarAvisos(int id) {
         ArrayList<Aviso> avisos = new ArrayList<>();
         try {
@@ -140,6 +151,10 @@ public class Aviso {
         return avisos;
     }
 
+    /**
+     *  Guarda en la base de datos el aviso
+     * @return boolean la inserción se ha completado
+     */
     public boolean guardarAviso() {
         try {
             ControladorBaseDatos.conectar();
@@ -162,6 +177,10 @@ public class Aviso {
         }
     }
 
+    /**
+     *  Borra un aviso
+     * @return boolean la inserción se ha completado
+     */
     public boolean borrarAviso() {
         try {
             ControladorBaseDatos.conectar();

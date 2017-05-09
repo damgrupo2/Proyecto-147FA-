@@ -22,7 +22,7 @@ public class BuscarTrabajador extends javax.swing.JFrame {
     public BuscarTrabajador() {
         initComponents();
         model= (DefaultTableModel)jTable1.getModel();
-        trabajadores = Modelo.Trabajador.listarTrabajadores();
+        trabajadores = Modelo.Trabajador.listarTrabajadoresTrans();
         for(Modelo.Trabajador t: trabajadores){
             model.insertRow(model.getRowCount(), new Object[]{t.getId_trabajador(),t.getNombre(),t.getAp1(),t.getDni()});
         }

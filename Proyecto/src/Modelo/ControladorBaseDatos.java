@@ -11,7 +11,11 @@ public class ControladorBaseDatos {
     private static Connection conexion;
     
     //métodos
-    public static void conectar(){ 
+ 
+    /**
+     *
+     */
+        public static void conectar(){ 
         try{ 
             Class.forName("oracle.jdbc.OracleDriver"); 
             String login = "Aplicacion"; 
@@ -27,10 +31,18 @@ public class ControladorBaseDatos {
         }  
     }
    
-   public static void desconectar() throws SQLException{ 
+    /**
+     *
+     * @throws SQLException
+     */
+    public static void desconectar() throws SQLException{ 
         conexion.close(); 
     } 
      
+    /**
+     *
+     * @return
+     */
     public static Connection getConexion(){ 
         return conexion; 
     } 

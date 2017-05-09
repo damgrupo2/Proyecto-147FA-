@@ -7,16 +7,11 @@ package Ventanas;
 
 import Modelo.Aviso;
 import Modelo.Parte;
+import Modelo.Reparto;
 import Modelo.Trabajador;
 import Modelo.Usuario;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -72,7 +67,17 @@ public class TodosLosPartes extends javax.swing.JFrame {
             }else{
                 abierto="Cerrado";
             }
-            dm.insertRow(dm.getRowCount(), new Object[]{p.getTrabajador().getId_trabajador(),p.getTrabajador().getNombre()+" "+p.getTrabajador().getAp1(),p.getFecha(),p.getHorasTotales(),abierto});
+            String validado;
+            if(p.isValidado()){
+                validado="Si";
+            }else{
+                validado="No";
+            }
+            dm.insertRow(dm.getRowCount(), new Object[]{p.getTrabajador()
+                    .getId_trabajador(),p.getTrabajador().getNombre()+" "+
+                    p.getTrabajador().getAp1(),p.getFecha(),p.getHorasTotales(),
+                    abierto,validado
+            });
         }
     }
 
@@ -117,7 +122,7 @@ public class TodosLosPartes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Trab.", "Trabajador", "Fecha", "Horas Totales", "Abierto"
+                "ID Trab.", "Trabajador", "Fecha", "Horas Totales", "Abierto", "Validado"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -359,6 +364,9 @@ public class TodosLosPartes extends javax.swing.JFrame {
         a.setParteFecha(fecha);
         a.setTexto("Revise el parte con fecha "+fecha+" ya que permanece abierto.");
         boolean correcto = a.guardarAviso();
+        if(correcto){
+            jlAviso.setText("Aviso creado");
+        }
     }//GEN-LAST:event_jbCrearAvisoActionPerformed
 
     private void jbFiltrarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFiltrarFechaActionPerformed
@@ -407,19 +415,37 @@ public class TodosLosPartes extends javax.swing.JFrame {
     }//GEN-LAST:event_jbValidarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        
+        String validado = dm.getValueAt(fila, 5).toString();
+        if(validado.equalsIgnoreCase("No")){
+            Parte a = Parte.verParte(fecha,id_trabajador);
+            a.setVehiculo(Parte.getVehiculoSt());
+            Trabajador t = new Trabajador();
+            t.setId_trabajador(id_trabajador);
+
             vp = new VentanaParte();
-           //String fechaS=dm.getValueAt(fila,2).toString();
-            //DateFormat df=new SimpleDateFormat("YYYY-mm-dd");
-            //Date fechaD=df.parse(fechaS);
-            vp.setP(p.verParte(partes.get(fila).getFecha(), id_trabajador));
+            vp.setPRell(a);
+            ArrayList<Modelo.Reparto> repartos = new ArrayList<>();
+            repartos = (ArrayList<Reparto>) Parte.getRepartosSt();
+            for(Modelo.Reparto r: repartos){
+                vp.añadeReparto(r);
+            }
+            vp.setId(id_trabajador);
             vp.setVisible(true);
-        
-        
+        }else{
+            JOptionPane.showMessageDialog(this, "Los partes validados no se pueden modificar");
+        }  
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-       
+       String validado = dm.getValueAt(fila, 5).toString();
+        if(validado.equalsIgnoreCase("No")){
+            boolean correcto = Parte.borrarParte(id_trabajador, fecha);
+            if(correcto){
+                jlAviso.setText("Validado correctamente");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Los partes validados no se pueden modificar");
+        }  
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     /**

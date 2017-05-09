@@ -8,8 +8,14 @@ package Ventanas;
 import Modelo.Parte;
 import Modelo.Trabajador;
 import Modelo.Vehiculo;
+import java.awt.GraphicsConfiguration;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,54 +24,58 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaParte extends javax.swing.JFrame {   
     private VentanaReparto vr;
-    private static Trabajador t=Modelo.Usuario.getT();
-    private  Parte p=Modelo.Usuario.getP();
-    private static Vehiculo v=Modelo.Usuario.getV();
+    private Trabajador t;
+    private Parte p;
+    private Vehiculo v;
     private BuscarVehiculo bv;
-    private static int id;
+    private int id;
     private DefaultTableModel model;
     private int fila;
+    private List<Modelo.Reparto> repartos=new ArrayList<>();
 
     public void setJtVehiculo(String id) {
         this.jtVehiculo.setText(id);
     }
     
-    public static void setVehiculo(Vehiculo v) {
-        VentanaParte.v=v;
-    }
 
     public void recargarTabla() {
         model= (DefaultTableModel)jTable1.getModel();
         model.setRowCount(0);
-        List<Modelo.Reparto> repartos = p.getRepartos();
+        repartos = p.getRepartos();
         for(Modelo.Reparto r:repartos){
             model.insertRow(model.getRowCount(), new Object[]{r.getAlbaran(),r.getHoraInicio(),r.getHoraFin()});
         }
     }
     
     public void añadeReparto(Modelo.Reparto r){
-        p.getRepartos().add(r);
+        repartos.add(r);
     }
 
     /**
      * Creates new form VentanaParte
      */
     
-    public static void setId(int id) {
-        VentanaParte.id = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public  void setP(Parte p) {
+    public void setP(Parte p) {
         this.p = p;
     }
-    
-    
 
-    public VentanaParte() {
-        initComponents();
-        t=Modelo.Usuario.getT();
-          p=Modelo.Usuario.getP();
-          v=Modelo.Usuario.getV();
+    public VentanaParte(GraphicsConfiguration gc) {
+        super(gc);
+    }
+    public void setPRell(Parte p){
+        this.p = p;
+        rellenarForm();
+    }
+
+    public void setT(Trabajador t) {
+        this.t = t;
+    }
+    
+    public void rellenarForm(){
         if(p.getFecha()!=null){
             Double kmINI = p.getKmInicio();
             String kmINi = kmINI.toString();
@@ -86,13 +96,19 @@ public class VentanaParte extends javax.swing.JFrame {
             String o = od.toString();
             jtOtros.setText(o);
             jtIncidencias.setText(p.getIncidencias());
-            Integer idv=v.getIdVehiculo();
+            Integer idv=p.getVehiculo().getIdVehiculo();
             String idVe=idv.toString();
             jtVehiculo.setText(idVe);
             recargarTabla();
-            jbGuardar.setEnabled(false);
-            jbUpdate.setEnabled(true);
         }
+        
+    }
+
+    public VentanaParte() {
+        initComponents();
+        jbGuardar.setEnabled(false);
+        jbUpdate.setEnabled(true);
+        
     }
 
     /**
@@ -252,8 +268,19 @@ public class VentanaParte extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlAviso)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119)
+                                .addComponent(jScrollPane1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2)
                                 .addGap(18, 18, 18)
@@ -264,7 +291,6 @@ public class VentanaParte extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -283,14 +309,13 @@ public class VentanaParte extends javax.swing.JFrame {
                                     .addComponent(jtDietas)
                                     .addComponent(jtOtros)
                                     .addComponent(jtKmFin)
-                                    .addComponent(jScrollPane1)
                                     .addComponent(jtVehiculo)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(301, 301, 301)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbUpdate)
                                 .addGap(74, 74, 74)
                                 .addComponent(jbGuardar)
@@ -298,14 +323,7 @@ public class VentanaParte extends javax.swing.JFrame {
                                 .addComponent(jbCerrar)
                                 .addGap(103, 103, 103)
                                 .addComponent(jButton1)))
-                        .addGap(89, 89, 89))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlAviso)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(89, 89, 89))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,25 +358,25 @@ public class VentanaParte extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtOtros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBuscar)
                     .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbañadirRep)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbBorrarRep)))
-                .addGap(37, 37, 37)
+                        .addComponent(jbBorrarRep)
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbUpdate)
                     .addComponent(jbGuardar)
@@ -415,7 +433,11 @@ public class VentanaParte extends javax.swing.JFrame {
         p.setIncidencias(jtIncidencias.getText());
         Date fecha= new Date();
         p.setFecha(fecha);
-        boolean correcto = p.guardarParte(t.getId_trabajador(),Integer.parseInt(jtVehiculo.getText()));
+        boolean correcto=false;
+        try {
+            correcto = p.guardarParte(id,Integer.parseInt(jtVehiculo.getText()));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());        }
         if(correcto){
             jlAviso.setText("Guardado correctamente");
         }
@@ -456,7 +478,12 @@ public class VentanaParte extends javax.swing.JFrame {
         p.setIncidencias(jtIncidencias.getText());
         Date fecha= new Date();
         p.setFecha(fecha);
-        boolean correcto = p.actualizarParte(t.getId_trabajador(),Integer.parseInt(jtVehiculo.getText()));
+        boolean correcto=false;
+        try {
+            correcto = p.actualizarParte(id,Integer.parseInt(jtVehiculo.getText()));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+        }
         if(correcto){
             jlAviso.setText("Guardado correctamente");
         }
