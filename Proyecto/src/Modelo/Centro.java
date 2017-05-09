@@ -103,12 +103,23 @@ public class Centro {
     }
     
     //asignar relaciones
-    public void añadirTrabajador(Trabajador trabajador){
+
+    /**
+     *
+     * @param trabajador
+     */
+        public void añadirTrabajador(Trabajador trabajador){
         trabajadores.add(trabajador);
     }
 
     //métodos
-    public static Centro verCentro(int id){
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+        public static Centro verCentro(int id){
         Centro c= null;
         try {
             ControladorBaseDatos.conectar();
@@ -134,6 +145,10 @@ public class Centro {
         return c;
     }
     
+    /**
+     *
+     * @return
+     */
     public static List<Centro> listarCentros(){
         List<Centro> centros = new ArrayList<>();
         try {
@@ -157,6 +172,10 @@ public class Centro {
         return centros;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean guardarCentro(){
         try {
             ControladorBaseDatos.conectar();
@@ -179,6 +198,10 @@ public class Centro {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean modificarCentro(){
         try {
             ControladorBaseDatos.conectar();
@@ -201,6 +224,9 @@ public class Centro {
         }
     }
 
+    /**
+     *
+     */
     public void borrarCentro(){
         try {
             ControladorBaseDatos.conectar();

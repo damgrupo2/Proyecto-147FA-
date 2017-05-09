@@ -72,7 +72,12 @@ public class Vehiculo {
     }
 
     //métodos
-    public boolean guardarVehiculo (){
+
+    /**
+     *
+     * @return
+     */
+        public boolean guardarVehiculo (){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
@@ -89,6 +94,10 @@ public class Vehiculo {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean modificarVehiculo() {
         try {
             ControladorBaseDatos.conectar();
@@ -108,6 +117,11 @@ public class Vehiculo {
         }
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Vehiculo verVehiculo(int id){
         Vehiculo v= new Vehiculo();
         try {
@@ -128,6 +142,10 @@ public class Vehiculo {
         return v;
     }
     
+    /**
+     *
+     * @return
+     */
     public static List<Vehiculo> listarVehiculos(){
         List<Vehiculo> vehiculos = new ArrayList<>();
         try {
@@ -150,6 +168,9 @@ public class Vehiculo {
         return vehiculos;
     }
     
+    /**
+     *
+     */
     public void borrarVehiculo(){
         try {
             ControladorBaseDatos.conectar();
