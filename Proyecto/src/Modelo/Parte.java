@@ -1,5 +1,6 @@
 package Modelo;
 
+import Ventanas.TodosLosPartes;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,6 +43,7 @@ public class Parte {
     private Vehiculo vehiculo;
     private static Vehiculo vehiculoSt; 
     private Aviso aviso;
+    private Ventanas.TodosLosPartes tlp;
 
     //constructores
     public Parte() {
@@ -63,6 +65,12 @@ public class Parte {
     public Date getFecha() {
         return fecha;
     }
+
+    public void setTlp(TodosLosPartes tlp) {
+        this.tlp = tlp;
+    }
+    
+    
 
     public static ArrayList<Reparto> getRepartosSt() {
         return repartosSt;
