@@ -13,8 +13,8 @@ import Modelo.Usuario;
  */
 public class Login extends javax.swing.JFrame {
 
-    private AdministrativoHome ah;
-    private VentanaParte vp;
+    private AdministrativoHome ah= new AdministrativoHome();
+    private VentanaParte vp= new VentanaParte();
     
     private Usuario us;
   
@@ -135,11 +135,13 @@ public class Login extends javax.swing.JFrame {
         Categoria c = u.hacerLogin();
         switch(c){
             case Administrativo:
-                ah = new AdministrativoHome();
+                //ah = new AdministrativoHome();
                 ah.setVisible(true);
                 break;
             case Transportista:
-                vp=new VentanaParte();
+                //vp=new VentanaParte();
+                vp.setP(Usuario.getP());
+                vp.rellenarForm();
                 vp.setVisible(true);
                 break;
         }
