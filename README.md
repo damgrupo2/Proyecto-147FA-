@@ -17,14 +17,14 @@ Existen dos tipos de trabajadores:
 
 ## Pasos para la instalación: ##
 
-	### ¡OJO! El orden de ejecución es importante. ###
+### ¡OJO! El orden de ejecución es importante. ###
 	
-	1. Ejecutar el siguiente [script](MODELO FÍSICO/SCRIPT FISICO.ddl) sobre la base de datos. 
-			Este script crea las tabla necesarias y la configuración de usuario, contraseña y servidor que va a utilizar la aplicación.
-			Si necesitas cambiar estos datos, puedes consultar [aquí]() como hacerlo.
-	2. Ejecutar el [script](PL-SQL/Pl-sql FASE 2.sql) de procedimientos sobre la base de datos.
-	3. Ejecutar el [script]() que contiene el trigger sobre la base de datos.
-	4. Iniciar el ejecutable [Proyecto](Proyecto/dist/Proyecto.jar).
-			Si quieres cambiar la ubicación de este archivo debes mover también la carpeta [lib](Proyecto/dist/lib) a la misma carpeta que el ejecutable.
-			Es recomendable que crees un acceso directo por ejemplo a tu escritorio.
+1. Ejecutar el siguiente [script](MODELO FÍSICO/SCRIPT FISICO) sobre la base de datos. 
+	Este script crea las tabla necesarias y la configuración de usuario, contraseña y servidor que va a utilizar la aplicación.
+	Si necesitas cambiar estos datos, puedes consultar [aquí]() como hacerlo.
+2. Ejecutar el [script](PL-SQL/Pl-sql FASE 2) de procedimientos sobre la base de datos.
+3. Ejecutar el [script]() que contiene el trigger sobre la base de datos.
+4. Iniciar el ejecutable [Proyecto](Proyecto/dist/Proyecto).
+	Si quieres cambiar la ubicación de este archivo debes mover también la carpeta [lib](Proyecto/dist/lib) a la misma carpeta que el ejecutable.
+	Es recomendable que crees un acceso directo por ejemplo a tu escritorio.
 
