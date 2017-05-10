@@ -1,8 +1,8 @@
-#Gestión de partes
+#Gestión de partes#
 
 Está aplicación está diseñada para su uso en una empresa de transportes. Permite la gestión de centros de trabajo, vehículos, trabajadores y partes.
 
-##¿Cómo funciona?
+##¿Cómo funciona?##
 
 Existen dos tipos de trabajadores:
 	- Transportistas 
@@ -10,13 +10,13 @@ Existen dos tipos de trabajadores:
 	- Administrativos
 		Gestionan altas y bajas de centros, trabajadores y vehículos. También validan que los transportistas hayan rellenado los partes correctamente y no hayan excedido su jornada laboral.
 		
-##Requisitos:
+##Requisitos:##
 	
 	Una base de datos Oracle DataBase 12c o superior.
 
-##Pasos para la instalación:
+##Pasos para la instalación:##
 
-	###¡OJO! El orden de ejecución es importante.
+	###¡OJO! El orden de ejecución es importante.###
 	
 	1.- Ejecutar el siguiente [script](MODELO FÍSICO/SCRIPT FISICO.ddl) sobre la base de datos. 
 			Este script crea las tabla necesarias y la configuración de usuario, contraseña y servidor que va a utilizar la aplicación.
