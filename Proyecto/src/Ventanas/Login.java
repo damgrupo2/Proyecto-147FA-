@@ -6,20 +6,15 @@
 package Ventanas;
 
 import Modelo.Categoria;
-import Modelo.Parte;
-import Modelo.Trabajador;
 import Modelo.Usuario;
-import Modelo.Vehiculo;
-import java.util.Arrays;
-
 /**
  *
  * @author sirlocus
  */
 public class Login extends javax.swing.JFrame {
 
-    private AdministrativoHome ah;
-    private VentanaParte vp;
+    private AdministrativoHome ah= new AdministrativoHome();
+    private VentanaParte vp= new VentanaParte();
     
     private Usuario us;
   
@@ -47,7 +42,7 @@ public class Login extends javax.swing.JFrame {
         jbLogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
 
         jLabel1.setText("Usuario");
@@ -140,15 +135,17 @@ public class Login extends javax.swing.JFrame {
         Categoria c = u.hacerLogin();
         switch(c){
             case Administrativo:
-                ah = new AdministrativoHome();
+                //ah = new AdministrativoHome();
                 ah.setVisible(true);
                 break;
             case Transportista:
-                vp=new VentanaParte();
+                //vp=new VentanaParte();
+                vp.setP(Usuario.getP());
+                vp.rellenarForm();
                 vp.setVisible(true);
                 break;
         }
-        
+        this.dispose();
     }//GEN-LAST:event_jbLoginActionPerformed
 
     private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed

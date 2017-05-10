@@ -6,6 +6,11 @@
 
 package Ventanas;
 
+import Modelo.Aviso;
+import Modelo.Trabajador;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sirlocus
@@ -18,13 +23,26 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private TrabajadorFormulario tf;
     private TrabajadorDetalle td;
     private TrabajadorListado tl;
-    private VehiculoFormulario vf;
-    private VehiculoListado vl;
+    private DefaultTableModel dm;
+    private ArrayList<Aviso> avisos;
+    private Trabajador t = Modelo.Usuario.getT();
+    private TodosLosPartes tp;
+    private int id;
+    
     /** Creates new form AdministrativoHome */
+    
     public AdministrativoHome() {
         initComponents();
+        recargarTabla();
     }
 
+    private void recargarTabla(){
+        dm= (DefaultTableModel)jTable1.getModel();
+        avisos = Aviso.listarAvisos(t.getId_trabajador());
+        for(Aviso a:avisos){
+            dm.insertRow(dm.getRowCount(), new Object[]{a.getIdAviso(),a.getNombreE(),a.getTexto()});
+        }
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -34,7 +52,13 @@ public class AdministrativoHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
         jltitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jbBorrar = new javax.swing.JButton();
+        jlAviso = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmNuevoCen = new javax.swing.JMenuItem();
@@ -46,14 +70,46 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jmNuevoUsu = new javax.swing.JMenuItem();
         jmDetalleUsu = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmTodos = new javax.swing.JCheckBoxMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
+
+        jCheckBoxMenuItem2.setSelected(true);
+        jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
+
+        jCheckBoxMenuItem5.setSelected(true);
+        jCheckBoxMenuItem5.setText("jCheckBoxMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jltitulo.setText("Bienvenido ");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Aviso", "Trabajador", "Observaciones"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jbBorrar.setText("Borrar aviso");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
+
+        jlAviso.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlAviso.setForeground(new java.awt.Color(0, 204, 0));
 
         jMenu1.setText("Centros");
 
@@ -102,23 +158,24 @@ public class AdministrativoHome extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Vehículos");
+        jMenu3.setText("Partes");
 
-        jMenuItem1.setText("Nuevo Vehículo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmTodos.setText("Ver todos los partes");
+        jmTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmTodosActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        jMenu3.add(jmTodos);
+        jMenu3.add(jSeparator1);
 
-        jMenuItem2.setText("Listar Vehículo");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxMenuItem4.setText("Buscar parte");
+        jCheckBoxMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jCheckBoxMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem2);
+        jMenu3.add(jCheckBoxMenuItem4);
 
         jMenuBar1.add(jMenu3);
 
@@ -129,16 +186,33 @@ public class AdministrativoHome extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(jbBorrar)
+                .addGap(117, 117, 117))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbBorrar)
+                    .addComponent(jlAviso))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -164,16 +238,35 @@ public class AdministrativoHome extends javax.swing.JFrame {
         tl.setVisible(true);
     }//GEN-LAST:event_jmListarTrabActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        vf= new VehiculoFormulario();
-        vf.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jmTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTodosActionPerformed
+        tp= new TodosLosPartes();
+        tp.setAh(this);
+        tp.setVisible(true);
+    }//GEN-LAST:event_jmTodosActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        vl=new VehiculoListado();
-        vl.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jCheckBoxMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxMenuItem4ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int fila = jTable1.getSelectedRow();
+        id = Integer.parseInt(dm.getValueAt(fila,0).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        Aviso a = new Aviso();
+        a.setIdAviso(id);
+        boolean correcto = a.borrarAviso();
+        if(correcto){
+            jlAviso.setText("Borrado correctamente");
+            //TODO no se recarga la tabla
+            recargarTabla();
+        }
+    }//GEN-LAST:event_jbBorrarActionPerformed
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -210,19 +303,26 @@ public class AdministrativoHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbBorrar;
+    private javax.swing.JLabel jlAviso;
     private javax.swing.JLabel jltitulo;
     private javax.swing.JMenuItem jmDetalleUsu;
     private javax.swing.JMenuItem jmListarTrab;
     private javax.swing.JMenuItem jmNuevoCen;
     private javax.swing.JMenuItem jmNuevoTrab;
     private javax.swing.JMenuItem jmNuevoUsu;
+    private javax.swing.JCheckBoxMenuItem jmTodos;
     private javax.swing.JMenuItem jmTrabaCentro;
     // End of variables declaration//GEN-END:variables
 

@@ -5,12 +5,7 @@
  */
 package Ventanas;
 
-import Modelo.Parte;
 import Modelo.Reparto;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import java.awt.Container;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -46,25 +41,18 @@ public class VentanaReparto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        java.util.Date date = new java.util.Date();
-        sm =
-        new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
-        jsinicio = new javax.swing.JSpinner(sm);
+        jsinicio = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtalbaran = new javax.swing.JTextField();
-        java.util.Date date3 = new java.util.Date();
-        sm3 =
-        new SpinnerDateModel(date3, null, null, Calendar.HOUR_OF_DAY);
-        jsfin = new javax.swing.JSpinner(sm3);
+        jsfin = new javax.swing.JSpinner();
         jguardaboton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JSpinner.DateEditor de = new JSpinner.DateEditor(jsinicio, "HH:mm:ss");
-        jsinicio.setEditor(de);
+        jsinicio.setModel(new javax.swing.SpinnerDateModel());
 
         jLabel1.setText("Hora Inicio");
 
@@ -80,8 +68,7 @@ public class VentanaReparto extends javax.swing.JFrame {
             }
         });
 
-        JSpinner.DateEditor de3 = new JSpinner.DateEditor(jsfin, "HH:mm:ss");
-        jsfin.setEditor(de3);
+        jsfin.setModel(new javax.swing.SpinnerDateModel());
 
         jguardaboton.setText("GUARDAR");
         jguardaboton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,11 +129,11 @@ public class VentanaReparto extends javax.swing.JFrame {
 
     private void jguardabotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jguardabotonActionPerformed
         java.util.Date fecha = new java.util.Date();
-        java.util.Date horaini = sm.getDate();
-        java.util.Date horafin = sm3.getDate();
+        java.util.Date horaini = (java.util.Date) jsinicio.getValue();
+        java.util.Date horafin = (java.util.Date) jsfin.getValue();
         String albaran = jtalbaran.getText();
         Modelo.Reparto r = new Reparto(fecha, albaran, horaini, horafin);
-        VentanaParte.añadeReparto(r);
+        vp.añadeReparto(r);
         vp.recargarTabla();
         this.dispose();
     }//GEN-LAST:event_jguardabotonActionPerformed

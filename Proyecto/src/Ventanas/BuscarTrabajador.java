@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
-import Modelo.Vehiculo;
+import Modelo.Centro;
+import Modelo.Trabajador;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,22 +9,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jose
  */
-public class BuscarVehiculo extends javax.swing.JFrame {
+public class BuscarTrabajador extends javax.swing.JFrame {
     
     private DefaultTableModel model;
-    private static List<Modelo.Vehiculo> vehiculos;
-    private static Modelo.Vehiculo v;
-    private VentanaParte vp;
+    private static List<Modelo.Trabajador> trabajadores;
+    private static Modelo.Trabajador t= new Trabajador();
+    private TodosLosPartes tp;
 
     /**
-     * Creates new form BuscarVehiculo
+     * Creates new form BuscarCentro
      */
-    public BuscarVehiculo() {
+    public BuscarTrabajador() {
         initComponents();
         model= (DefaultTableModel)jTable1.getModel();
-        vehiculos = Modelo.Vehiculo.listarVehiculos();
-        for(Modelo.Vehiculo v: vehiculos){
-            model.insertRow(model.getRowCount(), new Object[]{v.getIdVehiculo(),v.getMatricula(),v.getModelo(),v.getMarca()});
+        trabajadores = Modelo.Trabajador.listarTrabajadoresTrans();
+        for(Modelo.Trabajador t: trabajadores){
+            model.insertRow(model.getRowCount(), new Object[]{t.getId_trabajador(),t.getNombre(),t.getAp1(),t.getDni()});
         }
     }
 
@@ -41,22 +37,19 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Buscar Vehículo");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id_vehículo", "Matricula", "Modelo", "Marca"
+                "ID Trabajador", "Nombre", "Apellido", "Dni"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -65,6 +58,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Buscar Trabajador");
 
         jButton1.setText("GUARDAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,48 +74,43 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(jLabel1)))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            //VentanaParte.setVehiculo(v);
-            String ids = String.valueOf(v.getIdVehiculo());
-            vp.setJtVehiculo(ids);
+        String ids = String.valueOf(t.getId_trabajador());
+            tp.setJtTrabajador(ids);
             this.dispose();
-            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       int fila=jTable1.getSelectedRow();
+        int fila=jTable1.getSelectedRow();
         int id=Integer.parseInt(model.getValueAt(fila,0).toString());
-        String matricula=model.getValueAt(fila,1).toString();
-        String modelo=model.getValueAt(fila,2).toString();
-        String marca=model.getValueAt(fila,3).toString();
-        v=new Vehiculo(id,matricula, modelo, marca);
+        t.setId_trabajador(id);
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -139,20 +130,21 @@ public class BuscarVehiculo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarVehiculo().setVisible(true);
+                new BuscarTrabajador().setVisible(true);
             }
         });
     }
@@ -164,7 +156,8 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    void setVp(VentanaParte vp) {
-        this.vp=vp;
+    void setTf(TodosLosPartes tp) {
+        this.tp=tp;
+        tp.setBt(this);
     }
 }

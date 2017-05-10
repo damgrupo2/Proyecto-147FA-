@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import java.sql.CallableStatement;
@@ -12,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
 
@@ -22,7 +15,7 @@ import oracle.jdbc.OracleTypes;
  * @author 7fbd06
  */
 public class Trabajador {
-    
+    //variables
     private int id_trabajador;
     private String dni;
     private String nombre;
@@ -35,12 +28,13 @@ public class Trabajador {
     private double salario;
     private java.sql.Date fechanac;
     
+    //relaciones
     private Centro centro;
     private List<Parte> parteList=new ArrayList<Parte>();
     private List<Aviso> avisosList=new ArrayList<>();
     private Usuario usuario;
     
-
+    //constructores
     public Trabajador() {
     }
 
@@ -59,6 +53,15 @@ public class Trabajador {
         this.fechanac = fechanac;
     }
 
+    //getter y setter
+    public void setCentro(Centro centro) {
+        this.centro = centro;
+    }
+
+    public Centro getCentro() {
+        return centro;
+    }
+    
     public int getId_trabajador() {
         return id_trabajador;
     }
@@ -157,19 +160,27 @@ public class Trabajador {
         usuario.setT(this);
     }
     
-
     public void añadirParte(Parte parte){
         parteList.add(parte);
         parte.setTrabajador(this);
+    }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
-    public boolean guardarTrabajador(){
+    //métodos
+
+    /**
+     *
+     * @return
+     */
+        public boolean guardarTrabajador(){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
                     .prepareStatement("INSERT INTO TRABAJADOR(DNI, NOMBRE, AP1, AP2, DIRECCION, TELF_EMPRESA, TELF_PERSONAL," +
-                            "CATEGORIA, SALARIO, FECHANAC) VALUES(?,?,?,?,?,?,?,?,?,?)");
+                            "CATEGORIA, SALARIO, FECHANAC,ID_CENTRO, ID_USUARIO) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1,dni);
             ps.setString(2, nombre);
             ps.setString(3, ap1);
@@ -180,7 +191,9 @@ public class Trabajador {
             ps.setString(8, categoria.toString());
             ps.setDouble(9, salario);
             java.sql.Date f = new java.sql.Date(fechanac.getTime());
-            ps.setDate(10, f);        
+            ps.setDate(10, f);  
+            ps.setInt(11, centro.getId_centro());
+            ps.setString(12, usuario.getUsuario());
             ps.execute();
             ControladorBaseDatos.desconectar();
             return true;
@@ -188,9 +201,12 @@ public class Trabajador {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
             return false;
         }
-
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean modificarTrabajador() {
         try {
             ControladorBaseDatos.conectar();
@@ -219,6 +235,9 @@ public class Trabajador {
         }
     }
     
+    /**
+     *
+     */
     public void borrarTrabajador(){
         try {
             ControladorBaseDatos.conectar();
@@ -232,6 +251,10 @@ public class Trabajador {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public static List<Trabajador> listarTrabajadores(){
         List<Trabajador> trabajadores = new ArrayList<>();
         try {
@@ -241,7 +264,6 @@ public class Trabajador {
             cs.registerOutParameter(1, OracleTypes.CURSOR);
             cs.execute();
             ResultSet rs = (ResultSet) cs.getObject(1);
-            
             while (rs.next()) {
                 Trabajador t= new Trabajador();
                 t.setDni(rs.getString("DNI"));
@@ -258,6 +280,40 @@ public class Trabajador {
         return trabajadores;
     }
     
+    /**
+     *
+     * @return
+     */
+    public static List<Trabajador> listarTrabajadoresTrans(){
+        List<Trabajador> trabajadores = new ArrayList<>();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion().
+                    prepareCall("{call TRABAJADORES.CONSULTA_TRANSPORTISTAS(?)}");
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(1);
+            while (rs.next()) {
+                Trabajador t= new Trabajador();
+                t.setDni(rs.getString("DNI"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1(rs.getString("AP1"));
+                t.setAp2(rs.getString("AP2"));
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                trabajadores.add(t);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage()); 
+        }
+        return trabajadores;
+    }
+    
+    /**
+     *
+     * @param id_centro
+     * @return
+     */
     public static List<Trabajador> listarTrabajadoresCentro(int id_centro){
         List<Trabajador> trabajadores = new ArrayList<>();
         try {
@@ -284,6 +340,11 @@ public class Trabajador {
         return trabajadores;
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Trabajador verTrabajador(int id){
         Trabajador t= new Trabajador();
         try {
@@ -320,8 +381,5 @@ public class Trabajador {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
         }
         return t;
-        
     }
-
-
 }

@@ -1,31 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
+
 import oracle.jdbc.OracleTypes;
+
 
 /**
  *
  * @author 7fbd06
  */
 public class Parte {
-    
-    private Date fecha;
+    //variables
+    private java.util.Date fecha;
     private double kmInicio;
     private double kmFin;
     private double gasoil;
@@ -36,12 +33,17 @@ public class Parte {
     private boolean abierto;
     private double excesoHoras;
     private boolean validado;
+    private int horasTotales;
     
+    //relaciones
     private Trabajador trabajador;
-    private static List<Reparto> repartos = new ArrayList<>();
+    private ArrayList<Reparto> repartos = new ArrayList<>();
+    private static  ArrayList<Reparto> repartosSt;
     private Vehiculo vehiculo;
+    private static Vehiculo vehiculoSt; 
     private Aviso aviso;
 
+    //constructores
     public Parte() {
     }
 
@@ -54,11 +56,16 @@ public class Parte {
         this.dietas = dietas;
         this.otrosGastos = otrosGastos;
         this.incidencias = incidencias;
-        Parte.repartos=new ArrayList<>();
+        this.repartos=new ArrayList<>();
     }
 
+    //getter y setter
     public Date getFecha() {
         return fecha;
+    }
+
+    public static ArrayList<Reparto> getRepartosSt() {
+        return repartosSt;
     }
 
     public void setFecha(Date fecha) {
@@ -144,16 +151,10 @@ public class Parte {
     public void setValidado(boolean validado) {
         this.validado = validado;
     }
-    
-    
 
-    @Override
-    public String toString() {
-        return "Parte{" + ", fecha=" + fecha + ", kmInicio=" + kmInicio + ", kmFin=" + kmFin + ", gasoil=" + gasoil + ", autopista=" + autopista + ", dietas=" + dietas + ", otrosGastos=" + otrosGastos + ", incidencias=" + incidencias + ", abierto=" + abierto + ", excesoHoras=" + excesoHoras + ", validado=" + validado + '}';
-    }
 
     //BORRAR DESPUES DE LAS PRUEBAS
-    public static List<Reparto> getRepartos() {
+    public List<Reparto> getRepartos() {
         return repartos;
     }
 
@@ -165,7 +166,7 @@ public class Parte {
         this.trabajador = trabajador;
     }
 
-    public Vehiculo getVehiculo() {
+    public  Vehiculo getVehiculo() {
         return vehiculo;
     }
 
@@ -185,32 +186,30 @@ public class Parte {
         repartos.add(reparto);
         reparto.setParte(this);
     }
-    
-    
-    
-    //Hacer esta consulta en el login
-    /*public static Parte parteAbierto(int idTrabajador){
-        Parte p=null;
-        try {
-            ControladorBaseDatos.conectar();
-            CallableStatement cs = ControladorBaseDatos.getConexion().prepareCall("{call ABIERTO(?,?)}");
-            cs.setInt(1, idTrabajador);
-            cs.registerOutParameter(2, OracleTypes.CURSOR);
-            cs.execute();
-            ResultSet rs=(ResultSet) cs.getObject(2);
-            while(rs.next()){
-                p = verParte(rs.getDate("FECHA"), idTrabajador);
-            }
-            ControladorBaseDatos.desconectar();
-            return p;
-        } catch (SQLException ex) {
-            Logger.getLogger(Parte.class.getName()).log(Level.SEVERE, null, ex);
-            return p;
-        }
-    }*/
-    
-    public static Parte verParte(Date fecha, int idTrabajador){
+
+    public int getHorasTotales() {
+        return horasTotales;
+    }
+
+    public void setHorasTotales(int horasTotales) {
+        this.horasTotales = horasTotales;
+    }
+
+    public static Vehiculo getVehiculoSt() {
+        return vehiculoSt;
+    }
+     
+    //métodos
+
+    /**
+     *
+     * @param fecha
+     * @param idTrabajador
+     * @return
+     */
+        public static Parte verParte(Date fecha, int idTrabajador){
         Parte p = new Parte();
+        repartosSt = new ArrayList<>();
         try {
             ControladorBaseDatos.conectar();
             CallableStatement cs = ControladorBaseDatos.getConexion().
@@ -223,6 +222,7 @@ public class Parte {
             cs.execute();
             ResultSet rsp = (ResultSet)cs.getObject(3);         //Cursor parte
             while (rsp.next()) {
+                p.fecha = rsp.getDate("FECHA");
                 p.kmInicio = rsp.getDouble("KM_INICIO");
                 p.kmFin = rsp.getDouble("KM_FIN");
                 p.gasoil = rsp.getDouble("GASOIL");
@@ -233,6 +233,9 @@ public class Parte {
                 p.abierto = rsp.getBoolean("ABIERTO");
                 p.validado = rsp.getBoolean("VALIDADO");
                 p.excesoHoras = rsp.getDouble("EXCESO_HORAS");
+                vehiculoSt= new Vehiculo();
+                vehiculoSt.setIdVehiculo(rsp.getInt("ID_VEHICULO"));
+                //p.setVehiculo(vehiculoSt);
             }
             ResultSet rsr = (ResultSet)cs.getObject(4);         //Cursor repartos
             while (rsr.next()) {
@@ -241,8 +244,9 @@ public class Parte {
                 java.util.Date horaIni = rsr.getTimestamp("HORA_INICIO");
                 java.util.Date horaFin = rsr.getTimestamp("HORA_FIN");
                 Reparto r = new Reparto(fecha, albaran, horaIni, horaFin);
-                repartos.add(r);
+                p.añadirReparto(r);
             }
+            p.setVehiculo(null);
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
@@ -251,10 +255,19 @@ public class Parte {
     }
     
     //Antes de llamar a esta función hay que haber asignado vehiculo,trabajador y repartos al parte
-    public boolean guardarParte(int id_trabajador, int id_vehiculo){
-        try {
-            ControladorBaseDatos.conectar();
-            PreparedStatement ps = ControladorBaseDatos.getConexion()
+
+    /**
+     *
+     * @param id_trabajador
+     * @param id_vehiculo
+     * @return
+     * @throws SQLException
+     */
+        public boolean guardarParte(int id_trabajador, int id_vehiculo) throws SQLException{
+        ControladorBaseDatos.conectar();
+        Connection con= ControladorBaseDatos.getConexion();
+        try {            
+            PreparedStatement ps = con
                     .prepareStatement("INSERT INTO PARTE(FECHA,ID_TRABAJADOR,"
                             + "KM_INICIO,KM_FIN,GASOIL,AUTOPISTA,DIETAS,OTROS_GASTOS,"
                             + "INCIDENCIAS,ABIERTO,ID_VEHICULO,VALIDADO) "
@@ -275,25 +288,102 @@ public class Parte {
             ps.execute();
             
             //Guardar repartos
-            for(Reparto r:Parte.repartos){
-                PreparedStatement psr = ControladorBaseDatos.getConexion()
+            for(Reparto r:repartos){
+                PreparedStatement psr = con
                         .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
-                java.sql.Date sqlr = new java.sql.Date(fecha.getTime());
-                psr.setDate(1, sqlr);
+                psr.setDate(1, sql);
                 psr.setInt(2, id_trabajador);
                 psr.setString(3, r.getAlbaran());
                 psr.setTimestamp(4, new java.sql.Timestamp(r.getHoraInicio().getTime()));
                 psr.setTimestamp(5, new java.sql.Timestamp(r.getHoraFin().getTime()));
                 psr.execute();
             }
-            ControladorBaseDatos.desconectar();
+            con.close();
             return true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+            try {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+                con.rollback();
+                con.close();
+            } catch (SQLException ex1) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+                con.close();
+            }
+            return false;
+        }
+        
+    }
+    
+    /**
+     *
+     * @param id_trabajador
+     * @param id_vehiculo
+     * @return
+     * @throws SQLException
+     */
+    public boolean actualizarParte(int id_trabajador, int id_vehiculo) throws SQLException{
+            ControladorBaseDatos.conectar();
+            Connection con = ControladorBaseDatos.getConexion();
+        try {
+            PreparedStatement ps = con
+                    .prepareStatement("UPDATE PARTE SET "
+                            + "KM_INICIO=?, KM_FIN=?, GASOIL=?, AUTOPISTA=?, DIETAS=?,"
+                            + "OTROS_GASTOS=?,INCIDENCIAS=?, ID_VEHICULO=? WHERE FECHA =? AND ID_TRABAJADOR =?" );
+            java.sql.Date sql = new java.sql.Date(fecha.getTime());
+            ps.setDouble(1, kmInicio);
+            ps.setDouble(2, kmFin);
+            ps.setDouble(3, gasoil);
+            ps.setDouble(4, autopista);
+            ps.setDouble(5, dietas);
+            ps.setDouble(6, otrosGastos);
+            ps.setString(7, incidencias);
+            ps.setInt(8, id_vehiculo);
+            ps.setDate(9, sql);
+            ps.setInt(10, id_trabajador);
+            ps.executeUpdate();
+            
+            //Guardar repartos
+            for(Reparto r:repartos){
+                PreparedStatement psp = con
+                        .prepareStatement("SELECT ALBARAN FROM REPARTO WHERE ALBARAN=?");
+                psp.setString(1, r.getAlbaran());
+                ResultSet rsp = psp.executeQuery();
+                if(rsp.next()){
+                    PreparedStatement psp2 = ControladorBaseDatos.getConexion()
+                            .prepareStatement("UPDATE ALBARAN SET HORA_INICIO=?,"
+                                    + "SET HORA_FIN=?");
+                    psp2.setTimestamp(1, new java.sql.Timestamp(r.getHoraInicio().getTime()));
+                    psp2.setTimestamp(1, new java.sql.Timestamp(r.getHoraFin().getTime()));
+                }else{
+                    PreparedStatement psr = ControladorBaseDatos.getConexion()
+                        .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
+                    psr.setDate(1, sql);
+                    psr.setInt(2, id_trabajador);
+                    psr.setString(3, r.getAlbaran());
+                    psr.setTimestamp(4, new java.sql.Timestamp(r.getHoraInicio().getTime()));
+                    psr.setTimestamp(5, new java.sql.Timestamp(r.getHoraFin().getTime()));
+                    psr.execute();
+                }
+            }
+            con.close();
+            return true;
+        } catch (SQLException ex) {
+            try {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+                con.rollback();
+                con.close();
+            } catch (SQLException ex1) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+                con.close();
+            }
             return false;
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean cerrarParte(){
         try {
             ControladorBaseDatos.conectar();
@@ -309,5 +399,168 @@ public class Parte {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
             return false;
         }
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public static ArrayList<Parte> todosPartes(){
+        ArrayList<Parte> partes = new ArrayList<>();
+        Parte p ;
+        Trabajador t = new Trabajador();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion()
+                    .prepareCall("{call PARTES.TODOS(?)}");
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(1);
+            while(rs.next()){
+                p= new Parte();
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1(rs.getString("AP1"));
+                p.setTrabajador(t);
+                p.setFecha(rs.getDate("FECHA_PARTE"));
+                p.setHorasTotales(rs.getInt("HORAS_TOTALES"));
+                p.setAbierto(rs.getBoolean("ABIERTO"));
+                partes.add(p);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+        }
+        return partes;
+    }
+    
+    /**
+     *
+     * @param fechaIni
+     * @param fechaFin
+     * @return
+     */
+    public static ArrayList<Parte> todosPartesFecha(java.util.Date fechaIni,java.util.Date fechaFin){
+        ArrayList<Parte> partes = new ArrayList<>();
+        Parte p ;
+        Trabajador t = new Trabajador();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion()
+                    .prepareCall("{call PARTES.TODOS_FECHA(?,?,?)}");
+            java.sql.Date sqlIni = new java.sql.Date(fechaIni.getTime());
+            cs.setDate(1, sqlIni);
+            java.sql.Date sqlFin = new java.sql.Date(fechaFin.getTime());
+            cs.setDate(2, sqlFin);
+            cs.registerOutParameter(3, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(3);
+            while(rs.next()){
+                p= new Parte();
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1(rs.getString("AP1"));
+                p.setTrabajador(t);
+                p.setFecha(rs.getDate("FECHA_PARTE"));
+                p.setHorasTotales(rs.getInt("HORAS_TOTALES"));
+                p.setAbierto(rs.getBoolean("ABIERTO"));
+                partes.add(p);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+        }
+        return partes;
+    }
+    
+    /**
+     *
+     * @param fechaIni
+     * @param fechaFin
+     * @param id
+     * @return
+     */
+    public static ArrayList<Parte> todosPartesFechaTra(java.util.Date fechaIni,java.util.Date fechaFin,int id){
+        ArrayList<Parte> partes = new ArrayList<>();
+        Parte p ;
+        Trabajador t = new Trabajador();
+        try {
+            ControladorBaseDatos.conectar();
+            CallableStatement cs = ControladorBaseDatos.getConexion()
+                    .prepareCall("{call PARTES.TODOS_FECHA_TRABAJADOR(?,?,?,?)}");
+            java.sql.Date sqlIni = new java.sql.Date(fechaIni.getTime());
+            cs.setDate(1, sqlIni);
+            java.sql.Date sqlFin = new java.sql.Date(fechaFin.getTime());
+            cs.setDate(2, sqlFin);
+            cs.setInt(3, id);
+            cs.registerOutParameter(4, OracleTypes.CURSOR);
+            cs.execute();
+            ResultSet rs = (ResultSet) cs.getObject(4);
+            while(rs.next()){
+                p= new Parte();
+                t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+                t.setNombre(rs.getString("NOMBRE"));
+                t.setAp1("AP1");
+                p.setTrabajador(t);
+                p.setFecha(rs.getDate("FECHA_PARTE"));
+                p.setHorasTotales(rs.getInt("HORAS_TOTALES"));
+                p.setAbierto(rs.getBoolean("ABIERTO"));
+                partes.add(p);
+            }
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+        }
+        return partes;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public boolean validarParte(){
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("UPDATE PARTE SET VALIDADO=1 WHERE ID_TRABAJADOR=? AND FECHA=?");
+            ps.setInt(1, trabajador.getId_trabajador());
+            java.sql.Date sql = new java.sql.Date(fecha.getTime());
+            ps.setDate(2, sql);
+            ps.executeUpdate();
+            ControladorBaseDatos.desconectar();
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+            return false;
+        }
+    }
+    
+    /**
+     *
+     * @param id_trabajador
+     * @param fecha
+     * @return
+     */
+    public static boolean borrarParte(int id_trabajador,Date fecha){
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("DELETE FROM PARTE WHERE ID_TRABAJADOR=?,"
+                            + "AND FECHA=?");
+            ps.setInt(1, id_trabajador);
+            java.sql.Date sql = new java.sql.Date(fecha.getTime());
+            ps.setDate(2, sql);
+            ps.execute();
+            ControladorBaseDatos.desconectar();
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+            return false;
+        }
+    }
+    
+    @Override
+    public String toString() {
+        return "Parte{" + ", fecha=" + fecha + ", kmInicio=" + kmInicio + ", kmFin=" + kmFin + ", gasoil=" + gasoil + ", autopista=" + autopista + ", dietas=" + dietas + ", otrosGastos=" + otrosGastos + ", incidencias=" + incidencias + ", abierto=" + abierto + ", excesoHoras=" + excesoHoras + ", validado=" + validado + '}';
     }
 }

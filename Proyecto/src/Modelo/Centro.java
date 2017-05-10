@@ -1,6 +1,4 @@
-
 package Modelo;
-
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -11,19 +9,13 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import oracle.jdbc.OracleTypes;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Jose
  */
 public class Centro {
-    
-    private static int id_centro;
+    //variables
+    private  int id_centro;
     private String nombre;
     private String direccion;
     private String cp;
@@ -31,10 +23,10 @@ public class Centro {
     private String provincia;
     private String telf;
     
-    
-    
+    //relaciones    
     private List<Trabajador>trabajadores = new ArrayList<>();
 
+    //constructores
     public Centro() {
     }
 
@@ -47,6 +39,13 @@ public class Centro {
         this.telf = telf;
     }
 
+    public Centro(int id_centro, String nombre, String loc) {
+        this.nombre = nombre;
+        this.loc = loc;
+        this.id_centro=id_centro;
+    }
+    
+    //getter y setter
     public int getId_centro() {
         return id_centro;
     }
@@ -103,13 +102,24 @@ public class Centro {
         this.loc = loc;
     }
     
-    /* métodos a utilizar */
+    //asignar relaciones
 
-    public void añadirTrabajador(Trabajador trabajador){
+    /**
+     *
+     * @param trabajador
+     */
+        public void añadirTrabajador(Trabajador trabajador){
         trabajadores.add(trabajador);
     }
 
-    public static Centro verCentro(int id){
+    //métodos
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+        public static Centro verCentro(int id){
         Centro c= null;
         try {
             ControladorBaseDatos.conectar();
@@ -135,6 +145,10 @@ public class Centro {
         return c;
     }
     
+    /**
+     *
+     * @return
+     */
     public static List<Centro> listarCentros(){
         List<Centro> centros = new ArrayList<>();
         try {
@@ -150,8 +164,6 @@ public class Centro {
                 c.setId_centro(rs.getInt("ID_CENTRO"));
                 c.setLoc(rs.getString("LOC"));
                 centros.add(c);
-                System.out.println(c);
-                //TODO error ids
             }
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
@@ -160,7 +172,10 @@ public class Centro {
         return centros;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public boolean guardarCentro(){
         try {
             ControladorBaseDatos.conectar();
@@ -183,6 +198,10 @@ public class Centro {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean modificarCentro(){
         try {
             ControladorBaseDatos.conectar();
@@ -205,6 +224,9 @@ public class Centro {
         }
     }
 
+    /**
+     *
+     */
     public void borrarCentro(){
         try {
             ControladorBaseDatos.conectar();

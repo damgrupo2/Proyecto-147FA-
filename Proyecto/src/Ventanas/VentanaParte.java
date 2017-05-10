@@ -5,14 +5,17 @@
  */
 package Ventanas;
 
-import Modelo.Centro;
 import Modelo.Parte;
 import Modelo.Trabajador;
 import Modelo.Vehiculo;
-import java.text.SimpleDateFormat;
+import java.awt.GraphicsConfiguration;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JTextField;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,49 +24,58 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaParte extends javax.swing.JFrame {   
     private VentanaReparto vr;
-    private static Trabajador t=Modelo.Usuario.getT();
-    private static Parte p=Modelo.Usuario.getP();
-    private static Vehiculo v=Modelo.Usuario.getV();
-    private DefaultTableModel model;
+    private Trabajador t;
+    private Parte p;
+    private Vehiculo v;
     private BuscarVehiculo bv;
-    private static int id;
+    private int id;
+    private DefaultTableModel model;
+    private int fila;
+    private List<Modelo.Reparto> repartos=new ArrayList<>();
 
     public void setJtVehiculo(String id) {
         this.jtVehiculo.setText(id);
     }
     
-    public static void setVehiculo(Vehiculo v) {
-        VentanaParte.v=v;
-    }
 
     public void recargarTabla() {
-        DefaultTableModel model= (DefaultTableModel)jTable1.getModel();
+        model= (DefaultTableModel)jTable1.getModel();
         model.setRowCount(0);
-        List<Modelo.Reparto> repartos = p.getRepartos();
+        repartos = p.getRepartos();
         for(Modelo.Reparto r:repartos){
             model.insertRow(model.getRowCount(), new Object[]{r.getAlbaran(),r.getHoraInicio(),r.getHoraFin()});
         }
     }
     
-    public static void añadeReparto(Modelo.Reparto r){
-        p.getRepartos().add(r);
+    public void añadeReparto(Modelo.Reparto r){
+        repartos.add(r);
     }
 
     /**
      * Creates new form VentanaParte
      */
     
-    public static void setId(int id) {
-        
-        VentanaParte.id = id;
-    }
-    
-    public static void configurarVehiculoVentana(int id){
-        //jtV
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public VentanaParte() {
-        initComponents();
+    public void setP(Parte p) {
+        this.p = p;
+    }
+
+    public VentanaParte(GraphicsConfiguration gc) {
+        super(gc);
+    }
+    public void setPRell(Parte p){
+        this.p = p;
+        rellenarForm();
+    }
+
+    public void setT(Trabajador t) {
+        this.t = t;
+    }
+    
+    public void rellenarForm(){
         if(p.getFecha()!=null){
             Double kmINI = p.getKmInicio();
             String kmINi = kmINI.toString();
@@ -89,6 +101,14 @@ public class VentanaParte extends javax.swing.JFrame {
             jtVehiculo.setText(idVe);
             recargarTabla();
         }
+        
+    }
+
+    public VentanaParte() {
+        initComponents();
+        jbGuardar.setEnabled(false);
+        jbUpdate.setEnabled(true);
+        
     }
 
     /**
@@ -100,7 +120,7 @@ public class VentanaParte extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jbañadirRep = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -125,13 +145,16 @@ public class VentanaParte extends javax.swing.JFrame {
         jbGuardar = new javax.swing.JButton();
         jbCerrar = new javax.swing.JButton();
         jlAviso = new javax.swing.JLabel();
+        jbBorrarRep = new javax.swing.JButton();
+        jbUpdate = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("AÑADIR REPARTO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbañadirRep.setText("AÑADIR REPARTO");
+        jbañadirRep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbañadirRepActionPerformed(evt);
             }
         });
 
@@ -149,6 +172,7 @@ public class VentanaParte extends javax.swing.JFrame {
 
         jLabel7.setText("INCIDENCIAS");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("PARTE");
 
         jtKmFin.addActionListener(new java.awt.event.ActionListener() {
@@ -192,16 +216,21 @@ public class VentanaParte extends javax.swing.JFrame {
                 "ALBARÁN", "HORA INICIO", "HORA FIN"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
-        jbGuardar.setText("Guardar");
+        jbGuardar.setText("GUARDAR");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
             }
         });
 
-        jbCerrar.setText("Cerrar");
+        jbCerrar.setText("CERRAR PARTE");
         jbCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCerrarActionPerformed(evt);
@@ -210,40 +239,58 @@ public class VentanaParte extends javax.swing.JFrame {
 
         jlAviso.setForeground(new java.awt.Color(51, 255, 0));
 
+        jbBorrarRep.setText("BORRAR REPARTO");
+        jbBorrarRep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarRepActionPerformed(evt);
+            }
+        });
+
+        jbUpdate.setText("GUARDAR CAMBIOS");
+        jbUpdate.setEnabled(false);
+        jbUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbUpdateActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("CERRAR VENTANA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlAviso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbGuardar)
-                        .addGap(56, 56, 56)
-                        .addComponent(jbCerrar)
-                        .addGap(184, 184, 184))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlAviso)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119)
+                                .addComponent(jScrollPane1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jbañadirRep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbBorrarRep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -262,17 +309,30 @@ public class VentanaParte extends javax.swing.JFrame {
                                     .addComponent(jtDietas)
                                     .addComponent(jtOtros)
                                     .addComponent(jtKmFin)
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(jtVehiculo))))
+                                    .addComponent(jtVehiculo)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(301, 301, 301)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbUpdate)
+                                .addGap(74, 74, 74)
+                                .addComponent(jbGuardar)
+                                .addGap(68, 68, 68)
+                                .addComponent(jbCerrar)
+                                .addGap(103, 103, 103)
+                                .addComponent(jButton1)))
                         .addGap(89, 89, 89))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jtKmIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -298,28 +358,33 @@ public class VentanaParte extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtOtros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBuscar)
                     .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jButton1)))
-                .addGap(91, 91, 91)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbañadirRep)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbBorrarRep)
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbUpdate)
                     .addComponent(jbGuardar)
                     .addComponent(jbCerrar)
-                    .addComponent(jlAviso))
-                .addGap(332, 332, 332))
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlAviso)
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -344,24 +409,35 @@ public class VentanaParte extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtVehiculoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    private void jbañadirRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbañadirRepActionPerformed
         vr=new VentanaReparto();
         vr.setVp(this);
         vr.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbañadirRepActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         p.setKmInicio(Double.parseDouble(jtKmIni.getText()));
         p.setKmFin(Double.parseDouble(jtKmFin.getText()));
-        p.setGasoil(Double.parseDouble(jtGasoil.getText()));
-        p.setAutopista(Double.parseDouble(jtAutopista.getText()));
-        p.setDietas(Double.parseDouble(jtDietas.getText()));
-        p.setOtrosGastos(Double.parseDouble(jtOtros.getText()));
+        if(!jtGasoil.getText().equalsIgnoreCase("")){
+            p.setGasoil(Double.parseDouble(jtGasoil.getText()));
+        }
+        if(!jtAutopista.getText().equalsIgnoreCase("")){
+            p.setAutopista(Double.parseDouble(jtAutopista.getText()));
+        }
+        if(!jtDietas.getText().equalsIgnoreCase("")){
+            p.setDietas(Double.parseDouble(jtDietas.getText()));
+        }
+        if(!jtOtros.getText().equalsIgnoreCase("")){
+            p.setOtrosGastos(Double.parseDouble(jtOtros.getText()));
+        }
         p.setIncidencias(jtIncidencias.getText());
         Date fecha= new Date();
         p.setFecha(fecha);
-        boolean correcto = p.guardarParte(t.getId_trabajador(),v.getIdVehiculo());
+        boolean correcto=false;
+        try {
+            correcto = p.guardarParte(id,Integer.parseInt(jtVehiculo.getText()));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());        }
         if(correcto){
             jlAviso.setText("Guardado correctamente");
         }
@@ -373,6 +449,50 @@ public class VentanaParte extends javax.swing.JFrame {
             jlAviso.setText("Parte cerrado correctamente");
         }
     }//GEN-LAST:event_jbCerrarActionPerformed
+
+    private void jbBorrarRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarRepActionPerformed
+        p.getRepartos().remove(fila);
+        model.removeRow(fila);
+    }//GEN-LAST:event_jbBorrarRepActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        fila = jTable1.getSelectedRow();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUpdateActionPerformed
+        p.setKmInicio(Double.parseDouble(jtKmIni.getText()));
+        p.setKmFin(Double.parseDouble(jtKmFin.getText()));
+        System.out.println(jtGasoil.getText());
+        if(!jtGasoil.getText().equalsIgnoreCase("")){
+            p.setGasoil(Double.parseDouble(jtGasoil.getText()));
+        }
+        if(!jtAutopista.getText().equalsIgnoreCase("")){
+            p.setAutopista(Double.parseDouble(jtAutopista.getText()));
+        }
+        if(!jtDietas.getText().equalsIgnoreCase("")){
+            p.setDietas(Double.parseDouble(jtDietas.getText()));
+        }
+        if(!jtOtros.getText().equalsIgnoreCase("")){
+            p.setOtrosGastos(Double.parseDouble(jtOtros.getText()));
+        }
+        p.setIncidencias(jtIncidencias.getText());
+        Date fecha= new Date();
+        p.setFecha(fecha);
+        boolean correcto=false;
+        try {
+            correcto = p.actualizarParte(id,Integer.parseInt(jtVehiculo.getText()));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
+        }
+        if(correcto){
+            jlAviso.setText("Guardado correctamente");
+        }
+    }//GEN-LAST:event_jbUpdateActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       this.dispose();
+                                
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,9 +520,7 @@ public class VentanaParte extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-          t=Modelo.Usuario.getT();
-          p=Modelo.Usuario.getP();
-          v=Modelo.Usuario.getV();
+          
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -425,9 +543,12 @@ public class VentanaParte extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbBorrarRep;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbCerrar;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbUpdate;
+    private javax.swing.JButton jbañadirRep;
     private javax.swing.JLabel jlAviso;
     private javax.swing.JTextField jtAutopista;
     private javax.swing.JTextField jtDietas;

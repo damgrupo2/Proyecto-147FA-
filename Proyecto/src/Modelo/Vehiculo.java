@@ -1,32 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
-import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import oracle.jdbc.OracleTypes;
 
 /**
  *
  * @author 7fbd06
  */
 public class Vehiculo {
-    
+    //variables
     private int idVehiculo;
     private String matricula;
     private String modelo;
     private String marca;
     
+    //rellaciones
     private List<Parte> partes=new ArrayList<>();
 
+    //constructores
     public Vehiculo() {
     }
 
@@ -43,6 +38,7 @@ public class Vehiculo {
         this.marca = marca;
     }
 
+    //getter y setter
     public int getIdVehiculo() {
         return idVehiculo;
     }
@@ -75,12 +71,13 @@ public class Vehiculo {
         this.marca = marca;
     }
 
-    @Override
-    public String toString() {
-        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", matricula=" + matricula + ", modelo=" + modelo + ", marca=" + marca + '}';
-    }
-    
-    public boolean guardarVehiculo (){
+    //métodos
+
+    /**
+     *
+     * @return
+     */
+        public boolean guardarVehiculo (){
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
@@ -95,9 +92,12 @@ public class Vehiculo {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
             return false;
         }
-
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean modificarVehiculo() {
         try {
             ControladorBaseDatos.conectar();
@@ -108,7 +108,6 @@ public class Vehiculo {
             ps.setString(2, modelo);
             ps.setString(3, marca);
             ps.setInt(4, idVehiculo);
-            
             ps.executeUpdate();
             ControladorBaseDatos.desconectar();
             return true;
@@ -118,6 +117,11 @@ public class Vehiculo {
         }
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static Vehiculo verVehiculo(int id){
         Vehiculo v= new Vehiculo();
         try {
@@ -130,25 +134,25 @@ public class Vehiculo {
                 v.setMatricula(rs.getString("MATRICULA"));
                 v.setModelo(rs.getString("MODELO"));
                 v.setMarca(rs.getString("MARCA"));
-          
             }
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
         }
         return v;
-        
     }
     
+    /**
+     *
+     * @return
+     */
     public static List<Vehiculo> listarVehiculos(){
         List<Vehiculo> vehiculos = new ArrayList<>();
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion().
                     prepareCall("SELECT * FROM VEHICULO");
-           
             ResultSet rs = ps.executeQuery();
-            
             while (rs.next()) {
                 Vehiculo v= new Vehiculo();
                 v.setMatricula(rs.getString("MATRICULA"));
@@ -163,6 +167,10 @@ public class Vehiculo {
         }
         return vehiculos;
     }
+    
+    /**
+     *
+     */
     public void borrarVehiculo(){
         try {
             ControladorBaseDatos.conectar();
@@ -174,5 +182,10 @@ public class Vehiculo {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
         }
+    }
+    
+    @Override
+    public String toString() {
+        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", matricula=" + matricula + ", modelo=" + modelo + ", marca=" + marca + '}';
     }
 }
