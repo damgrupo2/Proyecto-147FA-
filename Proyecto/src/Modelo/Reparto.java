@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  *
- * @author 7fbd06
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Reparto {
     //variables

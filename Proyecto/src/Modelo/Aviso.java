@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
- * @author Jose
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Aviso {
     //variables

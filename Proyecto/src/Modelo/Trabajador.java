@@ -12,7 +12,7 @@ import oracle.jdbc.OracleTypes;
 
 /**
  *
- * @author 7fbd06
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Trabajador {
     //variables
@@ -172,8 +172,8 @@ public class Trabajador {
     //métodos
 
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para guardar un trabajador mediante una sentencia preparada
+     * @return true si ha conseguido guardar el parte
      */
         public boolean guardarTrabajador(){
         try {
@@ -203,8 +203,8 @@ public class Trabajador {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para modificar un trabajador mediante una sentencia preparada
+     * @return true si ha conseguido modificar el trabajador
      */
     public boolean modificarTrabajador() {
         try {
@@ -235,7 +235,7 @@ public class Trabajador {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para borrar un trabajador mediante una sentencia preparada
      */
     public void borrarTrabajador(){
         try {
@@ -251,8 +251,8 @@ public class Trabajador {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para listar trabajadores mediante llamada a un procedimiento dentro de un paquete
+     * @return lista de trabajadores con dni, nombre, apellidos e id
      */
     public static List<Trabajador> listarTrabajadores(){
         List<Trabajador> trabajadores = new ArrayList<>();
@@ -280,8 +280,8 @@ public class Trabajador {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para listar trabajadores transportistas mediante llamada a un procedimiento dentro de un paquete
+     * @return lista de transportistas con dni, nombre, apellidos e id
      */
     public static List<Trabajador> listarTrabajadoresTrans(){
         List<Trabajador> trabajadores = new ArrayList<>();
@@ -309,9 +309,9 @@ public class Trabajador {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para listar trabajadores según su centro mediante llamada a un procedimiento dentro de un paquete
      * @param id_centro
-     * @return
+     * @return lista de trabajadores con dni, nombre, apellidos e id según su centro
      */
     public static List<Trabajador> listarTrabajadoresCentro(int id_centro){
         List<Trabajador> trabajadores = new ArrayList<>();
@@ -340,9 +340,9 @@ public class Trabajador {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para mostrar un trabajador mediante llamada a un procedimiento dentro de un paquete
      * @param id
-     * @return
+     * @return un objeto trabajador
      */
     public static Trabajador verTrabajador(int id){
         Trabajador t= new Trabajador();
