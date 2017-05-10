@@ -115,7 +115,7 @@ public class CentroFormularioEdit extends javax.swing.JFrame {
 
         jltitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jltitulo.setText("Nuevo centro");
+        jltitulo.setText("Editar centro");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
