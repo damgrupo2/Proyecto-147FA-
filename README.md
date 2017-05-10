@@ -26,3 +26,4 @@ Existen dos tipos de trabajadores:
 	4.- Iniciar el ejecutable [Proyecto](Proyecto/dist/Proyecto.jar).
 			Si quieres cambiar la ubicación de este archivo debes mover también la carpeta [lib](Proyecto/dist/lib) a la misma carpeta que el ejecutable.
 			Es recomendable que crees un acceso directo por ejemplo a tu escritorio.
+
