@@ -19,11 +19,13 @@ Existen dos tipos de trabajadores:
 
 ##### ¡OJO! El orden de ejecución es importante. #####
 	
-1. Ejecutar el script que se encuentra en la siguiente ruta "MODELO FÍSICO/SCRIPT FISICO.ddl" sobre la base de datos. 
+1. Ejecutar el script que se encuentra en la siguiente ruta "MODELO FÍSICO/SCRIPT FISICO.ddl" sobre la base de datos.
+ 
 	Este script crea las tabla necesarias y la configuración de usuario, contraseña y servidor que va a utilizar la aplicación.
 	Si necesitas cambiar estos datos, puedes consultar [aquí]() como hacerlo.
 2. Ejecutar el script "PL-SQL/Pl-sql FASE 2.sql" de procedimientos sobre la base de datos.
 3. Iniciar el ejecutable Proyecto en Proyecto/dist/Proyecto.jar.
+
 	Si quieres cambiar la ubicación de este archivo debes mover también la carpeta [lib](/blob/master/Proyecto/dist/lib) a la misma carpeta que el ejecutable.
 	Es recomendable que crees un acceso directo por ejemplo a tu escritorio.
 
