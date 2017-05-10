@@ -11,7 +11,7 @@ import oracle.jdbc.OracleTypes;
 
 /**
  *
- * @author Jose
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Centro {
     //variables

@@ -9,7 +9,7 @@ package Modelo;
 
 /**
  *
- * @author 7fbd06
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public enum Categoria {
     Administrativo, Transportista

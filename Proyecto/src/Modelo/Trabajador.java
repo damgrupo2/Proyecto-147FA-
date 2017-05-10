@@ -12,7 +12,7 @@ import oracle.jdbc.OracleTypes;
 
 /**
  *
- * @author 7fbd06
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Trabajador {
     //variables
@@ -26,7 +26,7 @@ public class Trabajador {
     private String telf_personal;
     private Categoria categoria;
     private double salario;
-    private java.sql.Date fechanac;
+    private String fechanac;
     
     //relaciones
     private Centro centro;
@@ -40,7 +40,7 @@ public class Trabajador {
 
     public Trabajador( String dni, String nombre, String ap1, String ap2, 
             String direccion, String telf_empresa, String telf_personal, 
-            Categoria categoria, double salario, java.sql.Date fechanac) {
+            Categoria categoria, double salario, String fechanac) {
         this.dni = dni;
         this.nombre = nombre;
         this.ap1 = ap1;
@@ -142,11 +142,11 @@ public class Trabajador {
         this.salario = salario;
     }
 
-    public Date getFechanac() {
+    public String getFechanac() {
         return fechanac;
     }
 
-    public void setFechanac(java.sql.Date fechanac) {
+    public void setFechanac(String fechanac) {
         this.fechanac = fechanac;
     }
 
@@ -172,8 +172,8 @@ public class Trabajador {
     //métodos
 
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para guardar un trabajador mediante una sentencia preparada
+     * @return true si ha conseguido guardar el parte
      */
         public boolean guardarTrabajador(){
         try {
@@ -190,8 +190,7 @@ public class Trabajador {
             ps.setString(7, telf_personal);
             ps.setString(8, categoria.toString());
             ps.setDouble(9, salario);
-            java.sql.Date f = new java.sql.Date(fechanac.getTime());
-            ps.setDate(10, f);  
+            ps.setString(10, fechanac);  
             ps.setInt(11, centro.getId_centro());
             ps.setString(12, usuario.getUsuario());
             ps.execute();
@@ -204,8 +203,8 @@ public class Trabajador {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para modificar un trabajador mediante una sentencia preparada
+     * @return true si ha conseguido modificar el trabajador
      */
     public boolean modificarTrabajador() {
         try {
@@ -223,7 +222,7 @@ public class Trabajador {
             ps.setString(6, telf_personal);
             ps.setString(7, categoria.toString());
             ps.setDouble(8, salario);
-            ps.setDate(9, fechanac);
+            ps.setString(9, fechanac);
             ps.setString(10, dni);
             ps.setInt(11, id_trabajador);
             ps.executeUpdate();
@@ -236,7 +235,7 @@ public class Trabajador {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para borrar un trabajador mediante una sentencia preparada
      */
     public void borrarTrabajador(){
         try {
@@ -252,8 +251,8 @@ public class Trabajador {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para listar trabajadores mediante llamada a un procedimiento dentro de un paquete
+     * @return lista de trabajadores con dni, nombre, apellidos e id
      */
     public static List<Trabajador> listarTrabajadores(){
         List<Trabajador> trabajadores = new ArrayList<>();
@@ -281,8 +280,8 @@ public class Trabajador {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para listar trabajadores transportistas mediante llamada a un procedimiento dentro de un paquete
+     * @return lista de transportistas con dni, nombre, apellidos e id
      */
     public static List<Trabajador> listarTrabajadoresTrans(){
         List<Trabajador> trabajadores = new ArrayList<>();
@@ -310,9 +309,9 @@ public class Trabajador {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para listar trabajadores según su centro mediante llamada a un procedimiento dentro de un paquete
      * @param id_centro
-     * @return
+     * @return lista de trabajadores con dni, nombre, apellidos e id según su centro
      */
     public static List<Trabajador> listarTrabajadoresCentro(int id_centro){
         List<Trabajador> trabajadores = new ArrayList<>();
@@ -341,9 +340,9 @@ public class Trabajador {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para mostrar un trabajador mediante llamada a un procedimiento dentro de un paquete
      * @param id
-     * @return
+     * @return un objeto trabajador
      */
     public static Trabajador verTrabajador(int id){
         Trabajador t= new Trabajador();
@@ -364,7 +363,7 @@ public class Trabajador {
                 t.setTelf_empresa(rs.getString("TELF_EMPRESA"));
                 t.setTelf_personal(rs.getString("TELF_PERSONAL"));
                 t.setSalario(rs.getDouble("SALARIO"));
-                t.setFechanac(rs.getDate("FECHANAC"));
+                t.setFechanac(rs.getString("FECHANAC"));
                 String categoria =  rs.getString("CATEGORIA");
                 Categoria c = null;
                 switch(categoria){

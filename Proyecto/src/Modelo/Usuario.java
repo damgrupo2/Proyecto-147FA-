@@ -11,7 +11,7 @@ import oracle.jdbc.OracleTypes;
 
 /**
  *
- * @author 7fbd06
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Usuario {
     //variables
@@ -69,8 +69,8 @@ public class Usuario {
     //métodos
 
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para guardar un usuario mediante llamada a un procedimiento dentro de un paquete
+     * @return true si ha conseguido guardar un usuario
      */
         public boolean guardarUsuario() {
         try {
@@ -88,7 +88,7 @@ public class Usuario {
     }
 
     /**
-     *
+     * Método que conecta con la base de datos para modificar un usuario mediante una sentencia preparada
      */
     public void modificarUsuario() {
         try {
@@ -104,15 +104,25 @@ public class Usuario {
     }
 
     /**
-     *
+     * Método que conecta con la base de datos para borrar un usuario mediante una sentencia preparada
      */
     public void borrarUsuario() {
-        //TODO
+        try {
+            ControladorBaseDatos.conectar();
+            PreparedStatement ps = ControladorBaseDatos.getConexion()
+                    .prepareStatement("DELETE FROM VEHICULO WHERE ID_USUARIO=?");
+            ps.setString(1, usuario);
+            ps.execute();
+            ControladorBaseDatos.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha ocurrido un problema \n"+ex.getMessage());
+        }
     }
 
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para conectarse a la aplicación mediante una llamada a un procedimiento en un paquete
+     * A su vez obtiene todos los datos referentes a ese usuario, desde partes, vehiculo, repartos, ...
+     * @return una categoria enumerada, ya sea administrativo o transportista
      */
     public Categoria hacerLogin() {
         Categoria c = null;
@@ -144,7 +154,7 @@ public class Usuario {
                 t.setTelf_empresa(rst.getString("TELF_EMPRESA"));
                 t.setTelf_personal(rst.getString("TELF_PERSONAL"));
                 t.setSalario(rst.getDouble("SALARIO"));
-                t.setFechanac(rst.getDate("FECHANAC"));
+                t.setFechanac(rst.getString("FECHANAC"));
                 String categoria = rst.getString("CATEGORIA");
                 c = null;
                 switch (categoria) {
@@ -210,8 +220,8 @@ public class Usuario {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para listar todos los usuarios mediante una sentencia preparada
+     * @return lista de usuarios con su id
      */
     public static List<Usuario> listarUsuarios(){
         List<Usuario> usuarios = new ArrayList<>();

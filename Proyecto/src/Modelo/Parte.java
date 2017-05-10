@@ -9,17 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.swing.JOptionPane;
-
 import oracle.jdbc.OracleTypes;
 
 
 /**
  *
- * @author 7fbd06
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Parte {
     //variables
@@ -161,7 +157,7 @@ public class Parte {
     }
 
 
-    //BORRAR DESPUES DE LAS PRUEBAS
+  
     public List<Reparto> getRepartos() {
         return repartos;
     }
@@ -210,10 +206,10 @@ public class Parte {
     //métodos
 
     /**
-     *
+     * Método que muestra un parte completo.
      * @param fecha
      * @param idTrabajador
-     * @return
+     * @return Un objeto Parte
      */
         public static Parte verParte(Date fecha, int idTrabajador){
         Parte p = new Parte();
@@ -225,10 +221,10 @@ public class Parte {
             cs.setInt(1, idTrabajador);
             java.sql.Date f = new java.sql.Date(fecha.getTime());
             cs.setDate(2, f);
-            cs.registerOutParameter(3, OracleTypes.CURSOR);     //Cursor parte
-            cs.registerOutParameter(4, OracleTypes.CURSOR);     //Cursor repartos
+            cs.registerOutParameter(3, OracleTypes.CURSOR);     
+            cs.registerOutParameter(4, OracleTypes.CURSOR);    
             cs.execute();
-            ResultSet rsp = (ResultSet)cs.getObject(3);         //Cursor parte
+            ResultSet rsp = (ResultSet)cs.getObject(3);         
             while (rsp.next()) {
                 p.fecha = rsp.getDate("FECHA");
                 p.kmInicio = rsp.getDouble("KM_INICIO");
@@ -243,9 +239,9 @@ public class Parte {
                 p.excesoHoras = rsp.getDouble("EXCESO_HORAS");
                 vehiculoSt= new Vehiculo();
                 vehiculoSt.setIdVehiculo(rsp.getInt("ID_VEHICULO"));
-                //p.setVehiculo(vehiculoSt);
+                
             }
-            ResultSet rsr = (ResultSet)cs.getObject(4);         //Cursor repartos
+            ResultSet rsr = (ResultSet)cs.getObject(4);         
             while (rsr.next()) {
                 java.util.Date fechaR = rsr.getDate("FECHA");
                 String albaran = rsr.getString("ALBARAN");
@@ -262,13 +258,14 @@ public class Parte {
         return p;
     }
     
-    //Antes de llamar a esta función hay que haber asignado vehiculo,trabajador y repartos al parte
+    
 
     /**
-     *
+     * Método que guarda un parte en la base de datos mediante una sentencia preparada.
+     * Antes de llamar a esta función hay que haber asignado vehiculo,trabajador y repartos al parte
      * @param id_trabajador
      * @param id_vehiculo
-     * @return
+     * @return true si el guardar se ha realizado correctamente.
      * @throws SQLException
      */
         public boolean guardarParte(int id_trabajador, int id_vehiculo) throws SQLException{
@@ -295,7 +292,7 @@ public class Parte {
             ps.setBoolean(12, false);
             ps.execute();
             
-            //Guardar repartos
+            
             for(Reparto r:repartos){
                 PreparedStatement psr = con
                         .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
@@ -323,10 +320,10 @@ public class Parte {
     }
     
     /**
-     *
+     * Método que actualiza el parte seleccionado en la ventana mediante una sentencia preparada.
      * @param id_trabajador
      * @param id_vehiculo
-     * @return
+     * @return true si la actualización ha sido realizada correctamente
      * @throws SQLException
      */
     public boolean actualizarParte(int id_trabajador, int id_vehiculo) throws SQLException{
@@ -350,7 +347,7 @@ public class Parte {
             ps.setInt(10, id_trabajador);
             ps.executeUpdate();
             
-            //Guardar repartos
+           
             for(Reparto r:repartos){
                 PreparedStatement psp = con
                         .prepareStatement("SELECT ALBARAN FROM REPARTO WHERE ALBARAN=?");
@@ -389,8 +386,8 @@ public class Parte {
     }
     
     /**
-     *
-     * @return
+     * Método que cierra un parte.
+     * @return true si el parte se ha cerrado correctamente.
      */
     public boolean cerrarParte(){
         try {
@@ -410,8 +407,8 @@ public class Parte {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para obtener todos los partes
+     * @return lista de partes con id del trabajador, nombre, apellidos, fecha del parte, horas totales y si está abierto o no 
      */
     public static ArrayList<Parte> todosPartes(){
         ArrayList<Parte> partes = new ArrayList<>();
@@ -443,10 +440,10 @@ public class Parte {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para obtener una lista de partes en un rango de fechas
      * @param fechaIni
      * @param fechaFin
-     * @return
+     * @return lista de partes segun un rango de fechas
      */
     public static ArrayList<Parte> todosPartesFecha(java.util.Date fechaIni,java.util.Date fechaFin){
         ArrayList<Parte> partes = new ArrayList<>();
@@ -482,11 +479,11 @@ public class Parte {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para obtener una lista de partes en un rango de fechas y según un trabajador
      * @param fechaIni
      * @param fechaFin
      * @param id
-     * @return
+     * @return lista de partes segun un rango de fechas y trabajador
      */
     public static ArrayList<Parte> todosPartesFechaTra(java.util.Date fechaIni,java.util.Date fechaFin,int id){
         ArrayList<Parte> partes = new ArrayList<>();
@@ -523,8 +520,8 @@ public class Parte {
     }
     
     /**
-     *
-     * @return
+     * Método que el administrativo utiliza para validar los partes
+     * @return true si ha conseguido validar el parte
      */
     public boolean validarParte(){
         try {
@@ -544,10 +541,10 @@ public class Parte {
     }
     
     /**
-     *
+     * Método que borra un parte 
      * @param id_trabajador
      * @param fecha
-     * @return
+     * @return true si ha conseguido borrar el parte
      */
     public static boolean borrarParte(int id_trabajador,Date fecha){
         try {
