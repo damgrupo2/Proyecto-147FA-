@@ -81,7 +81,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jmTodos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ver todos los partes"/>
+                <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de partes"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmTodosActionPerformed"/>
@@ -89,12 +89,27 @@
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem4">
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jmenuvehiculo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Vehiculos"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jmguardarVE">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar parte"/>
+                <Property name="text" type="java.lang.String" value="Guardar Veh&#xed;culo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItem4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmguardarVEActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmverVE">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ver todos los veh&#xed;culos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmverVEActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -28,7 +28,8 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private Trabajador t = Modelo.Usuario.getT();
     private TodosLosPartes tp;
     private int id;
-    
+    private VehiculoFormulario vf;
+    private VehiculoListado vl;
     /** Creates new form AdministrativoHome */
     
     public AdministrativoHome() {
@@ -72,7 +73,9 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jmTodos = new javax.swing.JCheckBoxMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
+        jmenuvehiculo = new javax.swing.JMenu();
+        jmguardarVE = new javax.swing.JMenuItem();
+        jmverVE = new javax.swing.JMenuItem();
 
         jCheckBoxMenuItem2.setSelected(true);
         jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
@@ -160,7 +163,7 @@ public class AdministrativoHome extends javax.swing.JFrame {
 
         jMenu3.setText("Partes");
 
-        jmTodos.setText("Ver todos los partes");
+        jmTodos.setText("Gestión de partes");
         jmTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmTodosActionPerformed(evt);
@@ -169,15 +172,27 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jMenu3.add(jmTodos);
         jMenu3.add(jSeparator1);
 
-        jCheckBoxMenuItem4.setText("Buscar parte");
-        jCheckBoxMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(jMenu3);
+
+        jmenuvehiculo.setText("Vehiculos");
+
+        jmguardarVE.setText("Guardar Vehículo");
+        jmguardarVE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem4ActionPerformed(evt);
+                jmguardarVEActionPerformed(evt);
             }
         });
-        jMenu3.add(jCheckBoxMenuItem4);
+        jmenuvehiculo.add(jmguardarVE);
 
-        jMenuBar1.add(jMenu3);
+        jmverVE.setText("Ver todos los vehículos");
+        jmverVE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmverVEActionPerformed(evt);
+            }
+        });
+        jmenuvehiculo.add(jmverVE);
+
+        jMenuBar1.add(jmenuvehiculo);
 
         setJMenuBar(jMenuBar1);
 
@@ -244,10 +259,6 @@ public class AdministrativoHome extends javax.swing.JFrame {
         tp.setVisible(true);
     }//GEN-LAST:event_jmTodosActionPerformed
 
-    private void jCheckBoxMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMenuItem4ActionPerformed
-
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int fila = jTable1.getSelectedRow();
         id = Integer.parseInt(dm.getValueAt(fila,0).toString());
@@ -263,6 +274,16 @@ public class AdministrativoHome extends javax.swing.JFrame {
             recargarTabla();
         }
     }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void jmguardarVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmguardarVEActionPerformed
+        vf=new VehiculoFormulario();
+        vf.setVisible(true);
+    }//GEN-LAST:event_jmguardarVEActionPerformed
+
+    private void jmverVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmverVEActionPerformed
+        vl=new VehiculoListado();
+        vl.setVisible(true);
+    }//GEN-LAST:event_jmverVEActionPerformed
 
     
     
@@ -304,7 +325,6 @@ public class AdministrativoHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -324,6 +344,9 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmNuevoUsu;
     private javax.swing.JCheckBoxMenuItem jmTodos;
     private javax.swing.JMenuItem jmTrabaCentro;
+    private javax.swing.JMenu jmenuvehiculo;
+    private javax.swing.JMenuItem jmguardarVE;
+    private javax.swing.JMenuItem jmverVE;
     // End of variables declaration//GEN-END:variables
 
 }
