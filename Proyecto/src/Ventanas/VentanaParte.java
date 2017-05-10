@@ -69,6 +69,9 @@ public class VentanaParte extends javax.swing.JFrame {
     public void setPRell(Parte p){
         this.p = p;
         rellenarForm();
+        jbGuardar.setEnabled(false);
+        jbUpdate.setEnabled(true);
+        
     }
 
     public void setT(Trabajador t) {
@@ -77,6 +80,7 @@ public class VentanaParte extends javax.swing.JFrame {
     
     public void rellenarForm(){
         if(p.getFecha()!=null){
+            
             Double kmINI = p.getKmInicio();
             String kmINi = kmINI.toString();
             jtKmIni.setText(kmINi);
@@ -106,8 +110,8 @@ public class VentanaParte extends javax.swing.JFrame {
 
     public VentanaParte() {
         initComponents();
-        jbGuardar.setEnabled(false);
-        jbUpdate.setEnabled(true);
+        jbUpdate.setEnabled(false);
+        jbGuardar.setEnabled(true);
         
     }
 
@@ -444,6 +448,12 @@ public class VentanaParte extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
+        //if(null==t){
+           // t.setId_trabajador(id);
+        //}
+        Trabajador j=new Trabajador();
+        j.setId_trabajador(id);
+        p.setTrabajador(j);
         boolean correcto = p.cerrarParte();
         if(correcto){
             jlAviso.setText("Parte cerrado correctamente");

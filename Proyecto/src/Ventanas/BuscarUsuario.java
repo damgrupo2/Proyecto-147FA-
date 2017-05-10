@@ -19,6 +19,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
     private static List<Modelo.Usuario> usuarios;
     private static Modelo.Usuario u;
     private TrabajadorFormulario tf;
+    private TrabajadorFormularioEdit tfe;
 
     /**
      * Creates new form BuscarVehiculo
@@ -169,4 +170,10 @@ public class BuscarUsuario extends javax.swing.JFrame {
     void setTf(TrabajadorFormulario tf) {
         this.tf=tf;
     }
+
+    public void setTfe(TrabajadorFormularioEdit tfe) {
+        this.tfe = tfe;
+    }
+    
+    
 }

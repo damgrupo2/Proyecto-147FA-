@@ -11,7 +11,7 @@ import oracle.jdbc.OracleTypes;
 
 /**
  *
- * @author Jose
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Centro {
     //variables
@@ -115,9 +115,9 @@ public class Centro {
     //métodos
 
     /**
-     *
+     * Método que muestra los detalles de un solo centro.
      * @param id
-     * @return
+     * @return Centro
      */
         public static Centro verCentro(int id){
         Centro c= null;
@@ -146,8 +146,8 @@ public class Centro {
     }
     
     /**
-     *
-     * @return
+     * Método que muestra una lista de todos los centros pero con sólo 3 datos. 
+     * @return lista de centros con nombre, id y localidad
      */
     public static List<Centro> listarCentros(){
         List<Centro> centros = new ArrayList<>();
@@ -173,8 +173,8 @@ public class Centro {
     }
 
     /**
-     *
-     * @return
+     * Método que guarda un centro en la base de datos mediante una sentencia preparada.
+     * @return true si el centro se ha guardado correctamente.
      */
     public boolean guardarCentro(){
         try {
@@ -199,8 +199,8 @@ public class Centro {
     }
 
     /**
-     *
-     * @return
+     * Método que modifica un centro en la base de datos mediante una sentencia preparada.
+     * @return true si el centro se ha modificado correctamente.
      */
     public boolean modificarCentro(){
         try {
@@ -225,7 +225,7 @@ public class Centro {
     }
 
     /**
-     *
+     * Método que borra un centro en la base de datos mediante una sentencia preparada.
      */
     public void borrarCentro(){
         try {

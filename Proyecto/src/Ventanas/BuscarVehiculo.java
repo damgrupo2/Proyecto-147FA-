@@ -19,7 +19,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private static List<Modelo.Vehiculo> vehiculos;
     private static Modelo.Vehiculo v;
     private VentanaParte vp;
-
+    private VentanaParteAdminis vpa;
     /**
      * Creates new form BuscarVehiculo
      */
@@ -31,6 +31,12 @@ public class BuscarVehiculo extends javax.swing.JFrame {
             model.insertRow(model.getRowCount(), new Object[]{v.getIdVehiculo(),v.getMatricula(),v.getModelo(),v.getMarca()});
         }
     }
+
+    public void setVpa(VentanaParteAdminis vpa) {
+        this.vpa = vpa;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

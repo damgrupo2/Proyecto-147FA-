@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 7fbd06
+ * @author Grupo 2 (Jose, Usue, David)
  */
 public class Vehiculo {
     //variables
@@ -74,8 +74,8 @@ public class Vehiculo {
     //métodos
 
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para guardar un vehículo mediante una sentencia preparada
+     * @return true si ha conseguido guardar el vehículo
      */
         public boolean guardarVehiculo (){
         try {
@@ -95,8 +95,8 @@ public class Vehiculo {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para modificar un vehículo mediante una sentencia preparada
+     * @return true si ha conseguido modificar el vehículo
      */
     public boolean modificarVehiculo() {
         try {
@@ -118,9 +118,9 @@ public class Vehiculo {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para ver un vehículo mediante una sentencia preparada
      * @param id
-     * @return
+     * @return un objeto del tipo Vehiculo con matrícula, modelo y marca
      */
     public static Vehiculo verVehiculo(int id){
         Vehiculo v= new Vehiculo();
@@ -143,8 +143,8 @@ public class Vehiculo {
     }
     
     /**
-     *
-     * @return
+     * Método que conecta con la base de datos para ver todos los vehículos mediante una sentencia preparada
+     * @return lista de vehiculos con matrícula, modelo y marca
      */
     public static List<Vehiculo> listarVehiculos(){
         List<Vehiculo> vehiculos = new ArrayList<>();
@@ -169,7 +169,7 @@ public class Vehiculo {
     }
     
     /**
-     *
+     * Método que conecta con la base de datos para borrar un vehículo mediante una sentencia preparada
      */
     public void borrarVehiculo(){
         try {

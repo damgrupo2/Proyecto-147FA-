@@ -20,6 +20,7 @@ public class VentanaReparto extends javax.swing.JFrame {
     private SpinnerDateModel sm;
     private SpinnerDateModel sm3;
     private VentanaParte vp;
+    private VentanaParteAdminis vpa;
 
     public void setVp(VentanaParte vp) {
         this.vp = vp;
@@ -31,6 +32,12 @@ public class VentanaReparto extends javax.swing.JFrame {
         initComponents();
 
     }
+
+    public void setVpa(VentanaParteAdminis vpa) {
+        this.vpa = vpa;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
