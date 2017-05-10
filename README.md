@@ -23,9 +23,9 @@ Existen dos tipos de trabajadores:
  
 	Este script crea las tabla necesarias y la configuración de usuario, contraseña y servidor que va a utilizar la aplicación.
 	Si necesitas cambiar estos datos, puedes consultar [aquí]() como hacerlo.
-2. Ejecutar el script "PL-SQL/Pl-sql FASE 2.sql" de procedimientos sobre la base de datos.
-3. Iniciar el ejecutable Proyecto en Proyecto/dist/Proyecto.jar.
+2. Ejecutar el script _PL-SQL/Pl-sql FASE 2.sql_ de procedimientos sobre la base de datos.
+3. Iniciar el ejecutable _Proyecto_ en Proyecto/dist/Proyecto.jar.
 
-	Si quieres cambiar la ubicación de este archivo debes mover también la carpeta [lib](/blob/master/Proyecto/dist/lib) a la misma carpeta que el ejecutable.
+	Si quieres cambiar la ubicación de este archivo debes mover también la carpeta _lib_ en Proyecto/dist a la misma carpeta que el ejecutable.
 	Es recomendable que crees un acceso directo por ejemplo a tu escritorio.
 
