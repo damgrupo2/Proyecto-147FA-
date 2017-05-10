@@ -14,6 +14,7 @@ public class BuscarCentro extends javax.swing.JFrame {
     private static List<Modelo.Centro> centros;
     private static Modelo.Centro c;
     private TrabajadorFormulario tf;
+    private TrabajadorFormularioEdit tfe;
 
     /**
      * Creates new form BuscarCentro
@@ -158,4 +159,10 @@ public class BuscarCentro extends javax.swing.JFrame {
     void setTf(TrabajadorFormulario tf) {
         this.tf=tf;
     }
+
+    public void setTfe(TrabajadorFormularioEdit tfe) {
+        this.tfe = tfe;
+    }
+    
+    
 }

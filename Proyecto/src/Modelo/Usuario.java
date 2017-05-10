@@ -144,7 +144,7 @@ public class Usuario {
                 t.setTelf_empresa(rst.getString("TELF_EMPRESA"));
                 t.setTelf_personal(rst.getString("TELF_PERSONAL"));
                 t.setSalario(rst.getDouble("SALARIO"));
-                t.setFechanac(rst.getDate("FECHANAC"));
+                t.setFechanac(rst.getString("FECHANAC"));
                 String categoria = rst.getString("CATEGORIA");
                 c = null;
                 switch (categoria) {
