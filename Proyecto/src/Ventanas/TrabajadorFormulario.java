@@ -251,7 +251,7 @@ public class TrabajadorFormulario extends javax.swing.JFrame {
                                             .addComponent(jLabel9)
                                             .addGap(18, 18, 18)
                                             .addComponent(jtfechanacimiento))))))
-                        .addGap(0, 719, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
