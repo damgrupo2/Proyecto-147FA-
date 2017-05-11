@@ -151,11 +151,11 @@ En la tabla inferior se muestra un listado con los trabajadores de ese centro.
 
 Se muestran los datos referentes a ese centro.
 
-** Editar
+	* Editar
 
 Se abre un nuevo formulario que permite hacer los cambios necesarios y guardarlos.
 
-** Borrar
+	* Borrar
 
 Se borra el centro seleccionado.
 
