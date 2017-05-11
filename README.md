@@ -191,7 +191,7 @@ Seleccionamos en la tabla el trabajador a consultar y pulsamos una de las opcion
 
   * Ver detalle
 
-![Ventana trabajador detalle](Imágenes/Imágenes/trabajadordetalle.JPG)
+![Ventana trabajador detalle](Imágenes/trabajadordetalle.JPG)
 
 Se muestran los datos referentes a ese trabajador.
 
