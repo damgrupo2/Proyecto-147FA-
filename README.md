@@ -12,9 +12,9 @@ Está aplicación está diseñada para su uso en una empresa de transportes. Per
 
 [Uso de la aplicación](#uso-de-la-aplicación)
 
-	[Transportista](#transportista)
+[Uso como transportista](#transportista)
 	
-	[Administrativo](#administrativo)
+[Uso como administrativo](#administrativo)
 
 ## ¿Cómo funciona? ##
 
