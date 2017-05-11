@@ -169,7 +169,7 @@ Se borra el centro seleccionado.
 
 ![Ventana guardar trabajador](Imágenes/trabajadorformulario.JPG)
 
-Antes de añadir un trabajador es necesario haber insertado el [centro]() al que pertenece y el [usuario]().
+Antes de añadir un trabajador es necesario haber insertado el [centro](#centros--nuevo-centro) al que pertenece y el [usuario]().
 
 Para asignar el centro al que pertenece pulsamos en buscar y se abrirá la ventana _Buscar centro_.
 
@@ -183,12 +183,41 @@ Para asignar un usuario pulsamos en buscar y se abrirá la ventana _Buscar usuar
 
 Seleccionamos en la tabla el usuario y pulsamos guardar.
 
+#### Trabajadores / Listar trabajadores ####
 
+![Ventana listar trabajadores](Imágenes/trabajadorlistado.JPG)
 
+Seleccionamos en la tabla el trabajador a consultar y pulsamos una de las opciones:
 
+  * Ver detalle
 
+![Ventana trabajador detalle](Imágenes/Imágenes/trabajadordetalle.JPG.JPG)
 
+Se muestran los datos referentes a ese trabajador.
 
+  * Editar
+
+Se abre un nuevo formulario que permite hacer los cambios necesarios y guardarlos.
+
+  * Borrar
+
+Se borra el trabajador seleccionado.
+
+#### Trabajadores / Nuevo usuario ####
+
+![Ventana guardar usuario](Imágenes/usuarioformulario.JPG)
+
+Rellenamos el formulario y pulsamos guardar.
+
+![Ventana buscar centro](Imágenes/buscarcentro.JPG)
+
+Marcamos en la tabla el centro elegido y pulsamos _Guardar_.
+
+Para asignar un usuario pulsamos en buscar y se abrirá la ventana _Buscar usuario_.
+
+![Ventana buscar usuario](Imágenes/buscarusuario.JPG)
+
+Seleccionamos en la tabla el usuario y pulsamos guardar.
 
 
 
