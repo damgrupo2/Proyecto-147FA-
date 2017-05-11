@@ -41,6 +41,12 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
         jtfechanacimiento.setText(tra.getFechanac());
         jcCategoria.addItem(Categoria.Administrativo);
         jcCategoria.addItem(Categoria.Transportista);
+        jidcentro.setText(String.valueOf(tra.getCentro().getId_centro()));
+        jusuario.setText(tra.getUsuario().getUsuario());
+    }
+    
+    public void setJidcentro(String id) {
+        this.jidcentro.setText(id);
     }
     
     /**
@@ -374,6 +380,9 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
         bu.setVisible(true);
     }//GEN-LAST:event_jbuscarboton1ActionPerformed
 
+    void setjusuario(String ids) {
+       jusuario.setText(ids);
+    }
     /**
      * @param args the command line arguments
      */
