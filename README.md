@@ -81,7 +81,7 @@ public static void conectar(){
 
 La aplicación se inicia en la ventana login. 
 
-![Ventana de login](imágenes/login.jpg)
+![Ventana de login](Imágenes/login.JPG)
 
 Si es la primera vez que la utilizas, usa las siguientes credenciales para iniciar sesión:
 
