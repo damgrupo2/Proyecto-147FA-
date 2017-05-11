@@ -10,6 +10,12 @@ Está aplicación está diseñada para su uso en una empresa de transportes. Per
 
 [Configuración](#configuración)
 
+[Uso de la aplicación](#uso-de-la-aplicación)
+
+	* [Transportista](#transportista)
+	
+	* [Administrativo](#administrativo)
+
 ## ¿Cómo funciona? ##
 
 Existen dos tipos de trabajadores:
@@ -129,19 +135,19 @@ En caso de que exista algún aviso se mostrará en el cuadro. Una vez leído se 
 
 En el menú podemos elegir la acción que queremos realizar.
 
-* Centros / Nuevo centro
+#### Centros / Nuevo centro ####
 
 ![Ventana nuevo centro](Imágenes/centroformulario.JPG)
 
 Una vez rellenado el formulario pulsamos en _Guardar_.
 
-* Centros / Listado centros
+#### Centros / Listado centros ####
 
 ![Ventana Listado centros](Imágenes/centrolistado.JPG)
 
 Seleccionamos en la tabla el centro a consultar y pulsamos una de las opciones:
 
-    * Ver trabajadores
+  * Ver trabajadores
 
 En la tabla inferior se muestra un listado con los trabajadores de ese centro.
 
@@ -159,13 +165,23 @@ Se abre un nuevo formulario que permite hacer los cambios necesarios y guardarlo
 
 Se borra el centro seleccionado.
 
-* Trabajadores / Nuevo trabajador
+#### Trabajadores / Nuevo trabajador ####
 
+![Ventana guardar trabajador](Imágenes/trabajadorformulario.JPG)
 
+Antes de añadir un trabajador es necesario haber insertado el [centro]() al que pertenece y el [usuario]().
 
+Para asignar el centro al que pertenece pulsamos en buscar y se abrirá la ventana _Buscar centro_.
 
+![Ventana buscar centro](Imágenes/buscarcentro.JPG)
 
+Marcamos en la tabla el centro elegido y pulsamos _Guardar_.
 
+Para asignar un usuario pulsamos en buscar y se abrirá la ventana _Buscar usuario_.
+
+![Ventana buscar usuario](Imágenes/buscarusuario.JPG)
+
+Seleccionamos en la tabla el usuario y pulsamos guardar.
 
 
 
