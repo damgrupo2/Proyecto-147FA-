@@ -3,8 +3,11 @@
 Está aplicación está diseñada para su uso en una empresa de transportes. Permite la gestión de centros de trabajo, vehículos, trabajadores y partes.
 
 [¿Cómo funciona?](#cómo-funciona)
+
 [Requisitos](#requisitos)
+
 [Pasos para la instalación](#pasos-para-la-instalación)
+
 [Configuración](#configuración)
 
 ## ¿Cómo funciona? ##
@@ -76,3 +79,13 @@ public static void conectar(){
 
 ## Uso de la aplicación ##
 
+La aplicación se inicia en la ventana login. 
+
+![Ventana de login](/imágenes/login.jpg)
+
+Si es la primera vez que la utilizas, usa las siguientes credenciales para iniciar sesión:
+
+    Usuario: admin
+	Contraseña: aaaaa
+	
+Una vez dados de alta los usuarios, cada uno utilizará sus propias credenciales. También es recomendable borrar este usuario y sus datos relacionados. Puedes ver cómo hacerlo [aquí]().
