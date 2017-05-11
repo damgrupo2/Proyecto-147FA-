@@ -131,7 +131,7 @@ En el menú podemos elegir la acción que queremos realizar.
 
 * Centros / Nuevo centro
 
-![Ventana nuevo centro](Imágenes/centroformuario.JPG)
+![Ventana nuevo centro](Imágenes/centroformulario.JPG)
 
 Una vez rellenado el formulario pulsamos en _Guardar_.
 
@@ -141,11 +141,11 @@ Una vez rellenado el formulario pulsamos en _Guardar_.
 
 Seleccionamos en la tabla el centro a consultar y pulsamos una de las opciones:
 
-** Ver trabajadores
+	* Ver trabajadores
 
 En la tabla inferior se muestra un listado con los trabajadores de ese centro.
 
-** Ver detalle
+	* Ver detalle
 
 ![Ventana centro detalle](Imágenes/centrodetalle.JPG)
 
