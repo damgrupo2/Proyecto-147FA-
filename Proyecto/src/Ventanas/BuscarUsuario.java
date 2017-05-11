@@ -111,7 +111,13 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             String ids = String.valueOf(u.getUsuario());
-            tf.setjusuario(ids);
+            if(tf!=null){
+                tf.setjusuario(ids);
+            }
+            if(tfe!=null){
+                tfe.setjusuario(ids);
+            }
+            
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

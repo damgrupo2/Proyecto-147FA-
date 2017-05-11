@@ -41,6 +41,12 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
         jtfechanacimiento.setText(tra.getFechanac());
         jcCategoria.addItem(Categoria.Administrativo);
         jcCategoria.addItem(Categoria.Transportista);
+        jidcentro.setText(String.valueOf(tra.getCentro().getId_centro()));
+        jusuario.setText(tra.getUsuario().getUsuario());
+    }
+    
+    public void setJidcentro(String id) {
+        this.jidcentro.setText(id);
     }
     
     /**
@@ -309,8 +315,7 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jtfechanacimiento))
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlAviso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -322,7 +327,8 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(jusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbuscarboton1))))
+                            .addComponent(jbuscarboton1)))
+                    .addComponent(jButton1))
                 .addGap(16, 16, 16))
         );
 
@@ -374,6 +380,9 @@ public class TrabajadorFormularioEdit extends javax.swing.JFrame {
         bu.setVisible(true);
     }//GEN-LAST:event_jbuscarboton1ActionPerformed
 
+    void setjusuario(String ids) {
+       jusuario.setText(ids);
+    }
     /**
      * @param args the command line arguments
      */
