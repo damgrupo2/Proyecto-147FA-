@@ -270,6 +270,7 @@ public class Trabajador {
                 t.setAp1(rs.getString("AP1"));
                 t.setAp2(rs.getString("AP2"));
                 t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+               
                 trabajadores.add(t);
             }
             ControladorBaseDatos.desconectar();

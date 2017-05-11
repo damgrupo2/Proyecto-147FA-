@@ -198,7 +198,10 @@ public class CentroListado extends javax.swing.JFrame {
     }//GEN-LAST:event_jbDetalleActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
-        // TODO borrar centro
+       Centro c= new Centro();
+       c.setId_centro(id);
+       c.borrarCentro();
+                          
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     /**

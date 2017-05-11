@@ -30,6 +30,7 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private int id;
     private VehiculoFormulario vf;
     private VehiculoListado vl;
+    private UsuarioFormulario uf;
     /** Creates new form AdministrativoHome */
     
     public AdministrativoHome() {
@@ -69,7 +70,6 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jmListarTrab = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jmNuevoUsu = new javax.swing.JMenuItem();
-        jmDetalleUsu = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmTodos = new javax.swing.JCheckBoxMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -154,10 +154,12 @@ public class AdministrativoHome extends javax.swing.JFrame {
         jMenu2.add(jSeparator2);
 
         jmNuevoUsu.setText("Nuevo usuario");
+        jmNuevoUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmNuevoUsuActionPerformed(evt);
+            }
+        });
         jMenu2.add(jmNuevoUsu);
-
-        jmDetalleUsu.setText("Detalle usuario");
-        jMenu2.add(jmDetalleUsu);
 
         jMenuBar1.add(jMenu2);
 
@@ -184,7 +186,7 @@ public class AdministrativoHome extends javax.swing.JFrame {
         });
         jmenuvehiculo.add(jmguardarVE);
 
-        jmverVE.setText("Ver todos los vehículos");
+        jmverVE.setText("Listado de  vehículos");
         jmverVE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmverVEActionPerformed(evt);
@@ -285,6 +287,11 @@ public class AdministrativoHome extends javax.swing.JFrame {
         vl.setVisible(true);
     }//GEN-LAST:event_jmverVEActionPerformed
 
+    private void jmNuevoUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNuevoUsuActionPerformed
+        uf=new UsuarioFormulario();
+        uf.setVisible(true);
+    }//GEN-LAST:event_jmNuevoUsuActionPerformed
+
     
     
     
@@ -337,7 +344,6 @@ public class AdministrativoHome extends javax.swing.JFrame {
     private javax.swing.JButton jbBorrar;
     private javax.swing.JLabel jlAviso;
     private javax.swing.JLabel jltitulo;
-    private javax.swing.JMenuItem jmDetalleUsu;
     private javax.swing.JMenuItem jmListarTrab;
     private javax.swing.JMenuItem jmNuevoCen;
     private javax.swing.JMenuItem jmNuevoTrab;
