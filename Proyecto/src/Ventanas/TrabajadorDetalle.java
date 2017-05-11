@@ -35,7 +35,7 @@ public class TrabajadorDetalle extends javax.swing.JFrame {
         jlCategoria.setText(categoria);
         jlDireccion.setText(t.getDireccion());
         jlDni.setText(t.getDni());
-        jlFecha.setText(t.getFechanac().toString());
+        jlFecha.setText(t.getFechanac());
         jlNombre.setText(t.getNombre());
         Double salario = t.getSalario();
         String salarioS = salario.toString();
