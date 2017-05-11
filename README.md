@@ -89,3 +89,95 @@ Si es la primera vez que la utilizas, usa las siguientes credenciales para inici
 	Contraseña: aaaaa
 	
 Una vez dados de alta los usuarios, cada uno utilizará sus propias credenciales. También es recomendable borrar este usuario y sus datos relacionados. Puedes ver cómo hacerlo [aquí]().
+
+Dependiendo de si el usuario es _Transportista_ o _Administrativo_ se iniciará la ventana correspondiente.
+
+### Transportista ###
+
+En el caso de _Transportista_ se inicia la ventana _Parte_.
+
+![Ventana parte](Imágenes/ventanaparte.JPG)
+
+Aquí nos encontramos dos opciones:
+
+* Nuevo parte. El formulario aparece vacío.
+* Parte abierto. El formulario aparece completado con los datos que hemos guardado previamente.
+
+Para añadir un vehículo pulsamos en el botón _Buscar_ y aparecerá la ventana _Buscar vehículo_.
+
+![Ventana vehículo](Imágenes/buscarvehiculo.JPG)
+
+Seleccionamos el vehículo pinchando en la tabla y a continuación en _Guardar_. Se cerrará esta ventana y volveremos a la anterior.
+
+Para añadir repartos pulsamos el botón _Añadir reparto_ y aparecerá la ventana _Reparto_.
+
+![Ventana reparto](Imágenes/ventanareparto.JPG)
+
+Elegimos la hora de inicio y la hora de fin, escribimos el número de albarán y pulsamos en _Guardar_. 
+
+En caso de equivocación pinchamos en el reparto correspondiente en la tabla y pulsamos en _Borrar reparto_.
+
+Podemos guardar el parte para continuar más tarde en _Guardar_ o cerrarlo definitivamente en _Cerrar parte_.
+
+### Administrativo ###
+
+En el caso de _Administrativo_ se inicia la ventana _Administrativo Home_.
+
+![Ventana Administrativo Home] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
