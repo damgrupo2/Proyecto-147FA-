@@ -28,6 +28,8 @@ Está aplicación está diseñada para su uso en una empresa de transportes. Per
 	
 	- [Nuevo vehículo](#vehículos--nuevo-vehículo)
 	
+	- [Listar vehículos](#vehículos--listar-vehículos)
+	
 	- [Gestión de partes](#partes--gestión-de-partes)
 
 
