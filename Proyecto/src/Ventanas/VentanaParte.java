@@ -113,6 +113,7 @@ public class VentanaParte extends javax.swing.JFrame {
         jbUpdate.setEnabled(false);
         jbGuardar.setEnabled(true);
         
+        
     }
 
     /**
@@ -439,7 +440,7 @@ public class VentanaParte extends javax.swing.JFrame {
         p.setFecha(fecha);
         boolean correcto=false;
         try {
-            correcto = p.guardarParte(id,Integer.parseInt(jtVehiculo.getText()));
+            correcto = p.guardarParte(t.getId_trabajador(),Integer.parseInt(jtVehiculo.getText()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());        }
         if(correcto){
@@ -448,12 +449,7 @@ public class VentanaParte extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
-        //if(null==t){
-           // t.setId_trabajador(id);
-        //}
-        Trabajador j=new Trabajador();
-        j.setId_trabajador(id);
-        p.setTrabajador(j);
+       t = Modelo.Usuario.getT();
         boolean correcto = p.cerrarParte();
         if(correcto){
             jlAviso.setText("Parte cerrado correctamente");

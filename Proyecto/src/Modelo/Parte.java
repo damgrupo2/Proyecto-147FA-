@@ -393,10 +393,11 @@ public class Parte {
         try {
             ControladorBaseDatos.conectar();
             PreparedStatement ps = ControladorBaseDatos.getConexion()
-                    .prepareStatement("UPDATE PARTE SET ABIERTO=0 WHERE FECHA=? AND ID_TRABAJADOR =?");
+                    .prepareStatement("UPDATE PARTE SET ABIERTO=0 WHERE FECHA=? AND ID_TRABAJADOR=?");
             java.sql.Date sqlr = new java.sql.Date(fecha.getTime());
             ps.setDate(1, sqlr);
             ps.setInt(2, trabajador.getId_trabajador());
+            
             ps.executeUpdate();
             ControladorBaseDatos.desconectar();
             return true;
