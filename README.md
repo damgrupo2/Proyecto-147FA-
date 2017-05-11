@@ -141,21 +141,21 @@ Una vez rellenado el formulario pulsamos en _Guardar_.
 
 Seleccionamos en la tabla el centro a consultar y pulsamos una de las opciones:
 
-	* Ver trabajadores
+  * Ver trabajadores
 
 En la tabla inferior se muestra un listado con los trabajadores de ese centro.
 
-	* Ver detalle
+  * Ver detalle
 
 ![Ventana centro detalle](Imágenes/centrodetalle.JPG)
 
 Se muestran los datos referentes a ese centro.
 
-	* Editar
+  * Editar
 
 Se abre un nuevo formulario que permite hacer los cambios necesarios y guardarlos.
 
-	* Borrar
+  * Borrar
 
 Se borra el centro seleccionado.
 
