@@ -211,6 +211,8 @@ Rellenamos el formulario y pulsamos guardar.
 
 ![Ventana buscar centro](Imágenes/buscarcentro.JPG)
 
+Para asignar un centro pulsamos en buscar y se abrirá la ventana _Buscar centro_.
+
 Marcamos en la tabla el centro elegido y pulsamos _Guardar_.
 
 Para asignar un usuario pulsamos en buscar y se abrirá la ventana _Buscar usuario_.
@@ -219,18 +221,61 @@ Para asignar un usuario pulsamos en buscar y se abrirá la ventana _Buscar usuar
 
 Seleccionamos en la tabla el usuario y pulsamos guardar.
 
+#### Vehículos / Nuevo vehículo ####
 
+![Ventana guardar vehículo](Imágenes/vehiculoformulario.JPG)
 
+Rellenamos el formulario y pulsamos guardar.
 
+#### Vehículos / Listar vehículos ####
 
+![Ventana listar vehículos](Imágenes/vehiculolistado.JPG)
 
+Seleccionamos en la tabla el vehículo a consultar y pulsamos una de las opciones:
 
+  * Ver detalle
 
+![Ventana vehiculo detalle](Imágenes/vehiculodetalle.JPG)
 
+Se muestran los datos referentes a ese vehiculo.
 
+  * Editar
 
+Se abre un nuevo formulario que permite hacer los cambios necesarios y guardarlos.
 
+  * Borrar
 
+Se borra el vehiculo seleccionado.
+
+#### Partes / Gestión de partes ####
+
+![Ventana gestión partes](Imágenes/todoslospartes.JPG)
+
+En la tabla aparecen todos los partes y su estado.
+
+En la parte derecha pueden filtrarse por rango de fechas o trabajador y rango de fechas. Para elegir el trabajador pulsamos en _Buscar_ y se abre la ventana _Buscar trabajador_.
+
+![Ventana buscar trabajador](Imágenes/buscartrabajador.JPG)
+
+Seleccionamos en la tabla el trabajador y pulsamos guardar.
+
+Para gestionar un parte los seleccionamos en la tabla y elegimos una de las siguientes opciones:
+
+  * Crear aviso
+  
+Esta opción nos permite almacenar un aviso para el trabajador al que pertenece el parte y que sepa que se ha dejado el parte abierto.
+
+  * Validar parte
+ 
+Cambia el estado a validado. Una vez validado un parte no se puede modificar ni borrar.
+
+  * Modificar parte
+  
+Muestra el formulario de edición de partes. (Sólo permitido en partes no validados).
+
+  * Borrar parte
+  
+Borra el parte seleccionado. (Sólo permitido en partes no validados).
 
 
 
