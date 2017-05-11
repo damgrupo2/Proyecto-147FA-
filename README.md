@@ -141,7 +141,7 @@ Una vez rellenado el formulario pulsamos en _Guardar_.
 
 Seleccionamos en la tabla el centro a consultar y pulsamos una de las opciones:
 
-  * Ver trabajadores
+    * Ver trabajadores
 
 En la tabla inferior se muestra un listado con los trabajadores de ese centro.
 
