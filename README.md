@@ -16,7 +16,20 @@ Está aplicación está diseñada para su uso en una empresa de transportes. Per
 	
 - [Uso como administrativo](#administrativo)
 
-    - [Centros / Nuevo centro](#centros--nuevo-centro)
+    - [Nuevo centro](#centros--nuevo-centro)
+	
+    - [Listado centros](#centros--listado-centros)
+
+    - [Nuevo trabajador](#trabajadores--nuevo-trabajador)
+
+    - [Listar trabajadores](#trabajadores--listar-trabajadores)
+
+    - [Nuevo usuario](#trabajadores--nuevo-usuario)
+	
+	- [Nuevo vehículo](#vehículos--nuevo-vehículo)
+	
+	- [Gestión de partes](#partes--gestión-de-partes)
+
 
 ## ¿Cómo funciona? ##
 
