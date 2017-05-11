@@ -196,5 +196,11 @@ public class Aviso {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return   texto ;
+    }
+    
 }
 
