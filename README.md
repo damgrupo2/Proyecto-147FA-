@@ -123,14 +123,43 @@ Podemos guardar el parte para continuar más tarde en _Guardar_ o cerrarlo defin
 
 En el caso de _Administrativo_ se inicia la ventana _Administrativo Home_.
 
-![Ventana Administrativo Home] 
+![Ventana Administrativo Home](Imágenes/adminhome.JPG)
 
+En caso de que exista algún aviso se mostrará en el cuadro. Una vez leído se puede borrar seleccionandolo en la tabla y pulsando en el botón _Borrar Aviso_.
 
+En el menú podemos elegir la acción que queremos realizar.
 
+* Centros / Nuevo centro
 
+![Ventana nuevo centro](Imágenes/centroformuario.JPG)
 
+Una vez rellenado el formulario pulsamos en _Guardar_.
 
+* Centros / Listado centros
 
+![Ventana Listado centros](Imágenes/centrolistado.JPG)
+
+Seleccionamos en la tabla el centro a consultar y pulsamos una de las opciones:
+
+** Ver trabajadores
+
+En la tabla inferior se muestra un listado con los trabajadores de ese centro.
+
+** Ver detalle
+
+![Ventana centro detalle](Imágenes/centrodetalle.JPG)
+
+Se muestran los datos referentes a ese centro.
+
+** Editar
+
+Se abre un nuevo formulario que permite hacer los cambios necesarios y guardarlos.
+
+** Borrar
+
+Se borra el centro seleccionado.
+
+* Trabajadores / Nuevo trabajador
 
 
 
