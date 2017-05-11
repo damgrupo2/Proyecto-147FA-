@@ -165,10 +165,21 @@ public class Usuario {
                         c = Categoria.Transportista;
                 }
                 t.setCategoria(c);
+                while (rsa.next()) {
+                    Aviso a = null;
+                    int idAviso = rsa.getInt("id_aviso");
+                    String texto = rsa.getString("texto");
+                    int idTrabajadorE = rsa.getInt("id_trabajador_e");
+                    int idTrabajadorR = rsa.getInt("id_trabajador_r");
+                    java.util.Date parteFecha = rsa.getDate("parte_fecha");
+                    a = new Aviso(idAviso, texto, idTrabajadorE,
+                            idTrabajadorR, parteFecha);
+                }
             }
 
             if (t.getCategoria() == Categoria.Transportista) {
                 if(contador==1){
+                    
                     while (rsp.next()) {
                         p.setFecha(rsp.getDate("FECHA"));
                         p.setKmInicio(rsp.getDouble("KM_INICIO"));
@@ -200,18 +211,7 @@ public class Usuario {
                     }
                     t.añadirParte(p);
                 }
-            } else {
-                while (rsa.next()) {
-                    Aviso a = null;
-                    int idAviso = rsa.getInt("id_aviso");
-                    String texto = rsa.getString("texto");
-                    int idTrabajadorE = rsa.getInt("id_trabajador_e");
-                    int idTrabajadorR = rsa.getInt("id_trabajador_r");
-                    java.util.Date parteFecha = rsa.getDate("parte_fecha");
-                    a = new Aviso(idAviso, texto, idTrabajadorE,
-                            idTrabajadorR, parteFecha);
-                }
-            }
+            } 
             ControladorBaseDatos.desconectar();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());

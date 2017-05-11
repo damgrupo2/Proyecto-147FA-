@@ -274,12 +274,14 @@ public class Trabajador {
                 t.setAp1(rs.getString("AP1"));
                 t.setAp2(rs.getString("AP2"));
                 t.setId_trabajador(rs.getInt("ID_TRABAJADOR"));
+
                 Usuario u = new Usuario();
                 u.setUsuario(rs.getString("ID_USUARIO"));
                 t.setUsuario(u);
                 Centro c = new Centro();
                 c.setId_centro(rs.getInt("ID_CENTRO"));
                 t.setCentro(c);
+
                 trabajadores.add(t);
             }
             ControladorBaseDatos.desconectar();

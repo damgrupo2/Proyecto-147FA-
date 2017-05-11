@@ -66,11 +66,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo usuario"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmDetalleUsu">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Detalle usuario"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmNuevoUsuActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -106,7 +104,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmverVE">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ver todos los veh&#xed;culos"/>
+                <Property name="text" type="java.lang.String" value="Listado de  veh&#xed;culos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmverVEActionPerformed"/>

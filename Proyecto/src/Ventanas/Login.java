@@ -5,8 +5,11 @@
  */
 package Ventanas;
 
+import Modelo.Aviso;
 import Modelo.Categoria;
 import Modelo.Usuario;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author sirlocus
@@ -141,6 +144,13 @@ public class Login extends javax.swing.JFrame {
             case Transportista:
                 //vp=new VentanaParte();
                 vp.setP(Usuario.getP());
+                vp.setT(Usuario.getT());
+                Modelo.Trabajador t = Usuario.getT();
+                ArrayList<Aviso> avisos= Modelo.Aviso.listarAvisos(t.getId_trabajador());
+                if(!avisos.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane,avisos.get(0));
+                    avisos.get(0).borrarAviso();
+                }
                 vp.rellenarForm();
                 vp.setVisible(true);
                 break;
