@@ -19,7 +19,7 @@ Existen dos tipos de trabajadores:
 
 ##### ¡OJO! El orden de ejecución es importante. #####
 	
-1. Ejecutar el [script](Proyecto-147FA-/MODELO_FÍSICO/SCRIPT_FISICO.ddl) que se encuentra en la siguiente ruta _MODELO FÍSICO/SCRIPT FISICO.ddl_ sobre la base de datos.
+1. Ejecutar el [script](blob/master/MODELO_FÍSICO/SCRIPT_FISICO.ddl) que se encuentra en la siguiente ruta _MODELO FÍSICO/SCRIPT FISICO.ddl_ sobre la base de datos.
 #####Este script crea las tabla necesarias y la configuración de usuario, contraseña y servidor que va a utilizar la aplicación.#####
 #####Si necesitas cambiar estos datos, puedes consultar [aquí]() como hacerlo.#####
 	
