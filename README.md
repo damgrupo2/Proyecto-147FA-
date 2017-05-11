@@ -2,21 +2,21 @@
 
 Está aplicación está diseñada para su uso en una empresa de transportes. Permite la gestión de centros de trabajo, vehículos, trabajadores y partes.
 
--[¿Cómo funciona?](#cómo-funciona)
+- [¿Cómo funciona?](#cómo-funciona)
 
--[Requisitos](#requisitos)
+- [Requisitos](#requisitos)
 
--[Pasos para la instalación](#pasos-para-la-instalación)
+- [Pasos para la instalación](#pasos-para-la-instalación)
 
--[Configuración](#configuración)
+- [Configuración](#configuración)
 
--[Uso de la aplicación](#uso-de-la-aplicación)
+- [Uso de la aplicación](#uso-de-la-aplicación)
 
--[Uso como transportista](#transportista)
+- [Uso como transportista](#transportista)
 	
--[Uso como administrativo](#administrativo)
+- [Uso como administrativo](#administrativo)
 
-  -[Centros / Nuevo centro](#centros--nuevo-centro)
+    - [Centros / Nuevo centro](#centros--nuevo-centro)
 
 ## ¿Cómo funciona? ##
 
