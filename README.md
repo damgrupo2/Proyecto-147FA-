@@ -23,6 +23,7 @@ Existen dos tipos de trabajadores:
 * Transportistas 
 	
 	Crean los partes de trabajo según los repartos que hayan realizado en su jornada laboral. Además pueden adjuntar los gastos de gasoil o dietas, entre otros, y dejar constancia de las incidencias recogidas.
+	
 * Administrativos
 	
 	Gestionan altas y bajas de centros, trabajadores y vehículos. También validan que los transportistas hayan rellenado los partes correctamente y no hayan excedido su jornada laboral.
@@ -37,15 +38,15 @@ Existen dos tipos de trabajadores:
 	
 1. Ejecutar el [script](MODELO_FÍSICO/SCRIPT_FISICO.ddl) sobre la base de datos.
 
-Este script crea las tabla necesarias y la configuración de usuario, contraseña y servidor que va a utilizar la aplicación.
-Si necesitas cambiar estos datos, puedes consultar [aquí](#configuración) como hacerlo.
+> Este script crea las tabla necesarias y la configuración de usuario, contraseña y servidor que va a utilizar la aplicación.
+> Si necesitas cambiar estos datos, puedes consultar [aquí](#configuración) como hacerlo.
 	
 2. Ejecutar el script de [procedimientos](PL_SQL/Pl-sql.sql) sobre la base de datos.
 
 3. Iniciar el ejecutable [Proyecto](Proyecto/dist/Proyecto.jar).
 
-Si quieres cambiar la ubicación de este archivo debes mover también la carpeta [lib](Proyecto/dist) a la misma carpeta que el ejecutable.
-Es recomendable que crees un acceso directo, por ejemplo a tu escritorio.
+> Si quieres cambiar la ubicación de este archivo debes mover también la carpeta [lib](Proyecto/dist) a la misma carpeta que el ejecutable.
+> Es recomendable que crees un acceso directo, por ejemplo a tu escritorio.
 
 ## Configuración ##
 
@@ -94,7 +95,7 @@ Si es la primera vez que la utilizas, usa las siguientes credenciales para inici
     Usuario: admin
 	Contraseña: aaaaa
 	
-Una vez dados de alta los usuarios, cada uno utilizará sus propias credenciales. También es recomendable borrar este usuario y sus datos relacionados. Puedes ver cómo hacerlo [aquí]().
+> Una vez dados de alta los usuarios, cada uno utilizará sus propias credenciales. También es recomendable borrar este usuario y sus datos relacionados. Puedes ver cómo hacerlo [aquí]().
 
 Dependiendo de si el usuario es _Transportista_ o _Administrativo_ se iniciará la ventana correspondiente.
 
@@ -121,7 +122,7 @@ Para añadir repartos pulsamos el botón _Añadir reparto_ y aparecerá la venta
 
 Elegimos la hora de inicio y la hora de fin, escribimos el número de albarán y pulsamos en _Guardar_. 
 
-En caso de equivocación pinchamos en el reparto correspondiente en la tabla y pulsamos en _Borrar reparto_.
+> En caso de equivocación pinchamos en el reparto correspondiente en la tabla y pulsamos en _Borrar reparto_.
 
 Podemos guardar el parte para continuar más tarde en _Guardar_ o cerrarlo definitivamente en _Cerrar parte_.
 
