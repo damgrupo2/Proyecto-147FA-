@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Modelo.Parte;
+import Modelo.Reparto;
 import Modelo.Trabajador;
 import Modelo.Vehiculo;
 import java.awt.GraphicsConfiguration;
@@ -13,8 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,12 +35,14 @@ public class VentanaParte extends javax.swing.JFrame {
     public void setJtVehiculo(String id) {
         this.jtVehiculo.setText(id);
     }
-    
 
+    public void setRepartos(List<Reparto> repartos) {
+        this.repartos = repartos;
+    }
+    
     public void recargarTabla() {
         model= (DefaultTableModel)jTable1.getModel();
         model.setRowCount(0);
-        repartos = p.getRepartos();
         for(Modelo.Reparto r:repartos){
             model.insertRow(model.getRowCount(), new Object[]{r.getAlbaran(),r.getHoraInicio(),r.getHoraFin()});
         }
@@ -68,10 +69,7 @@ public class VentanaParte extends javax.swing.JFrame {
     }
     public void setPRell(Parte p){
         this.p = p;
-        rellenarForm();
-        jbGuardar.setEnabled(false);
-        jbUpdate.setEnabled(true);
-        
+        rellenarForm();       
     }
 
     public void setT(Trabajador t) {
@@ -80,7 +78,6 @@ public class VentanaParte extends javax.swing.JFrame {
     
     public void rellenarForm(){
         if(p.getFecha()!=null){
-            
             Double kmINI = p.getKmInicio();
             String kmINi = kmINI.toString();
             jtKmIni.setText(kmINi);
@@ -109,11 +106,7 @@ public class VentanaParte extends javax.swing.JFrame {
     }
 
     public VentanaParte() {
-        initComponents();
-        jbUpdate.setEnabled(false);
-        jbGuardar.setEnabled(true);
-        
-        
+        initComponents();         
     }
 
     /**
@@ -252,7 +245,6 @@ public class VentanaParte extends javax.swing.JFrame {
         });
 
         jbUpdate.setText("GUARDAR CAMBIOS");
-        jbUpdate.setEnabled(false);
         jbUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbUpdateActionPerformed(evt);
@@ -320,7 +312,6 @@ public class VentanaParte extends javax.swing.JFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbUpdate)
                                 .addGap(74, 74, 74)
                                 .addComponent(jbGuardar)
@@ -436,8 +427,14 @@ public class VentanaParte extends javax.swing.JFrame {
             p.setOtrosGastos(Double.parseDouble(jtOtros.getText()));
         }
         p.setIncidencias(jtIncidencias.getText());
-        Date fecha= new Date();
+        Date fecha = Modelo.Usuario.getP().getFecha();
+        if(fecha==null){
+            fecha = new Date();
+        }
         p.setFecha(fecha);
+        for(Modelo.Reparto r: repartos){
+            p.añadirReparto(r);
+        }
         boolean correcto=false;
         try {
             correcto = p.guardarParte(t.getId_trabajador(),Integer.parseInt(jtVehiculo.getText()));
@@ -449,7 +446,7 @@ public class VentanaParte extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
-       t = Modelo.Usuario.getT();
+        t = Modelo.Usuario.getT();
         boolean correcto = p.cerrarParte();
         if(correcto){
             jlAviso.setText("Parte cerrado correctamente");
@@ -457,7 +454,8 @@ public class VentanaParte extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCerrarActionPerformed
 
     private void jbBorrarRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarRepActionPerformed
-        p.getRepartos().remove(fila);
+        repartos.remove(fila);
+        p.limpiarRepartos();
         model.removeRow(fila);
     }//GEN-LAST:event_jbBorrarRepActionPerformed
 
@@ -482,11 +480,14 @@ public class VentanaParte extends javax.swing.JFrame {
             p.setOtrosGastos(Double.parseDouble(jtOtros.getText()));
         }
         p.setIncidencias(jtIncidencias.getText());
-        Date fecha= new Date();
+        Date fecha= Modelo.Usuario.getP().getFecha();
         p.setFecha(fecha);
+        for(Modelo.Reparto r: repartos){
+            p.añadirReparto(r);
+        }
         boolean correcto=false;
         try {
-            correcto = p.actualizarParte(id,Integer.parseInt(jtVehiculo.getText()));
+            correcto = p.actualizarParte(t.getId_trabajador(),Integer.parseInt(jtVehiculo.getText()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema \n" + ex.getMessage());
         }

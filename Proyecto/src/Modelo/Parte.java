@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -156,7 +157,9 @@ public class Parte {
         this.validado = validado;
     }
 
-
+    public void limpiarRepartos(){
+        repartos = new ArrayList<>();
+    }
   
     public List<Reparto> getRepartos() {
         return repartos;
@@ -276,9 +279,10 @@ public class Parte {
                     .prepareStatement("INSERT INTO PARTE(FECHA,ID_TRABAJADOR,"
                             + "KM_INICIO,KM_FIN,GASOIL,AUTOPISTA,DIETAS,OTROS_GASTOS,"
                             + "INCIDENCIAS,ABIERTO,ID_VEHICULO,VALIDADO) "
-                            + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
-            java.sql.Date sql = new java.sql.Date(fecha.getTime());
-            ps.setDate(1, sql);
+                            + "VALUES(TO_DATE(?,'dd/mm/yy'),?,?,?,?,?,?,?,?,?,?,?)");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+            String fechaS = sdf.format(fecha);
+            ps.setString(1, fechaS);
             ps.setInt(2, id_trabajador);
             ps.setDouble(3, kmInicio);
             ps.setDouble(4, kmFin);
@@ -295,8 +299,8 @@ public class Parte {
             
             for(Reparto r:repartos){
                 PreparedStatement psr = con
-                        .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
-                psr.setDate(1, sql);
+                        .prepareStatement("INSERT INTO REPARTO VALUES(TO_DATE(?,'dd/mm/yy'),?,?,?,?)");
+                psr.setString(1, fechaS);
                 psr.setInt(2, id_trabajador);
                 psr.setString(3, r.getAlbaran());
                 psr.setTimestamp(4, new java.sql.Timestamp(r.getHoraInicio().getTime()));
@@ -333,8 +337,7 @@ public class Parte {
             PreparedStatement ps = con
                     .prepareStatement("UPDATE PARTE SET "
                             + "KM_INICIO=?, KM_FIN=?, GASOIL=?, AUTOPISTA=?, DIETAS=?,"
-                            + "OTROS_GASTOS=?,INCIDENCIAS=?, ID_VEHICULO=? WHERE FECHA =? AND ID_TRABAJADOR =?" );
-            java.sql.Date sql = new java.sql.Date(fecha.getTime());
+                            + "OTROS_GASTOS=?,INCIDENCIAS=?, ID_VEHICULO=? WHERE FECHA =TO_DATE(?,'dd/mm/yy') AND ID_TRABAJADOR =?" );
             ps.setDouble(1, kmInicio);
             ps.setDouble(2, kmFin);
             ps.setDouble(3, gasoil);
@@ -343,31 +346,40 @@ public class Parte {
             ps.setDouble(6, otrosGastos);
             ps.setString(7, incidencias);
             ps.setInt(8, id_vehiculo);
-            ps.setDate(9, sql);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+            String fechaS = sdf.format(fecha);
+            ps.setString(9, fechaS);
             ps.setInt(10, id_trabajador);
-            ps.executeUpdate();
-            
-           
+            int filas= ps.executeUpdate();          
             for(Reparto r:repartos){
                 PreparedStatement psp = con
-                        .prepareStatement("SELECT ALBARAN FROM REPARTO WHERE ALBARAN=?");
-                psp.setString(1, r.getAlbaran());
+                        .prepareStatement("SELECT ALBARAN FROM REPARTO WHERE FECHA=TO_DATE(?,'dd/mm/yy')");
+                psp.setString(1, fechaS);
                 ResultSet rsp = psp.executeQuery();
                 if(rsp.next()){
-                    PreparedStatement psp2 = ControladorBaseDatos.getConexion()
+                    if(r.getAlbaran().equals(rsp.getString("ALBARAN"))){
+                        PreparedStatement psp2 = ControladorBaseDatos.getConexion()
                             .prepareStatement("UPDATE ALBARAN SET HORA_INICIO=?,"
                                     + "SET HORA_FIN=?");
-                    psp2.setTimestamp(1, new java.sql.Timestamp(r.getHoraInicio().getTime()));
-                    psp2.setTimestamp(1, new java.sql.Timestamp(r.getHoraFin().getTime()));
-                }else{
-                    PreparedStatement psr = ControladorBaseDatos.getConexion()
-                        .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
-                    psr.setDate(1, sql);
-                    psr.setInt(2, id_trabajador);
-                    psr.setString(3, r.getAlbaran());
-                    psr.setTimestamp(4, new java.sql.Timestamp(r.getHoraInicio().getTime()));
-                    psr.setTimestamp(5, new java.sql.Timestamp(r.getHoraFin().getTime()));
-                    psr.execute();
+                        psp2.setTimestamp(1, new java.sql.Timestamp(r.getHoraInicio().getTime()));
+                        psp2.setTimestamp(2, new java.sql.Timestamp(r.getHoraFin().getTime()));
+                    }else{
+                        if(rsp.getString("ALBARAN")!=null){
+                            PreparedStatement psr = ControladorBaseDatos.getConexion()
+                                .prepareStatement("INSERT INTO REPARTO VALUES(?,?,?,?,?)");
+                            psr.setString(1, fechaS);
+                            psr.setInt(2, id_trabajador);
+                            psr.setString(3, r.getAlbaran());
+                            psr.setTimestamp(4, new java.sql.Timestamp(r.getHoraInicio().getTime()));
+                            psr.setTimestamp(5, new java.sql.Timestamp(r.getHoraFin().getTime()));
+                            psr.execute();
+                        }else{
+                            PreparedStatement psb = ControladorBaseDatos.getConexion()
+                                    .prepareStatement("DELETE FROM REPARTO WHERE ALBARAN=?");
+                            psb.setString(1, r.getAlbaran());
+                            ps.execute();
+                        }
+                    }  
                 }
             }
             con.close();
@@ -398,7 +410,7 @@ public class Parte {
             ps.setDate(1, sqlr);
             ps.setInt(2, trabajador.getId_trabajador());
             
-            ps.executeUpdate();
+            int filas = ps.executeUpdate();
             ControladorBaseDatos.desconectar();
             return true;
         } catch (SQLException ex) {
