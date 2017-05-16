@@ -43,7 +43,7 @@ public class VentanaParte extends javax.swing.JFrame {
     public void recargarTabla() {
         model= (DefaultTableModel)jTable1.getModel();
         model.setRowCount(0);
-        for(Modelo.Reparto r:repartos){
+        for(Modelo.Reparto r:p.getRepartos()){
             model.insertRow(model.getRowCount(), new Object[]{r.getAlbaran(),r.getHoraInicio(),r.getHoraFin()});
         }
     }
@@ -432,9 +432,9 @@ public class VentanaParte extends javax.swing.JFrame {
             fecha = new Date();
         }
         p.setFecha(fecha);
-        for(Modelo.Reparto r: repartos){
+        /*for(Modelo.Reparto r: repartos){
             p.añadirReparto(r);
-        }
+        }*/
         boolean correcto=false;
         try {
             correcto = p.guardarParte(t.getId_trabajador(),Integer.parseInt(jtVehiculo.getText()));
@@ -455,7 +455,7 @@ public class VentanaParte extends javax.swing.JFrame {
 
     private void jbBorrarRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarRepActionPerformed
         repartos.remove(fila);
-        p.limpiarRepartos();
+        //p.limpiarRepartos();
         model.removeRow(fila);
     }//GEN-LAST:event_jbBorrarRepActionPerformed
 
@@ -482,9 +482,9 @@ public class VentanaParte extends javax.swing.JFrame {
         p.setIncidencias(jtIncidencias.getText());
         Date fecha= Modelo.Usuario.getP().getFecha();
         p.setFecha(fecha);
-        for(Modelo.Reparto r: repartos){
+        /*for(Modelo.Reparto r: p.getRepartos()){
             p.añadirReparto(r);
-        }
+        }*/
         boolean correcto=false;
         try {
             correcto = p.actualizarParte(t.getId_trabajador(),Integer.parseInt(jtVehiculo.getText()));
