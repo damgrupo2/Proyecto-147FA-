@@ -429,8 +429,7 @@ public class TodosLosPartes extends javax.swing.JFrame {
             vp = new VentanaParte();
             vp.setPRell(a);
             ArrayList<Modelo.Reparto> repartos = new ArrayList<>();
-            repartos = (ArrayList<Reparto>) Parte.getRepartosSt();
-            for(Modelo.Reparto r: repartos){
+            for(Modelo.Reparto r: a.getRepartos()){
                 vp.añadeReparto(r);
             }
             vp.setId(id_delParte);

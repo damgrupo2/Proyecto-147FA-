@@ -345,9 +345,7 @@ public class Parte {
             ps.setInt(8, id_vehiculo);
             ps.setDate(9, sql);
             ps.setInt(10, id_trabajador);
-            ps.executeUpdate();
-            
-           
+            int filas= ps.executeUpdate();          
             for(Reparto r:repartos){
                 PreparedStatement psp = con
                         .prepareStatement("SELECT ALBARAN FROM REPARTO WHERE ALBARAN=?");

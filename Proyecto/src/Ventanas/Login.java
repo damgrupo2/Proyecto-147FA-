@@ -151,7 +151,9 @@ public class Login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane,avisos.get(0));
                     avisos.get(0).borrarAviso();
                 }
+                vp.setRepartos(Usuario.getP().getRepartos());
                 vp.rellenarForm();
+                
                 vp.setVisible(true);
                 break;
         }
