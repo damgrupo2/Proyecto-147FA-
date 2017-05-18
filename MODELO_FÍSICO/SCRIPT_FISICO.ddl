@@ -217,4 +217,4 @@ GRANT "RESOURCE" TO Aplicacion ;
 -- ERRORS                                   1
 -- WARNINGS                                 0
 
-ALTER TABLE REPARTO ADD CONSTRAINT REPARTOS_PK PRIMARY KEY ( FECHA, ID_TRABAJADOR, ALBARAN ) ;
+
